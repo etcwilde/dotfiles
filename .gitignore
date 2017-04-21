@@ -1,6 +1,8 @@
 # Directories
 # --------------
-
+nvim/spell/
+nvim/bundle/
 
 # Files
 # --------------
+.netrwhist
