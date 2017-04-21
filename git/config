@@ -1,0 +1,32 @@
+# vim:set ft=gitconfig noet sts=4 sw=4 ts=4 tw=84:
+[user]
+	name = Evan Wilde
+	email = etcwilde@uvic.ca
+
+[merge]
+	branchdesc = true
+
+[merge "log"]
+	name = true
+
+[core]
+	excludesfile = ~/.gitignore
+	editor = /usr/bin/nvim
+
+[github]
+	user = etcwilde
+
+[alias]
+	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
+	graph = log --graph --oneline --decorate=short --all
+	unstage = reset HEAD --
+	append = commit --amend --no-edit
+	todo = !zsh -c 'grep --color=always -rn "TODO" `git ls-files`'
+
+[color]
+	log = always
+	status = always
+	graph = always
+
+[init]
+	templatedir = ~/.git
