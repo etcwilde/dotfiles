@@ -1,0 +1,58 @@
+# zshrc
+# Evan Wilde
+#
+
+export EDITOR='nvim'
+export PATH="$PATH:/opt/bin/:$HOME/.local/bin/"
+export TZ=':/etc/localtime'
+
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+
+# Variables
+export ARCHFLAGS="-arch x86_64"
+ZSH=~/.config/zsh
+ANTIGEN=$ZSH/antigen/antigen.zsh
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+
+set rtp+=~/.local/src/fzf
+
+# External configurations
+
+[ -f $ANTIGEN ] && . $ANTIGEN
+[ -f $ZSH/aliases.zsh ] && . $ZSH/aliases.zsh
+[ -f $ZSH/history.zsh ] &&  . $ZSH/history.zsh
+[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
+
+# Antigen plugins
+
+plugins=(git pip tmux zsh-completions command-not-found zsh-autosuggestions)
+
+# Oh-my-zsh
+antigen use oh-my-zsh
+
+# oh-my-zsh libraries
+antigen bundle git
+antigen bundle pip
+antigen bundle command-not-found
+
+# syntax highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search
+
+# Load theme
+antigen theme blinks
+
+autoload -U compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+eval "$(stack --bash-completion-script stack)"
+
+# Vim keybindings
+bindkey -v
+
+# Library Variables
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/lib/:/opt/lib/cuda:/opt/lib/cuddn"
+export CUDA_HOME="/opt/src/cuda/"
