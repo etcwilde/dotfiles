@@ -248,3 +248,6 @@ nnoremap tc :tabclose<CR>
 
 " leader
 let mapleader = "-"
+
+" Tabularize
+vmap as :Tabularize / <CR>
