@@ -4,3 +4,6 @@
 # Evan Wilde      <etcwilde@uvic.ca>
 
 ln --backup -s "$PWD/zsh/zshrc" "$HOME/.zshrc"
+
+ln --backup -s "$PWD/zsh" "$CONFIG"
+ln --backup -s "$PWD/termite" "$CONFIG"
