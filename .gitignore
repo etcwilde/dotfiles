@@ -3,7 +3,10 @@
 cache/
 antigen/
 tmux/plugins/
+nvim/spell/
+nvim/bundle/
 
 # Files
 # --------------
 zsh_histfile
+.netrwhist
