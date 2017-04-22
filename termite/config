@@ -1,0 +1,31 @@
+[options]
+font = Inconsolata 15
+
+[colors]
+foreground=#688060
+background=#3a3a3a
+
+# black
+color0  = #303030
+color8  = #362f2e
+# red
+color1  = #cc9393
+color9  = #EF2929
+# green
+color2  = #7c945f
+color10 = #7f9f7f
+# yellow
+color3  = #efdcbc
+color11 = #e3ceab
+# blue
+color4  = #8cd0d4
+color12 = #729FCF
+# magenta
+color5  = #cc9393
+color13 = #AD7FA8
+# cyan
+color6  = #8cd0d4
+color14 = #34E2E2
+# white
+color7  = #D3D7CF
+color15 = #EEEEEC
