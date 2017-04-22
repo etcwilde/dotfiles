@@ -5,12 +5,21 @@
 
 ln --backup -s "$PWD/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln --backup -s "$PWD/zsh/zshrc" "$HOME/.zshrc"
+ln --backup -s "$PWD/git/config" "$HOME/.gitconfig"
+ln --backup -s "$PWD/git/gitignore" "$HOME/.gitignore"
 
 if [ -d "$HOME/.i3" ]; then
   echo -e "\033[0;33mWarning:\033[0m i3 (~/.i3) folder already exits, create the symbolic link manually"
 else
   ln --backup -s "$PWD/git/template" "$HOME/.i3"
 fi
+
+if [ -d "$HOME/.git" ]; then
+  echo -e "\033[0;33mWarning:\033[0m Git (~/.git) folder already exits, create the symbolic link manually"
+else
+  ln --backup -s "$PWD/git/template" "$HOME/.git"
+fi
+
 
 CONFIG="$HOME/.config"
 

@@ -1,0 +1,44 @@
+# Evan Wilde    <etcwilde@uvic.ca>
+# 2017
+
+#
+# Vim
+#
+*.sw*
+
+#
+# Python
+#
+
+# Files
+*.pyc
+*.pyo
+
+# Directories
+__pycache__/
+
+#
+# C/C++
+#
+
+# Files
+*.o
+*.a
+*.so
+
+#
+# Haskell
+#
+
+# Files
+*.hi
+
+#
+# Misc
+#
+
+# Files
+.license.config
+
+# Directories
+.templates/
