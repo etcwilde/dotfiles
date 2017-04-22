@@ -5,7 +5,7 @@
 ############################################################################
 set $mod Mod4
 
-set $Locker "i3lock-fancy -f Ubuntu -t $USER@$HOSTNAME && sleep 1"
+set $Locker i3lock-fancy -f Ubuntu -t $USER@$HOSTNAME
 
 popup_during_fullscreen smart
 
@@ -177,8 +177,7 @@ bindsym $mod+r mode "Resize"
 mode "System" {
     bindsym l exec --no-startup-id $Locker,  mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    # bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym s exec --no-startup-id "i3lock -e -c 3f3f3f -d -I 2 && sleep 0.5 && systemctl suspend", mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
