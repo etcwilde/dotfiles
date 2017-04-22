@@ -5,5 +5,11 @@
 
 ln --backup -s "$PWD/zsh/zshrc" "$HOME/.zshrc"
 
+if [ -d "$HOME/.i3" ]; then
+  echo -e "\033[0;33mWarning:\033[0m i3 (~/.i3) folder already exits, create the symbolic link manually"
+else
+  ln --backup -s "$PWD/git/template" "$HOME/.i3"
+fi
+
 ln --backup -s "$PWD/zsh" "$CONFIG"
 ln --backup -s "$PWD/termite" "$CONFIG"
