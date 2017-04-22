@@ -3,6 +3,7 @@
 # Installs my dotfiles quickly and efficiently
 # Evan Wilde      <etcwilde@uvic.ca>
 
+ln --backup -s "$PWD/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln --backup -s "$PWD/zsh/zshrc" "$HOME/.zshrc"
 
 if [ -d "$HOME/.i3" ]; then
@@ -11,5 +12,9 @@ else
   ln --backup -s "$PWD/git/template" "$HOME/.i3"
 fi
 
+CONFIG="$HOME/.config"
+
 ln --backup -s "$PWD/zsh" "$CONFIG"
 ln --backup -s "$PWD/termite" "$CONFIG"
+
+ln --backup -s "$PWD/tmux" "$CONFIG"
