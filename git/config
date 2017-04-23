@@ -22,6 +22,7 @@
 	unstage = reset HEAD --
 	append = commit --amend --no-edit
 	todo = !zsh -c 'grep --color=always -rn "TODO" `git ls-files`'
+	page = !zsh -c '~/.dotfiles/git/scripts/gitpage.sh'
 
 [color]
 	log = always
