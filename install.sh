@@ -27,3 +27,5 @@ ln --backup -s "$PWD/zsh" "$CONFIG"
 ln --backup -s "$PWD/termite" "$CONFIG"
 ln --backup -s "$PWD/tmux" "$CONFIG"
 ln --backup -s "$PWD/nvim" "$CONFIG"
+
+xrdb -merge "$PWD/Xresources"
