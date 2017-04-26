@@ -5,7 +5,7 @@
 ############################################################################
 set $mod Mod4
 
-set $Locker i3lock-fancy -f Ubuntu -t $USER@$HOSTNAME
+set $Locker i3lock --textcolor=ffffff00 --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=00000000 --keyhlcolor=ffffff80 --ringvercolor=ffffff00 --separatorcolor=22222260 --ringwrongcolor=ffffff55 --insidewrongcolor=ffffff1c -t -i ~/.dotfiles/i3/images/lock.png
 
 popup_during_fullscreen smart
 
@@ -149,9 +149,9 @@ bindsym XF86MonBrightnessUp exec brightness ++ 20
 bindsym XF86MonBrightnessDown exec brightness -- 20
 
 mode "Media" {
-  bindsym k exec --no-startup-id amixer -qc 0 sset Master playback 1db+ unmute && killall -SIGUSR1 i3status
-  bindsym j exec --no-startup-id amixer -qc 0 sset Master playback 1db- unmute && killall -SIGUSR1 i3status
-  bindsym h exec --no-startup-id amixer -q set Master toggle && killall -SIGUSR1 i3status
+  bindsym k exec --no-startup-id amixer -qc 0 sset Master playback 1db+ unmute
+  bindsym j exec --no-startup-id amixer -qc 0 sset Master playback 1db- unmute
+  bindsym h exec --no-startup-id amixer -q set Master toggle
 
   # Specific to the machine
   bindsym l exec --no-startup-id amixer set "Headphone" toggle && amixer set "Front" toggle && amixer set "Surround" toggle && amixer set "Center" toggle && amixer set "LFE" toggle
@@ -177,7 +177,7 @@ bindsym $mod+r mode "Resize"
 mode "System" {
     bindsym l exec --no-startup-id $Locker,  mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id "i3lock -e -c 3f3f3f -d -I 2 && sleep 0.5 && systemctl suspend", mode "default"
+    bindsym s exec --no-startup-id "$Locker && sleep 0.5 && systemctl suspend", mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
