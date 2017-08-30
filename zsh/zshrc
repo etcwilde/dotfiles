@@ -53,8 +53,6 @@ antigen theme blinks
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-eval "$(stack --bash-completion-script stack)"
-
 # Vim keybindings
 bindkey -v
 
