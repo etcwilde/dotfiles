@@ -35,6 +35,9 @@ client.urgent            #dca3a3 #dca3a3 #dcdccc #3f3f3f
 # finds out, if available)
 bar {
     status_command i3blocks -c ~/.i3/i3blocks.conf
+    mode hide
+    binding_mode_indicator no
+
     colors {
         background #3f3f3f
         statusline #dcdccc
@@ -44,6 +47,25 @@ bar {
         inactive_workspace #636363 #3f3f3f #dcdccc
         urgent_workspace   #dca3a3 #3f3f3f #dca3a3
     }
+}
+
+bar {
+  position top
+  mode hide
+  workspace_buttons no
+  status_command i3blocks -c ~/.i3/i3blocks_top.conf
+
+  colors {
+    background #3f3f3f
+    statusline #dcdccc
+
+    focused_workspace  #93b3a3 #3f3f3f #93b3a3
+    active_workspace   #ffcfaf #3f3f3f #ffcfaf
+    inactive_workspace #636363 #3f3f3f #dcdccc
+    urgent_workspace   #dca3a3 #3f3f3f #dca3a3
+  }
+
+
 }
 
 
@@ -143,18 +165,24 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit?'
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -qc 0 sset Master playback 1db+ unmute
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -qc 0 sset Master playback 1db- unmute
-bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle && pkill -RTMIN+10 i3blocks
 
 bindsym XF86MonBrightnessUp exec brightness ++ 20
 bindsym XF86MonBrightnessDown exec brightness -- 20
 
 mode "Media" {
-  bindsym k exec --no-startup-id amixer -qc 0 sset Master playback 1db+ unmute
-  bindsym j exec --no-startup-id amixer -qc 0 sset Master playback 1db- unmute
-  bindsym h exec --no-startup-id amixer -q set Master toggle
+  bindsym k exec --no-startup-id amixer -qc 0 sset Master playback 1db+ unmute && pkill -RTMIN+10 i3blocks
+  bindsym j exec --no-startup-id amixer -qc 0 sset Master playback 1db- unmute && pkill -RTMIN+10 i3blocks
+  bindsym h exec --no-startup-id amixer -q set Master toggle && pkill -RTMIN+10 i3blocks
+
+  bindsym ctrl+p exec --no-startup-id cmus-remote -r  # previous
+  bindsym ctrl+h exec --no-startup-id cmus-remote -u  # play/pause
+  bindsym ctrl+n exec --no-startup-id cmus-remote -n  # Next song
+
+
 
   # Specific to the machine
-  bindsym l exec --no-startup-id amixer set "Headphone" toggle && amixer set "Front" toggle && amixer set "Surround" toggle && amixer set "Center" toggle && amixer set "LFE" toggle
+  bindsym l exec --no-startup-id amixer set "Headphone" toggle && amixer set "Speaker" toggle
 
   bindsym e exec --no-startup-id eject
 
@@ -179,6 +207,7 @@ mode "System" {
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id "$Locker && sleep 0.5 && systemctl suspend", mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym u exec --no-startup-id xmodmap ~/.dotfiles/keymap
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # Back to default
@@ -190,11 +219,15 @@ bindsym $mod+Shift+Return mode "System"
 # Menu
 bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun -show combi -color-enabled true  -color-window $bg_color, $bg_color, $bg_color"
 
+# Extras
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+12 i3blocks
+bindsym --release Num_Lock exec pkill -SIGRTMIN+12 i3blocks
+
 ############################################################################
 ## Startup Applications
 ############################################################################
 exec --no-startup-id ssh-agent
 exec --no-startup-id dunst
 exec setxkbmap -option compose:ralt
-exec_always --no-startup-id xmodmap ~/.dotfiles/keymap
-exec_always --no-startup-id compton --config ~/.dotfiles/i3/compton.conf -b
+# exec_always --no-startup-id xmodmap ~/.dotfiles/keymap
+# exec_always --no-startup-id compton --config ~/.dotfiles/i3/compton.conf -b
