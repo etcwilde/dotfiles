@@ -56,7 +56,7 @@ set nostartofline " Don't move cusor on line jumps
 set number        " Enable Line numbers
 set ruler         " Show column and character in file
 set spell         " Spelling
-set tw=84         " Text Width
+set tw=72         " Text Width
 set ts=4          " Tab Stop
 set sts=4         " Soft Tab Stop
 set wildmode=list:longest,list:full " how completion behaves
@@ -65,6 +65,7 @@ set expandtab     " Expands the tabs to spaces
 set scrolloff=5
 set background=dark
 set encoding=utf-8
+set nojoinspaces  " Don't add two spaces between sentences
 colorscheme zenburn
 let &colorcolumn=join(range(&tw+1,&tw+1), ",")
 syntax on
@@ -126,6 +127,7 @@ Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/vimproc'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'chr4/sslsecure.vim'
 
 " Git Support
 Bundle 'mattn/webapi-vim'
@@ -171,6 +173,7 @@ autocmd bufread,bufnewfile *.g4 set filetype=antlr4
 autocmd bufread,bufnewfile *.g3 set filetype=antlr3
 autocmd bufread,bufnewfile *.ll set filetype=llvm
 autocmd bufread,bufnewfile *.org set filetype=org
+autocmd bufread,bufnewfile *.csv set filetype=csv syntax=csv
 autocmd VimResized * wincmd =
 autocmd bufread,bufnewfile *.py setlocal ts=4 sts=4 sw=4 tw=79 expandtab ai
 
@@ -248,3 +251,6 @@ nnoremap tc :tabclose<CR>
 
 " leader
 let mapleader = "-"
+
+" Tabularize
+vmap as :Tabularize / <CR>

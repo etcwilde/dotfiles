@@ -15,6 +15,11 @@ ANTIGEN=$ZSH/antigen/antigen.zsh
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+if [[ ! -f $ANTIGEN ]]; then
+  echo "Downloading Antigen"
+  curl 'https://cdn.rawgit.com/zsh-users/antigen/v1.4.1/bin/antigen.zsh' > $ANTIGEN
+fi
+
 set rtp+=~/.local/src/fzf
 
 # External configurations
@@ -48,11 +53,10 @@ antigen theme blinks
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-eval "$(stack --bash-completion-script stack)"
-
 # Vim keybindings
 bindkey -v
 
 # Library Variables
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/lib/:/opt/lib/cuda:/opt/lib/cuddn"
 export CUDA_HOME="/opt/src/cuda/"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
