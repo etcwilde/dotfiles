@@ -9,4 +9,5 @@ elif [[ $git_url == git@* ]]; then
   url=https://${git_domain}/${cut%.git}
 else
   echo "Error, remote origin is invalid"
+  exit 1
 fi; xdg-open $url
