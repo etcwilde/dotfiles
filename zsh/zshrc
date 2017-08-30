@@ -17,6 +17,7 @@ COMPLETION_WAITING_DOTS="true"
 
 if [[ ! -f $ANTIGEN ]]; then
   echo "Downloading Antigen"
+  mkdir -p $ZSH/antigen
   curl 'https://cdn.rawgit.com/zsh-users/antigen/v1.4.1/bin/antigen.zsh' > $ANTIGEN
 fi
 
