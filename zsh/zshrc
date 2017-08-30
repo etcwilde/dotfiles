@@ -15,6 +15,11 @@ ANTIGEN=$ZSH/antigen/antigen.zsh
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+if [[ ! -f $ANTIGEN ]]; then
+  echo "Downloading Antigen"
+  curl 'https://cdn.rawgit.com/zsh-users/antigen/v1.4.1/bin/antigen.zsh' > $ANTIGEN
+fi
+
 set rtp+=~/.local/src/fzf
 
 # External configurations
