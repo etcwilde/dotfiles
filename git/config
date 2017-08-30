@@ -2,6 +2,7 @@
 [user]
 	name = Evan Wilde
 	email = etcwilde@uvic.ca
+	signingkey = etcwilde@uvic.ca
 
 [merge]
 	branchdesc = true
@@ -20,9 +21,15 @@
 	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
 	graph = log --graph --oneline --decorate=short --all
 	unstage = reset HEAD --
+	undo = checkout --
 	append = commit --amend --no-edit
-	todo = !zsh -c 'grep --color=always -rn "TODO" `git ls-files`'
+	todo = !sh -c 'grep --color=always -rn "TODO" `git ls-files`'
+	search = !sh -c 'grep --color=always -rn \"$1\" `git ls-files`' -
 	page = !zsh -c '~/.dotfiles/git/scripts/gitpage.sh'
+	blameall = !sh -c '~/.dotfiles/git/scripts/changes.sh \"$1\" \"$2\"'
+	ri = rebase -i --autosquash
+	fix = commit --fixup
+
 
 [color]
 	log = always
@@ -31,3 +38,7 @@
 
 [init]
 	templatedir = ~/.git
+
+[sendemail]
+	smtpServerPort=587
+	smtpServer=smtp.uvic.ca
