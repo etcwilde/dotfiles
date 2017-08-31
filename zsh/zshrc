@@ -18,6 +18,7 @@ COMPLETION_WAITING_DOTS="true"
 # Include custom completion functions
 fpath=($ZSH/completions/ $fpath)
 
+# Automatically install antigen
 if [[ ! -f $ANTIGEN ]]; then
   echo "Downloading Antigen"
   mkdir -p $ZSH/antigen
@@ -31,7 +32,6 @@ set rtp+=~/.local/src/fzf
 [ -f $ANTIGEN ] && . $ANTIGEN
 [ -f $ZSH/aliases.zsh ] && . $ZSH/aliases.zsh
 [ -f $ZSH/history.zsh ] &&  . $ZSH/history.zsh
-[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
 
 # Antigen plugins
 
