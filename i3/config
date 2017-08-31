@@ -5,7 +5,7 @@
 ############################################################################
 set $mod Mod4
 
-set $Locker i3lock --textcolor=ffffff00 --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=00000000 --keyhlcolor=ffffff80 --ringvercolor=ffffff00 --separatorcolor=22222260 --ringwrongcolor=ffffff55 --insidewrongcolor=ffffff1c -t -i ~/.dotfiles/i3/images/lock.png
+set $Locker i3lock -t -i ~/.dotfiles/i3/images/lock.png
 
 popup_during_fullscreen smart
 
