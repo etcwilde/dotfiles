@@ -15,6 +15,9 @@ ANTIGEN=$ZSH/antigen/antigen.zsh
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+# Include custom completion functions
+fpath=($ZSH/completions/ $fpath)
+
 if [[ ! -f $ANTIGEN ]]; then
   echo "Downloading Antigen"
   mkdir -p $ZSH/antigen
