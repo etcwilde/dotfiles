@@ -230,4 +230,4 @@ exec --no-startup-id ssh-agent
 exec --no-startup-id dunst
 exec setxkbmap -option compose:ralt
 # exec_always --no-startup-id xmodmap ~/.dotfiles/keymap
-# exec_always --no-startup-id compton --config ~/.dotfiles/i3/compton.conf -b
+exec_always --no-startup-id compton --config ~/.dotfiles/i3/compton.conf -b
