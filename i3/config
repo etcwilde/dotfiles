@@ -217,7 +217,7 @@ mode "System" {
 bindsym $mod+Shift+Return mode "System"
 
 # Menu
-bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun -show combi -color-enabled true  -color-window $bg_color, $bg_color, $bg_color"
+bindsym $mod+d exec --no-startup-id "rofi - terminal termite -combi-modi window,drun -show combi -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
 
 # Extras
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+12 i3blocks
