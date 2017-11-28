@@ -1,9 +1,8 @@
-# Configuration
+* Introduction
 
-This is the core module of the dot files. This includes the basic configuration file
-structure.
+These are my configuration files
 
-# Installation
+* Installation
 
 Installation is made simpler with the `install.sh` file.
 
@@ -16,10 +15,6 @@ each module.
 
 Note: you will need to locally merge the i3, Vim, git, dunst, and shell branches.
 
-# Todo
-
-- Interactive installation for grabbing desired components
-
-# Author
+* Author
 
 Evan Wilde      <etcwilde@uvic.ca>
