@@ -15,14 +15,12 @@ popup_during_fullscreen smart
 font pango: Ubuntu 14
 floating_modifier $mod
 
-
 # Colors
 set $bg_color         #3f3f3f
 set $sel_color        #688060
 set $text_color       #dcdccc
 set $selectText_color #303030
 set $alt_color        #ffcfaf
-
 
 # Window colors          border  backgr. text    indicator
 client.focused           #688060 #688060 #303030 #ffcfaf
@@ -80,8 +78,6 @@ set $rofisearch "rofi -show window  - terminal termite -line-margin 15 -width 60
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
-# bindsym $mod+Return exec weston-terminal
-
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -91,7 +87,6 @@ focus_follows_mouse no
 
 # Don't warp mouse
 mouse_warping none
-
 
 # change focus
 bindsym $mod+h focus left
@@ -128,7 +123,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 bindsym $mod+shift+a focus child
-
 
 # switch to workspace
 bindsym $mod+1 workspace 1
