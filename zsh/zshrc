@@ -4,6 +4,7 @@
 
 export EDITOR='nvim'
 export PATH="$PATH:/opt/bin/:$HOME/.local/bin/"
+export GOPATH="$HOME/.local/lib/go/"
 export TZ=':/etc/localtime'
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
