@@ -18,41 +18,10 @@ COMPLETION_WAITING_DOTS="true"
 # Include custom completion functions
 fpath=($ZSH/completions/ $fpath)
 
-# Automatically install antigen
-if [[ ! -f $ANTIGEN ]]; then
-  echo "Downloading Antigen"
-  mkdir -p $ZSH/antigen
-  curl 'https://cdn.rawgit.com/zsh-users/antigen/v1.4.1/bin/antigen.zsh' > $ANTIGEN
-fi
-
-set rtp+=~/.local/src/fzf
-
 # External configurations
-
-[ -f $ANTIGEN ] && . $ANTIGEN
 [ -f $ZSH/aliases.zsh ] && . $ZSH/aliases.zsh
 [ -f $ZSH/history.zsh ] &&  . $ZSH/history.zsh
-
-# Antigen plugins
-
-plugins=(git pip tmux zsh-completions command-not-found zsh-autosuggestions)
-
-# Oh-my-zsh
-antigen use oh-my-zsh
-
-# oh-my-zsh libraries
-antigen bundle git
-antigen bundle pip
-antigen bundle command-not-found
-
-# syntax highlighting
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-history-substring-search
-
-# Load theme
-antigen theme blinks
+[ -f $ZSH/prompt.zsh ] && . $ZSH/prompt.zsh
 
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
