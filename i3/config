@@ -171,6 +171,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit?'
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -qc 0 sset Master playback 1db+ unmute
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -qc 0 sset Master playback 1db- unmute
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMicMute exec --no-startup-id amixer -q set Capture toggle
 
 bindsym XF86LaunchA exec --no-startup-id $rofisearch
 
@@ -182,13 +183,6 @@ mode "Media" {
   bindsym ctrl+p exec --no-startup-id cmus-remote -r  # previous
   bindsym ctrl+h exec --no-startup-id cmus-remote -u  # play/pause
   bindsym ctrl+n exec --no-startup-id cmus-remote -n  # Next song
-
-
-
-  # Specific to the machine
-  bindsym l exec --no-startup-id amixer set "Headphone" toggle && amixer set "Speaker" toggle
-
-  bindsym e exec --no-startup-id eject
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
@@ -209,9 +203,8 @@ bindsym $mod+r mode "Resize"
 mode "System" {
     bindsym l exec --no-startup-id $Locker,  mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id "$Locker && sleep 0.5 && systemctl suspend", mode "default"
+    bindsym s exec --no-startup-id "$Locker && sleep 0.3 && systemctl suspend", mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym u exec --no-startup-id xmodmap ~/.dotfiles/keymap
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # Back to default
