@@ -100,14 +100,39 @@ call vundle#rc(s:editor_root.'/bundle')
 Bundle 'VundleVim/Vundle.vim'
 
 " Language Support
+
+"" Python
+Bundle 'tmhedberg/SimpylFold'
+Bundle 'davidhalter/jedi-vim'
+if has("nvim")
+  Bundle 'zchee/deoplete-jedi'
+endif
+
+"" Rust
 Bundle 'rust-lang/rust.vim'
+
+"" LaTeX
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
+
+"" Antlr/llvm
 Bundle 'dylon/vim-antlr'
-Bundle 'tikhomirov/vim-glsl'
 Bundle 'Superbil/llvm.vim'
-Bundle 'vim-scripts/vim-soy'
+
+"" glsl
+Bundle 'tikhomirov/vim-glsl'
+
+"" Org
 Bundle 'jceb/vim-orgmode'
 Bundle 'dhruvasagar/vim-table-mode'
+
+"" Haskell
+Bundle 'eagletmt/ghcmod-vim'
+Bundle 'eagletmt/neco-ghc'
+Bundle 'lukerandall/haskellmode-vim'
+if has('nvim')
+  Bundle 'neovimhaskell/haskell-vim'
+endif
+
 
 " Environment
 Bundle 'jlanzarotta/bufexplorer'
