@@ -7,6 +7,9 @@ alias em="emacs -t"
 alias open="xdg-open"
 alias ls="ls --color=auto"
 alias la="ls -A"
+alias ll="ls -lh"
+alias lla='ls -lAh'
+alias less='less -r'
 
 # Watch with color
 alias watch="watch --color"
