@@ -68,6 +68,11 @@ bar {
 
 }
 
+############################################################################
+## Rofi configuration
+############################################################################
+set $rofidefault "rofi - terminal termite -combi-modi window,drun -show combi -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
+set $rofisearch "rofi -show window  - terminal termite -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
 
 ############################################################################
 ## Key bindings
@@ -167,8 +172,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -qc 0 sset Master playb
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -qc 0 sset Master playback 1db- unmute
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle && pkill -RTMIN+10 i3blocks
 
-bindsym XF86MonBrightnessUp exec brightness ++ 20
-bindsym XF86MonBrightnessDown exec brightness -- 20
+bindsym XF86LaunchA exec --no-startup-id $rofisearch
 
 mode "Media" {
   bindsym k exec --no-startup-id amixer -qc 0 sset Master playback 1db+ unmute && pkill -RTMIN+10 i3blocks
@@ -217,7 +221,7 @@ mode "System" {
 bindsym $mod+Shift+Return mode "System"
 
 # Menu
-bindsym $mod+d exec --no-startup-id "rofi - terminal termite -combi-modi window,drun -show combi -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
+bindsym $mod+d exec --no-startup-id $rofidefault
 
 # Extras
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+12 i3blocks
