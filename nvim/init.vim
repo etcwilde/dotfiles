@@ -144,12 +144,13 @@ Bundle 'etcwilde/vim-snippets'
 Bundle 'Raimondi/delimitMate'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'Shougo/vimproc'
-Bundle 'airblade/vim-gitgutter'
 Bundle 'chr4/sslsecure.vim'
 
 " Git Support
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
 if vundle_installed == 0
         echo "Installing Bundles (Ignore map errors)"
         echo ""
