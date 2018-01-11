@@ -104,9 +104,6 @@ Bundle 'VundleVim/Vundle.vim'
 "" Python
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'davidhalter/jedi-vim'
-if has("nvim")
-  Bundle 'zchee/deoplete-jedi'
-endif
 
 "" Rust
 Bundle 'rust-lang/rust.vim'
@@ -157,13 +154,6 @@ Bundle 'chr4/sslsecure.vim'
 " Git Support
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-
-if has('nvim')
-        Bundle 'Shougo/deoplete.nvim'
-        Bundle 'neomake/neomake'
-endif
-
-
 if vundle_installed == 0
         echo "Installing Bundles (Ignore map errors)"
         echo ""
@@ -202,20 +192,12 @@ autocmd bufread,bufnewfile *.csv set filetype=csv syntax=csv
 autocmd VimResized * wincmd =
 autocmd bufread,bufnewfile *.py setlocal ts=4 sts=4 sw=4 tw=79 expandtab ai
 
-" Auto completion
-" --------------------------------------
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_refresh_always = 1
-" let g:deoplete#disable_auto_complete = 1
-
-if exists(':DeopleteEnable')
-  let g:jedi#completions_enabled = 1
-  let g:jedi#show_call_signatures = 1
-endif
-
 " Gist Setup
 " --------------------------------------
 let g:gist_get_multiplefile = 1
+
+
+" --------------------------------------
 
 
 " FZF Configuration
