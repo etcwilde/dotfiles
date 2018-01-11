@@ -143,6 +143,7 @@ Bundle 'etcwilde/ultisnips'
 Bundle 'etcwilde/vim-snippets'
 Bundle 'Raimondi/delimitMate'
 Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'w0rp/ale'
 Bundle 'Shougo/vimproc'
 Bundle 'chr4/sslsecure.vim'
 
