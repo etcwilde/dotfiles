@@ -99,6 +99,11 @@ Bundle 'VundleVim/Vundle.vim'
 
 " Language Support
 
+"" C++
+Bundle 'rhysd/vim-clang-format'
+Bundle 'roxma/nvim-completion-manager'
+Bundle 'roxma/ncm-clang'
+
 "" Python
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'davidhalter/jedi-vim'
@@ -194,8 +199,18 @@ autocmd bufread,bufnewfile *.py setlocal ts=4 sts=4 sw=4 tw=79 expandtab ai
 " --------------------------------------
 let g:gist_get_multiplefile = 1
 
-
+" Ale Setup
 " --------------------------------------
+let g:ale_linters = {
+\   'cpp': ['clangtidy', 'clang'],
+\}
+
+" Clang_complete Setup
+" --------------------------------------
+let g:clang_complete_auto=1
+let g:clang_use_library=1
+let g:clang_debug=1
+let g:clang_library_path='/usr/lib/libclang.so'
 
 
 " FZF Configuration
