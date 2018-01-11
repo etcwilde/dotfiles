@@ -15,7 +15,6 @@
 "       F5 : Fixes indentation over entire file
 "       F6 : Toggles relative and global line numbers
 "
-"
 
 " Functions
 " --------------------------------------
@@ -95,7 +94,6 @@ call vundle#rc(s:editor_root.'/bundle')
 
 " Plugin List
 " -----------
-
 " Plugin managment
 Bundle 'VundleVim/Vundle.vim'
 
@@ -130,7 +128,6 @@ if has('nvim')
   Bundle 'neovimhaskell/haskell-vim'
 endif
 
-
 " Environment
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'tpope/vim-commentary'
@@ -146,7 +143,6 @@ Bundle 'etcwilde/ultisnips'
 Bundle 'etcwilde/vim-snippets'
 Bundle 'Raimondi/delimitMate'
 Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/vimproc'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'chr4/sslsecure.vim'
@@ -222,7 +218,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
 
 
 " Ignore build directory
