@@ -3,7 +3,7 @@
 #
 
 export EDITOR='nvim'
-export PATH="$PATH:/opt/bin/:$HOME/.local/bin/"
+export PATH="$HOME/.dotfiles/bin:/usr/local/bin:$PATH:/opt/bin/:$HOME/.local/bin/:$HOME/.gem/ruby/2.4.0/bin/"
 export GOPATH="$HOME/.local/lib/go/"
 export TZ=':/etc/localtime'
 
