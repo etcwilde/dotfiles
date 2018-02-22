@@ -180,11 +180,6 @@ let g:clang_library_path='/usr/lib/libclang.so'
 " Ignore build directory
 set wildignore+=*/build/**
 
-" Python Setup
-" --------------------------------------
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
-
 " Tabularize
 " --------------------------------------
 vmap as :Tabularize / <CR>
