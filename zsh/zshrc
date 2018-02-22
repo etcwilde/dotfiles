@@ -2,10 +2,24 @@
 # Evan Wilde
 #
 
-export EDITOR='nvim'
+# check if a program exists in the user's path
+prog_exists() {
+        if hash $1 2>/dev/null; then
+                return 0
+        else
+                return 1
+        fi
+}
+
 export PATH="$HOME/.dotfiles/bin:/usr/local/bin:$PATH:/opt/bin/:$HOME/.local/bin/:$HOME/.gem/ruby/2.4.0/bin/"
 export GOPATH="$HOME/.local/lib/go/"
 export TZ=':/etc/localtime'
+
+if prog_exists 'nvim'; then
+        export EDITOR='nvim'
+elif prog_exists 'vim'; then
+        export EDITOR='vim'
+fi
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
@@ -23,6 +37,7 @@ fpath=($ZSH/completions/ $fpath)
 [ -f $ZSH/aliases.zsh ] && . $ZSH/aliases.zsh
 [ -f $ZSH/history.zsh ] &&  . $ZSH/history.zsh
 [ -f $ZSH/prompt.zsh ] && . $ZSH/prompt.zsh
+[ -f $ZSH/private.zsh ] && . $ZSH/private.zsh
 
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
