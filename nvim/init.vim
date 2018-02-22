@@ -107,8 +107,10 @@ Bundle 'VundleVim/Vundle.vim'
 
 "" C++
 Bundle 'rhysd/vim-clang-format'
-Bundle 'roxma/nvim-completion-manager'
-Bundle 'roxma/ncm-clang'
+if has('nvim')
+   Bundle 'roxma/nvim-completion-manager'
+   Bundle 'roxma/ncm-clang'
+endif
 
 "" Python
 Bundle 'tmhedberg/SimpylFold'
