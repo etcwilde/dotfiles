@@ -1,14 +1,15 @@
 " C++ Settings
 " --------------------------------------
+set sw=4
+set ts=4
+set sts=4
+set et
 
 "" Alignment
 vmap a= :Tabluarize /=<CR>
 
-"" Syntax Highlighting
-let g:chromatica#libclang_path='/usr/lib/libclang.so'
-
 "" Syntax Checker
-let g:ale_cpp_clangtidy_checks= ["*", "-google-runtime-references"]
+let g:ale_cpp_clangtidy_checks= ['*', '-google-runtime-references', '-fuchsia-*']
 let g:ale_cpp_clangtidy_options='-std=c++17'
 let g:ale_cpp_clang_options='-std=c++17 -Wall'
 let g:ale_cpp_clangcheck_options = '-std=c++17 -Wall'
