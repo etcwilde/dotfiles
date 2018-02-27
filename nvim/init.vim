@@ -154,10 +154,10 @@ nnoremap tj :tabfirst<CR>
 nnoremap th :tabprev<CR>
 nnoremap tl :tabnext<CR>
 nnoremap tk :tablast<CR>
-nnoremap tn :tabnew<CR>
+nnoremap tc :tabnew<CR>
 nnoremap tml :tabmove +<CR>
 nnoremap tmh :tabmove -<CR>
-nnoremap tc :tabclose<CR>
+nnoremap <C-d> :tabclose<CR>
 
 " Windows
 nnoremap <silent> <C-w>+ :exec "resize " . (winheight(0) * 3/2)<CR>
