@@ -151,13 +151,13 @@ endif
 nnoremap <silent> <C-n> :call ToggleNumbers()<CR>
 
 " Tabs
-nnoremap tj :tabfirst<CR>
-nnoremap th :tabprev<CR>
-nnoremap tl :tabnext<CR>
-nnoremap tk :tablast<CR>
-nnoremap tc :tabnew<CR>
-nnoremap tml :tabmove +<CR>
-nnoremap tmh :tabmove -<CR>
+nnoremap <leader>tj :tabfirst<CR>
+nnoremap <leader>th :tabprev<CR>
+nnoremap <leader>tl :tabnext<CR>
+nnoremap <leader>tk :tablast<CR>
+nnoremap <leader>tc :tabnew<CR>
+nnoremap <leader>tml :tabmove +<CR>
+nnoremap <leader>tmh :tabmove -<CR>
 nnoremap <C-d> :tabclose<CR>
 
 " Windows
