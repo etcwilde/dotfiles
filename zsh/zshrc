@@ -11,7 +11,7 @@ prog_exists() {
         fi
 }
 
-export PATH="$HOME/.bin:$HOME/.dotfiles/bin:$HOME/.local/bin:/usr/local/bin:/opt/bin:$HOME/.gem/ruby/2.4.0/bin:/usr/local/sbin:/usr/bin:/bin"
+export PATH="$HOME/.bin:$HOME/.dotfiles/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 export GOPATH="$HOME/.local/lib/go/"
 export TZ=':/etc/localtime'
 
