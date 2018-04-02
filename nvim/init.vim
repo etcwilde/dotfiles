@@ -70,7 +70,7 @@ colorscheme zenburn
 " --------------------------------------
 
 " Buffer Types
-autocmd bufread,bufnewfile *h,*.cpp,*.hpp,*.CC,*.c++ setlocal ft=cpp
+autocmd bufread,bufnewfile *.h,*.cpp,*.hpp,*.CC,*.c++ setlocal ft=cpp
 autocmd bufread,bufnewfile *.ll setlocal ft=llvm tw=0
 autocmd bufread,bufnewfile *.csv setlocal ft=csv syntax=csv
 autocmd bufread,bufnewfile *.sh setlocal ft=sh
