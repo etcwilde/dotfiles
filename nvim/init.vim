@@ -17,6 +17,16 @@ function ToggleNumbers()
   endif
 endfunction
 
+" StripTrainlingWhitespace()
+" ----------------------
+"  Removes whitespaces that are not followed by non-whitespace
+"  characters in a line.
+function StripTrainlingWhitespace()
+        let l:savepos = winsaveview()
+        %s/\s\+$//e
+        call winrestview(l:savepos)
+endfunction
+
 " Options and Variables
 " --------------------------------------
 set exrc          " Execute local vimrc
@@ -72,6 +82,9 @@ autocmd VimResized * wincmd =
 autocmd InsertEnter * silent! set nornu number
 autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
 autocmd bufEnter,InsertLeave * syntax sync fromstart
+
+" Onsave
+autocmd BufWritePre * call StripTrainlingWhitespace() " Delete trailing ws
 
 
 " [n]Vim Plugins
