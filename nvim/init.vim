@@ -1,6 +1,7 @@
 " --------------------------------------
 " [n]vim rc
 " Evan Wilde (c) 2018
+" vim:set et sw=2 ts=2 tw=72:
 
 " Functions
 " --------------------------------------
@@ -74,6 +75,7 @@ autocmd bufread,bufnewfile *.h,*.cpp,*.hpp,*.CC,*.c++ setlocal ft=cpp
 autocmd bufread,bufnewfile *.ll setlocal ft=llvm tw=0
 autocmd bufread,bufnewfile *.csv setlocal ft=csv syntax=csv
 autocmd bufread,bufnewfile *.sh setlocal ft=sh
+autocmd bufread,bufnewfile *.snippets setlocal ft=snippets
 
 " Window Control
 autocmd VimResized * wincmd =
@@ -82,6 +84,7 @@ autocmd VimResized * wincmd =
 autocmd InsertEnter * silent! set nornu number
 autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
 autocmd bufEnter,InsertLeave * syntax sync fromstart
+autocmd FileType cmake setlocal commentstring=#\ %s
 
 " Onsave
 autocmd BufWritePre * call StripTrainlingWhitespace() " Delete trailing ws
@@ -115,20 +118,55 @@ call vundle#rc(s:editor_root.'/bundle')
 " -----------
 
 " Plugin Manager
-Bundle 'VundleVim/Vundle.vim'
+Bundle 'etcwilde/Vundle.vim'
+
+" Environment
+Bundle 'W0rp/ale'
+Bundle 'sirver/ultisnips'
+Bundle 'godlygeek/tabular'
+Bundle 'jlanzarotta/bufexplorer'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-surround'
+
+" Auto Completion
+if has('nvim')
+   Bundle 'ncm2/ncm2'
+   Bundle 'roxma/nvim-yarp'
+
+   autocmd BufEnter * call ncm2#enable_for_buffer()
+   set completeopt=noinsert,menuone,noselect
+
+   Bundle 'ncm2/ncm2-bufword'
+   Bundle 'ncm2/ncm2-tmux'
+   Bundle 'ncm2/ncm2-path'
+   Bundle 'ncm2/ncm2-ultisnips'
+   Bundle 'ncm2/ncm2-jedi'
+
+endif
+
+" Git Support
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
+if vundle_installed == 0
+  :BundleInstall
+endif
 
 " Language Support
 
 "" C++
 Bundle 'rhysd/vim-clang-format'
 if has('nvim')
-   Bundle 'roxma/nvim-completion-manager'
-   Bundle 'roxma/ncm-clang'
+  Bundle 'ncm2/ncm2-pyclang'
 endif
 
 "" Python
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'davidhalter/jedi-vim'
+if has('nvim')
+endif
 
 "" Rust
 Bundle 'rust-lang/rust.vim'
@@ -139,24 +177,6 @@ Bundle 'LaTeX-Box-Team/LaTeX-Box'
 "" glsl
 Bundle 'tikhomirov/vim-glsl'
 
-" Environment
-Bundle 'W0rp/ale'
-Bundle 'etcwilde/ultisnips'
-Bundle 'etcwilde/vim-snippets'
-Bundle 'godlygeek/tabular'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
-
-" Git Support
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'Xuyuanp/nerdtree-git-plugin'
-if vundle_installed == 0
-  :BundleInstall
-endif
 
 " Keymaps
 " --------------------------------------
@@ -188,10 +208,8 @@ let g:ale_linters = {
 
 " Clang_complete Setup
 " --------------------------------------
-let g:clang_complete_auto=1
-let g:clang_use_library=1
-let g:clang_debug=1
-let g:clang_library_path='/usr/lib/libclang.so'
+let g:ncm2_pyclang#library_path='/usr/lib/libclang.so'
+let g:ncm2_pyclang#clang_path='/usr/bin/clang'
 
 " Ignore build directory
 set wildignore+=*/build/**
@@ -199,3 +217,28 @@ set wildignore+=*/build/**
 " Tabularize
 " --------------------------------------
 vmap as :Tabularize / <CR>
+
+
+" Snippets
+" --------------------------------------
+
+" UltiSnip info:
+" snippet options:
+" - !: overwrite previously defined snippets
+" - b: beginning of a line
+" - i: InWord expansion (does not require whitespace before expansion)
+" - w: Word boundary
+" - r: regular expression
+" - t: Don't expand tabs
+
+if has("nvim")
+  let g:UltiSnipsSnippetsDir=$HOME.'/.config/nvim/ulti-snippets'
+  let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ulti-snippets']
+else
+  let g:UltiSnipsSnippetsDir=$HOME.'/.vim/ulti-snippets'
+  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/ulti-snippets']
+endif
+
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"

@@ -11,7 +11,7 @@ vmap a= :Tabluarize /=<CR>
 "" Syntax Checker
 let g:ale_cpp_clangtidy_checks= ['*', '-google-runtime-references', '-fuchsia-*']
 let g:ale_cpp_clangtidy_options='-std=c++17'
-let g:ale_cpp_clang_options='-std=c++17 -Wall'
+let g:ale_cpp_clang_options='-std=c++17 -Wall -fsyntax-only -x cpp -S'
 let g:ale_cpp_clangcheck_options = '-std=c++17 -Wall'
 
 "" Clang Format
