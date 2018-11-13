@@ -11,9 +11,10 @@ prog_exists() {
         fi
 }
 
-export PATH="$HOME/.bin:$HOME/.dotfiles/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+export PATH="$HOME/.bin:$HOME/.cargo/bin:$HOME/.dotfiles/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 export GOPATH="$HOME/.local/lib/go/"
-export TZ=':/etc/localtime'
+export TZ='America/Los_Angeles'
+# export TZ=':/etc/localtime'
 
 if prog_exists 'nvim'; then
         export EDITOR='nvim'
@@ -42,13 +43,13 @@ fpath=($ZSH/completions/ $fpath)
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-# Vim keybindings
-bindkey -v
 
 # Library Variables
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/lib/:/opt/lib/cuda:/opt/lib/cuddn"
 export CUDA_HOME="/opt/src/cuda/"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+export SCCACHE_CACHE_SIZE="30G"
 
 # Syntax highlighting if available
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -68,3 +69,10 @@ setopt autocd
 setopt correct
 setopt histignoredups
 setopt histignorespace
+autoload -U edit-command-line
+
+# Vim keybindings
+bindkey -v
+
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
