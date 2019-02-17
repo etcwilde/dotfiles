@@ -1,0 +1,52 @@
+# vim:set noet sw=4 ts=4 sts=4 tw=72:
+
+# C++ Snippets
+
+extends c
+
+#
+# Class
+#
+
+snippet class "Create a class" b
+class $1 {
+	$0
+};
+endsnippet
+
+#
+# Namespace
+#
+
+snippet ns "Namespace" b
+namespace ${1} {
+	${0}
+} // namespace $1
+endsnippet
+
+#
+# Control flow
+#
+
+snippet switch "Create a switch" b
+switch($1) {
+	$0
+}
+endsnippet
+
+snippet case "case" b
+case ${1:1}:
+	break;
+endsnippet
+
+#
+# I/O
+#
+
+snippet cout "std::cout" b
+std::cout << $1 << std::endl;$0
+endsnippet
+
+snippet cerr "std::cerr" b
+std::cerr << $1 << std::endl;$0
+endsnippet

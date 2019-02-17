@@ -1,0 +1,107 @@
+# vim:set noet sw=4 ts=4 sts=4 tw=72:
+
+global !p
+def complete(t, opts):
+	if t:
+		opts = [m[len(t):] for m in opts if m.startswith(t)]
+	if not opts:
+		return ''
+	if len(opts) == 1:
+		return opts[0]
+	return '(' + '|'.join(opts) + ')'
+endglobal
+
+snippet subdir "Add subdirectory" b
+add_subdirectory("${1}")$0
+endsnippet
+
+snippet status "Status message" b
+message(STATUS "${1}")$0
+endsnippet
+
+snippet fatal "Fatal error message" b
+message(FATAL_ERROR "${1}")$0
+endsnippet
+
+snippet warn "Warning message" b
+message(WARNING "${1}")$0
+endsnippet
+
+#
+# Comments
+#
+
+global !p
+def comment_bar(tw):
+	return "#" + '-' * (tw - 1)
+# Standard globals
+tw = int(snip.opt("&tw", 72))
+ts = int(snip.opt("&ts", 4))
+sts = int(snip.opt("&sts", 4))
+endglobal
+
+snippet cbar "Create a comment bar" b
+`!p
+if not snip.c:
+	snip.rv += comment_bar(tw)
+`
+endsnippet
+
+snippet clbar "Bar with left-aligned comment" b
+# --- $1 `!p
+snip.rv += '-' * (tw - (7 + len(t[1])))`
+$0
+endsnippet
+
+#
+# Target Options
+#
+
+snippet target "Target Options" b
+target_$1`!p snip.rv=complete(t[1], ['link_libraries', 'include_directories', 'compile_options'])`$0
+endsnippet
+
+snippet target_link_libraries "Link link_libraries to a target" b
+target_link_libraries(${1:target} ${2:library})$0
+endsnippet
+
+snippet target_include_directories "Set include directories for a target" b
+target_include_directories(${1:target} ${2:INTERFACE|PUBLIC|PRIVATE} ${3:item})$0
+endsnippet
+
+#
+# Control Flow
+#
+
+snippet if "if statement" b
+if ($1)
+	$0
+endif ()
+endsnippet
+
+snippet "^[\t ]*for(each)?" "Cmake for-loop" r
+foreach (${1:loop_var} ${2:args})
+	$0
+endforeach ()
+endsnippet
+
+#
+# Functions
+#
+
+snippet function "Add a new function" b
+function(${1:function_name}${2: Argument})
+	$0
+endfunction()
+endsnippet
+
+#
+# Extras
+#
+snippet min "cmake minimum required" b
+cmake_minimum_required($1)$0
+endsnippet
+
+snippet set "Create a variable" b
+set($1)$0
+endsnippet
