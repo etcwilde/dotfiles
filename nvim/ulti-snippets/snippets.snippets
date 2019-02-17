@@ -1,0 +1,14 @@
+# Evan Wilde (c) 2018
+
+snippet "^[\t ]*snip(pet)?$" "New snippet" r
+`!p snip.rv = "snippet"` ${1:Trigger} "${2:Description}" ${3:b}
+${0:${VISUAL}}
+`!p snip.rv = "endsnippet"`
+endsnippet
+
+snippet global "Create a global snippet" b
+`!p snip.rv = "global !p"`
+def $1($2):
+	$0
+`!p snip.rv = 'endglobal'`
+endsnippet
