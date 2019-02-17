@@ -1,0 +1,12 @@
+! --- Zenburn Theme         --- !
+! Evan Wilde <etcwilde@uvic.ca> !
+! Aug 31, 2017                  !
+
+
+rofi.color-enabled: true
+!
+rofi.color-window: #3f3f3f, #688060, #688060
+!                  backgr., forgr.,  bck.alt, hlgt bg, hlgt fg.
+rofi.color-normal: #3f3f3f, #688060, #3f3f3f, #f0dfaf, #3f3f3f
+rofi.color-active: #303030, #8cbc7c, #303030, #688060, #303030
+rofi.color-urgent: #3f3f3f, #dca3a3, #b06666, #dca3a3, #3f3f3f

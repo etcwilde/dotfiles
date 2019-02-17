@@ -1,0 +1,24 @@
+# vim:set noet sw=4 ts=4 sts=4 tw=72:
+snippet "mode(line)?" "Insert modeline" r
+vim`!v ':set ' . (&expandtab ?  'et' : 'noet') . printf(' sw=%i ts=%i sts=%i ', &sw, &ts, &sts) . (&tw ? 'tw=' . &tw : '') . (&ff ? ' ff=' . &ff : '') . ':'`
+endsnippet
+
+snippet date "Insert todays date"
+`date +%Y-%m-%d`
+endsnippet
+
+snippet path "Full File Path"
+${1:`!p snip.rv = os.path.abspath(path)`}${0}
+endsnippet
+
+snippet title "Title case"
+${VISUAL:/\w+\s*/\u$0/g}
+endsnippet
+
+snippet lower "Lower case"
+${VISUAL:/\w+\s*/\L$0\E/g}
+endsnippet
+
+snippet upper "Upper case"
+${VISUAL:/\w+\s*/\U$0\E/g}
+endsnippet

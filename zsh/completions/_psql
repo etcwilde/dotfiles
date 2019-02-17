@@ -1,0 +1,77 @@
+#compdef psql
+
+# Evan Wilde <etcwilde@uvic.ca>
+# Aug 30, 2017
+
+typeset -A opt_args
+local context line state
+
+# TODO: split arg types
+
+# TODO: fix 'file' command, to use file completion
+# TODO: fix 'variable', to show all arguments --variable=NAME=VALUE
+# TODO: fix 'help' to complete help topics
+
+local -a general_args
+general_args=(
+  '(--command -c)'{--command,-c}'[run only single command (SQL or internal) and exit]'
+  '(--dbname -d)'{--dbname,-d}'[database name to connect to]'
+  '(--file -f)'{--file,-f}'[execute commands from file, then exit]'
+  '(--list -l)'{--list,-l}'[list available databases, then exit]'
+  '(-v --set --variable=)'{-v,--variable}'[set psql variable NAME to value]'
+  '(-V --version)'{-V,--version}'[output version information, then exit]'
+  '(-X --no-psqlrc)'{-X,--no-psqlrc}'[do not read startup file]'
+  '(-1 --single-transaction)'{-1,--single-transaction}'[execute as a single transaction (if non-interactive)]'
+  '(-? --help)'{-?,--help}'[show help, then exit]'
+)
+
+# TODO: fix 'log-file' command to use file completion
+# TODO: fix 'output' command to use file completion
+
+local -a io_args
+io_args=(
+  '(-a --echo-all)'{-a,--echo-all}'[echo all input from script]'
+  '(-b --echo-errors)'{-b,--echo-errors}'[echo failed commands]'
+  '(-e --echo-queries)'{-e,--echo-queries}'[echo commands sent to server]'
+  '(-E --echo-hidden)'{-E,--echo-hidden}'[display queires that internal commands generate]'
+  '(-L --log-file)'{-L,--log-file}'[send session log to file]'
+  '(-n --no-readline)'{-n,--no-readline}'[disable enhanced command line editing (readline)]'
+  '(-o --output)'{-o,--output}'[send query results to file (or |pipe)]'
+  '(-q --quiet)'{-q,--quiet}'[run quietly (no messages, only query output)]'
+  '(-s --single-step)'{-s,--single-step}'[single-step mode (confirm each query)]'
+  '(-S --single-line)'{-S,--single-line}'[single-line mode (end of line terminates SQL command)]'
+)
+
+# TODO: fix 'field-separator' to '--field-separator=STRING'
+# TODO: fix 'pset' to format '--pset=VAR[=ARG]'
+# TODO: fix 'record-separator' to '--record-separator=STRING'
+# TODO: fix 'table-attr' to '--table-attr=TEXT'
+
+local -a fmt_args
+fmt_args=(
+  '(-A --no-align)'{-A,--no-align}'[unaligned table output mode]'
+  '(-F --field-separator)'{-F,--field-separator}'[filed separator for unaligned output (default: "|")]'
+  '(-H --html)'{-H,--html}'[HTML table output mode]'
+  '(-P --pset)'{-P,--pset}'[set printing option VAR to ARG (set \pset command)]'
+  '(-R --record-separator)'{-R,--record-separator}'[record separator for unaligned output (default: newline)]'
+  '(-t --tuples-only)'{-t,--tuples-only}'[print rows only]'
+  '(-T --table-attr)'{-T,--table-attr}'[set HTML table tag attributes]'
+  '(-x --expanded)'{-x,--expanded}'[turn on expanded table output]'
+  '(-z --field-separator-zero)'{-z,--field-separator-zero}'[set field separator for unaligned output to zero byte]'
+  '(-0 --record-separator-zero)'{-0,--record-separator-zero}'[set record separator for unaligned output to zero byte]'
+)
+
+# TODO: fix 'host' to '--host=HOSTNAME' (default: "local socket")
+# TODO: fix 'port' to '--port=PORT' (default: 5432)
+# TODO: fix 'username' to '--username=USERNAME' (default: $USER)
+
+local -a connection_args
+connection_args=(
+  '(-h --host)'{-h,--host}'[database server host or socket directory]'
+  '(-p --port)'{-p,--port}'[database server port]'
+  '(-U --username)'{-U,--username}'[database user name]'
+  '(-w --no-password)'{-w,--no-password}'[never prompt for password]'
+  '(-W --password)'{-W,--password}'[force password prompt (should happend automatically)]'
+)
+
+_arguments -S : $general_args $io_args $fmt_args $connection_args

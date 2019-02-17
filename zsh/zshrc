@@ -2,9 +2,25 @@
 # Evan Wilde
 #
 
-export EDITOR='nvim'
-export PATH="$PATH:/opt/bin/:$HOME/.local/bin/"
-export TZ=':/etc/localtime'
+# check if a program exists in the user's path
+prog_exists() {
+        if hash $1 2>/dev/null; then
+                return 0
+        else
+                return 1
+        fi
+}
+
+export PATH="$HOME/.bin:$HOME/.cargo/bin:$HOME/.dotfiles/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+export GOPATH="$HOME/.local/lib/go/"
+export TZ='America/Los_Angeles'
+# export TZ=':/etc/localtime'
+
+if prog_exists 'nvim'; then
+        export EDITOR='nvim'
+elif prog_exists 'vim'; then
+        export EDITOR='vim'
+fi
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
@@ -15,48 +31,48 @@ ANTIGEN=$ZSH/antigen/antigen.zsh
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-if [[ ! -f $ANTIGEN ]]; then
-  echo "Downloading Antigen"
-  curl 'https://cdn.rawgit.com/zsh-users/antigen/v1.4.1/bin/antigen.zsh' > $ANTIGEN
-fi
-
-set rtp+=~/.local/src/fzf
+# Include custom completion functions
+fpath=($ZSH/completions/ $fpath)
 
 # External configurations
-
-[ -f $ANTIGEN ] && . $ANTIGEN
 [ -f $ZSH/aliases.zsh ] && . $ZSH/aliases.zsh
 [ -f $ZSH/history.zsh ] &&  . $ZSH/history.zsh
-[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
-
-# Antigen plugins
-
-plugins=(git pip tmux zsh-completions command-not-found zsh-autosuggestions)
-
-# Oh-my-zsh
-antigen use oh-my-zsh
-
-# oh-my-zsh libraries
-antigen bundle git
-antigen bundle pip
-antigen bundle command-not-found
-
-# syntax highlighting
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-history-substring-search
-
-# Load theme
-antigen theme blinks
+[ -f $ZSH/prompt.zsh ] && . $ZSH/prompt.zsh
+[ -f $ZSH/private.zsh ] && . $ZSH/private.zsh
 
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-# Vim keybindings
-bindkey -v
 
 # Library Variables
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/lib/:/opt/lib/cuda:/opt/lib/cuddn"
 export CUDA_HOME="/opt/src/cuda/"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+export SCCACHE_CACHE_SIZE="30G"
+
+# Syntax highlighting if available
+[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Fuzzy tab completion
+# Vanilla completion
+# Smart-case completion
+# Word-flex
+# Full flex completion
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
+
+# Options
+setopt autocd
+setopt correct
+setopt histignoredups
+setopt histignorespace
+autoload -U edit-command-line
+
+# Vim keybindings
+bindkey -v
+
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line

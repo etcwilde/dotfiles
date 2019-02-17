@@ -1,6 +1,11 @@
 [options]
 font = Inconsolata 15
 
+mouse_autohide = true
+allow_bold = true
+clickable_url=true
+urgent_on_bell = true
+
 [colors]
 foreground=#688060
 background=#3a3a3a

@@ -6,6 +6,13 @@ tmux/plugins/
 nvim/spell/
 nvim/bundle/
 
+# Wall paper directories
+wallpapers/all-images/
+wallpapers/morning/
+wallpapers/afternoon/
+wallpapers/night/
+
+
 # Files
 # --------------
 zsh_histfile

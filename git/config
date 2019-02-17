@@ -1,7 +1,7 @@
 # vim:set ft=gitconfig noet sts=4 sw=4 ts=4 tw=84:
 [user]
 	name = Evan Wilde
-	email = etcwilde@uvic.ca
+	email = etceterawilde@gmail.com
 	signingkey = etcwilde@uvic.ca
 
 [merge]
@@ -29,6 +29,7 @@
 	blameall = !sh -c '~/.dotfiles/git/scripts/changes.sh \"$1\" \"$2\"'
 	ri = rebase -i --autosquash
 	fix = commit --fixup
+	merge-graph = !zsh -c `git log --oneline --graph $1^..$1 --`
 
 
 [color]
@@ -38,7 +39,3 @@
 
 [init]
 	templatedir = ~/.git
-
-[sendemail]
-	smtpServerPort=587
-	smtpServer=smtp.uvic.ca
