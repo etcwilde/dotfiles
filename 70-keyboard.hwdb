@@ -1,5 +1,28 @@
 # AT keyboard escape/caps remapping
 
+# Keyboard identifier:
+#
+# usb keyboards:
+#      evdev:input:bZZZZvYYYYpXXXXeWWWW-VVVV
+#
+# ZZZZ: Bus-ID
+# YYYY: 4-digit Hex uppercase Vendor
+# XXXX: 4-digit Hex uppercase product
+# WWWW: 4-digit Hex uppercase version ID
+# VVVV: arbitrary-length input mode-alias
+#
+# AT Keyboards:
+#      evdev:atkbd:dmi:bvn*:bvr*:bd*:svn<vendor>:pn<product>:pvr*
+#
+#
+# Lookup keyboard:
+# $ sudo udevadm monitor --environment --udev
+#
+# Update Keyboard:
+# $ sudo systemd-hwdb update
+# $ sudo udevadm update
+#
+
 # Realforce Keyboard Remapping
 evdev:input:b0003v0853*
  KEYBOARD_KEY_70039=esc
