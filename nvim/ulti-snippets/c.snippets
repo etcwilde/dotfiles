@@ -1,0 +1,117 @@
+# vim:set noet sw=4 ts=4 sts=4 tw=72:
+# C Snippets
+
+global !p
+def complete(t, opts):
+  if t:
+    opts = [m[len(t):] for m in opts if m.startswith(t)]
+  if not opts:
+    return ''
+  if len(opts) == 1:
+    return opts[0]
+  return '(' + '|'.join(opts) + ')'
+endglobal
+
+# Comments
+
+global !p
+def comment_bar(tw):
+	return "//===" + '-' * (tw - 10) + "===//"
+
+# Common variables
+tw = int(snip.opt("&tw", 72))
+ts = int(snip.opt("&ts", 4))
+sw = int(snip.opt("&sw", 4))
+sts = int(snip.opt("&sts", 4))
+endglobal
+
+snippet cbar "Create a comment bar" b
+`!p
+if not snip.c:
+	snip.rv += comment_bar(tw)
+`
+endsnippet
+
+snippet clbar "Bar with left-aligned comment" b
+//===--- ${1} `!p
+indent = len(snip._initial_indent)
+snip.rv += '-' * (tw - (8 + len(t[1]) + 7 + indent)) + "===//\n"`
+$0
+endsnippet
+
+snippet crbar "Bar with right-aligned comment" b
+`!p
+indent = len(snip._initial_indent)
+snip.rv += "//===" + '-' * (tw - (8 + len(t[1]) + 7 + indent))
+` ${1} ---===//
+$0
+endsnippet
+
+# Header guard
+
+snippet once "Header guard" b
+#ifndef ${1:`!p
+if not snip.c:
+	path = [re.sub(r'[^a-zA-Z0-9]', '_', word).upper() for word in os.path.abspath(path).split('/')]
+	split_words = ['INCLUDE', 'INC', 'SOURCE', 'SRC']
+
+	for word in split_words:
+		if word in path:
+			# Grab every after split word
+			pos = path.index(word) + 1
+			snip.rv = "_".join(path[pos:])
+			break`}
+#define $1
+$0
+#endif // $1
+endsnippet
+
+# Preprocessor directives
+
+snippet '^#\s*' "All pre-processor directives" r
+#$1`!p snip.rv=complete(t[1], ['include', 'define', 'if', 'else', 'endif' 'pragma'])`
+endsnippet
+
+snippet '^inc' "Include directive" r
+#include <$1>
+$0
+endsnippet
+
+snippet '^\#include$' "Include behaviour" r
+#include <$1>
+$0
+endsnippet
+
+# Control Flow
+
+snippet scope "Create a new scope" b
+\{
+	${1:${VISUAL}}
+\}
+endsnippet
+
+snippet if "if () {}" b
+if($1) {
+	$2
+} $0
+endsnippet
+
+snippet "(\}[ \t]*)?else" "" r
+`!p snip.rv = match.group(1) `else {
+	$0
+}
+endsnippet
+
+snippet "(\}[ \t]*)?elif" "else if()" r
+`!p snip.rv = match.group(1) `else if(${1}) {
+	$2
+} $0
+endsnippet
+
+# Functions
+
+snippet main "Main function" b
+int main(int argc, char * argv[]) {
+	$0
+}
+endsnippet
