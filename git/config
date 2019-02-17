@@ -4,6 +4,9 @@
 	email = etceterawilde@gmail.com
 	signingkey = etcwilde@uvic.ca
 
+[pull]
+	rebase = true
+
 [merge]
 	branchdesc = true
 
