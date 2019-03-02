@@ -54,6 +54,7 @@ set spell         " Spelling
 set tw=72         " Text Width
 set ts=4          " Tab Stop
 set sts=4         " Soft Tab Stop
+set sw=4          " Shift width
 set wildmode=list:longest,list:full " how completion behaves
 set wildmenu      " Auto completion in commandline
 set expandtab     " Expands the tabs to spaces
