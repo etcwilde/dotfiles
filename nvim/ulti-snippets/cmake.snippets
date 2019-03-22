@@ -108,6 +108,10 @@ snippet min "cmake minimum required" b
 cmake_minimum_required($1)$0
 endsnippet
 
-snippet set "Create a variable" b
-set($1)$0
+snippet set "set()" b
+set(${1:VARIABLE} ${2:VALUE} ${3:CACHE} ${4:TYPE} ${5:DOCSTRING} ${6:FORCE} ${7:PARENT_SCOPE})$0
+endsnippet
+
+snippet option "option()" b
+option(${1:VARIABLE} ${2:DOCSTRING} ${3:INITIAL_VALUE})
 endsnippet
