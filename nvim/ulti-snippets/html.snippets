@@ -1,0 +1,100 @@
+# Evan Wilde (c) 2018
+
+#
+# Preamble
+#
+
+snippet doc "HTML doctype" w
+<!DOCTYPE HTML>
+endsnippet
+
+snippet charset "Set the charset" w
+<meta charset="${1:UTF-8}">$0
+endsnippet
+
+#
+# Tags
+#
+
+#
+# Base Tags
+#
+
+snippet html "Surrounding html tag" w
+<html>
+	${1:${VISUAL}}
+</html>
+endsnippet
+
+snippet head "Head html tag" w
+<head>
+	${1:${VISUAL}}
+</head>
+endsnippet
+
+snippet body "Body html tag" w
+<body>
+	${1:${VISUAL}}
+</body>
+endsnippet
+
+#
+# Meta Tags
+#
+
+snippet "<[ a-z]+." "class" r
+class="$1"$0
+endsnippet
+
+snippet title "Title tags" w
+<title>$1</title>$0
+endsnippet
+
+snippet meta "meta tag" w
+<meta${1: }/>$0
+endsnippet
+
+#
+# Body Tags
+#
+
+snippet div "a div tag" w
+<div>${1:${VISUAL}}</div>
+endsnippet
+
+snippet p "A paragraph tag" w
+<p>${1:${VISUAL}}</p>
+endsnippet
+
+snippet nav "<nav></nav>" w
+endsnippet
+
+#
+# Text Formatting
+#
+
+snippet h1 "Heading level 1" b
+<h1>${1:${VISUAL}}</h1>$0
+endsnippet
+
+snippet h2 "Heading level 2" b
+<h2>${1:${VISUAL}}</h2>$0
+endsnippet
+
+snippet h3 "Heading level 3" b
+<h3>${1:${VISUAL}}</h3>$0
+endsnippet
+
+#
+# Script Tags
+#
+
+snippet script "HTML inline script" w
+<script charset=utf-8>
+	${0:${VISUAL}}
+</script>
+endsnippet
+
+snippet scriptsrc "<script src=...>" w
+<script src="$1" type="${2:text/javascript}" charset="${3:utf-8}"></script>
+endsnippet
