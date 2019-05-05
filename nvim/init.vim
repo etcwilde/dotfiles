@@ -62,8 +62,8 @@ set scrolloff=5
 set background=dark
 set encoding=utf-8
 set nojoinspaces  " Don't add two spaces between sentences
+set colorcolumn=+1 " Fix colour column to the textwidth
 
-let &colorcolumn=join(range(&tw+1,&tw+1), ",")
 syntax on
 filetype plugin indent on
 colorscheme zenburn
