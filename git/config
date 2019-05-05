@@ -38,6 +38,3 @@
 	log = always
 	status = always
 	graph = always
-
-[init]
-	templatedir = ~/.git
