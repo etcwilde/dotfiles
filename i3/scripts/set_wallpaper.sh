@@ -4,17 +4,14 @@
 # Time-based background selection
 
 HR=$(echo `date +'%H'` | sed 's/^0*//')
-if [[ $HR -gt 5 && $HR -lt 11 ]]; then
-  # 5:00 AM - 11:00 AM (morning)
-  echo 'Morning'
+if [[ $HR -gt 5 && $HR -lt 12 ]]; then
+  # 5:00 AM - 12:00 AM (morning)
   BASE=~/.dotfiles/wallpapers/morning
-elif [[ $HR -ge 11 && $HR -lt 18 ]]; then
-  # 11:00 AM - 6:00 PM (Afternoon)
-  echo 'Afternoon'
+elif [[ $HR -ge 12 && $HR -lt 18 ]]; then
+  # 12:00 AM - 6:00 PM (Afternoon)
   BASE=~/.dotfiles/wallpapers/afternoon
 else
   # 6:00 PM - 5:00 AM
-  echo 'Night'
   BASE=~/.dotfiles/wallpapers/night
 fi
 
