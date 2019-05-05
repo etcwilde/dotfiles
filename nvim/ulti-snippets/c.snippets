@@ -72,12 +72,12 @@ snippet '^#\s*' "All pre-processor directives" r
 #$1`!p snip.rv=complete(t[1], ['include', 'define', 'if', 'else', 'endif' 'pragma'])`
 endsnippet
 
-snippet '^inc' "Include directive" r
+snippet inc "#include" b
 #include <$1>
 $0
 endsnippet
 
-snippet '^\#include$' "Include behaviour" r
+snippet '\#include' "#include" b
 #include <$1>
 $0
 endsnippet
