@@ -2,7 +2,6 @@
 [user]
 	name = Evan Wilde
 	email = etceterawilde@gmail.com
-	signingkey = etcwilde@uvic.ca
 
 [pull]
 	rebase = true
