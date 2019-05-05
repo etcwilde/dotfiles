@@ -33,7 +33,7 @@
 	ri = rebase -i --autosquash
 	fix = commit --fixup
 	merge-graph = !zsh -c `git log --oneline --graph $1^..$1 --`
-
+	pr-fetch-stash = !sh -c 'git fetch $0 refs/pull-requests/$1/from:$2'
 
 [color]
 	log = always
