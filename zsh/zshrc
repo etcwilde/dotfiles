@@ -10,11 +10,9 @@ prog_exists() {
                 return 1
         fi
 }
-
-export PATH="$HOME/.bin:$HOME/.cargo/bin:$HOME/.dotfiles/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/.local/lib/go/"
 export TZ='America/Los_Angeles'
-# export TZ=':/etc/localtime'
 
 if prog_exists 'nvim'; then
         export EDITOR='nvim'
@@ -45,10 +43,7 @@ autoload -U +X bashcompinit && bashcompinit
 
 
 # Library Variables
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/lib/:/opt/lib/cuda:/opt/lib/cuddn"
-export CUDA_HOME="/opt/src/cuda/"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 export SCCACHE_CACHE_SIZE="30G"
 
 # Syntax highlighting if available
