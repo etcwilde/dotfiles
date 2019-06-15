@@ -212,13 +212,9 @@ let g:ale_linters = {
 let g:ncm2_pyclang#library_path='/usr/lib/libclang.so'
 let g:ncm2_pyclang#clang_path='/usr/bin/clang'
 
-" Ignore build directory
-set wildignore+=*/build/**
-
 " Tabularize
 " --------------------------------------
 vmap as :Tabularize / <CR>
-
 
 " Snippets
 " --------------------------------------
