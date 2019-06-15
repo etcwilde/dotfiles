@@ -40,6 +40,7 @@ set foldmethod=syntax "Use syntax definitions for folding
 set hidden        " Don't have to save when changing buffers
 set hlsearch      " Highlights search
 set infercase     " Adjust case of match for keyword completion
+set ignorecase    " search is case-insensitive
 set laststatus=2  " Always show status bar
 set lazyredraw    " Only redraws what is necessary, when necessary :redraw to force
 set list listchars=tab:»·,trail:·,nbsp:· " Show tabs and trailing whitespace
