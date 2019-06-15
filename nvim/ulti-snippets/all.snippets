@@ -11,6 +11,10 @@ snippet path "Full File Path"
 ${1:`!p snip.rv = os.path.abspath(path)`}${0}
 endsnippet
 
+snippet fname "Get the filename"
+`!p snip.rv = os.path.basename(path)`
+endsnippet
+
 snippet title "Title case"
 ${VISUAL:/\w+\s*/\u$0/g}
 endsnippet
