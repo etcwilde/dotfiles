@@ -13,14 +13,15 @@ set cpo&vim
 
 let s:ft = matchstr(&ft, '^\([^.]\)\+')
 
-
-" TableGen lexical literals
-" TODO: Fix hex and binary colouring
-" Numbers
-syn match     tgNumber display "\zs[+-]\=\<\d\+\>"
-
 " Identifiers
 syn match   tgIdentifier display "\<\d*\a[a-zA-Z0-9]*\>"
+
+" TableGen lexical literals
+" Numbers
+syn match     tgNumber display "\zs[+-]\=\<\d\+\>"
+syn match     tgNumber display "\<0x\x\+\>"
+syn match     tgNumber display "\<0b[01]\+\>"
+
 " strings
 syn region  tgString    start=/"/ skip=/\\"/ end=/"/ oneline contains=@Spell
 syn region  tgCode      start="\[{" end="}\]" fold contains=@Spell
