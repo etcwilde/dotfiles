@@ -8,6 +8,7 @@
 
 [merge]
 	branchdesc = true
+	conflictstyle = diff3
 
 [merge "log"]
 	name = true
