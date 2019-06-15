@@ -31,7 +31,7 @@ syn region  tgCode      start="\[{" end="}\]" fold contains=@Spell
 syn case ignore
 syn keyword tgTodo contained todo fixme
 syn match   tgLineComment   "\/\/.*$"         contains=tgTodo,@Spell
-" TODO: Add block comments
+syn region  tgBlockComment start=+/\*+ end=+\*/+ contains=tgTodo,tgBlockComment,@Spell fold
 
 " TableGen Keywords
 syn case match
@@ -51,6 +51,7 @@ hi def link tgTodo          Todo
 hi def link tgString        String
 hi def link tgCode          tgString
 hi def link tgLineComment   Comment
+hi def link tgBlockComment  Comment
 hi def link tgInclude       Include
 
 let b:current_syntax = "tablegen"
