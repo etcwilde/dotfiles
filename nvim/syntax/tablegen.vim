@@ -44,7 +44,7 @@ syn keyword tgType bit bits int list multiclass string code
 syn region  tgBlock     start="{" end="}" transparent fold
 
 hi def link tgStruct        Structure
-hi def link tgKeyword       SpecialChar
+hi def link tgKeyword       Statement
 hi def link tgType          Type
 hi def link tgNumber        Number
 hi def link tgTodo          Todo
