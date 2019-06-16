@@ -23,8 +23,13 @@ syn match     tgNumber display "\<0x\x\+\>"
 syn match     tgNumber display "\<0b[01]\+\>"
 
 " strings
-syn region  tgString    start=/"/ skip=/\\"/ end=/"/ oneline contains=@Spell
-syn region  tgCode      start="\[{" end="}\]" fold contains=@Spell
+syn region  tgString    start=+"+ skip=+\\\\\|\\"+ end=+"+ oneline contains=tgStringEscape,@Spell
+syn region  tgCode      start="\[{" end="}\]" fold contains=tgStringEscape,@Spell
+syn match tgStringEscape display contained "\\\\"
+syn match tgStringEscape display contained "\\n"
+syn match tgStringEscape display contained "\\\""
+syn match tgStringEscape display contained "\\'"
+syn match tgStringEscape display contained "\\t"
 
 " TableGen comments
 syn case ignore
@@ -49,6 +54,7 @@ hi def link tgNumber        Number
 hi def link tgTodo          Todo
 hi def link tgString        String
 hi def link tgCode          tgString
+hi def link tgStringEscape  Special
 hi def link tgLineComment   Comment
 hi def link tgBlockComment  Comment
 hi def link tgInclude       Include
