@@ -34,7 +34,7 @@ syn match tgStringEscape display contained "\\t"
 " TableGen comments
 syn case ignore
 syn keyword tgTodo contained todo fixme
-syn match   tgLineComment   "\/\/.*$"         contains=tgTodo,@Spell
+syn match   tgLineComment  "\/\/.*$"             contains=tgTodo,@Spell
 syn region  tgBlockComment start=+/\*+ end=+\*/+ contains=tgTodo,tgBlockComment,@Spell fold
 
 " TableGen Keywords
