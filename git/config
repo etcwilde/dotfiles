@@ -22,7 +22,7 @@
 
 [alias]
 	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
-	graph = log --graph --oneline --decorate=short --all
+	graph = log --graph --oneline --decorate=short
 	unstage = reset HEAD --
 	undo = checkout --
 	append = commit --amend --no-edit
