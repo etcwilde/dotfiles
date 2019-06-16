@@ -40,7 +40,7 @@ syn region  tgBlockComment start=+/\*+ end=+\*/+ contains=tgTodo,tgBlockComment,
 " TableGen Keywords
 syn case match
 syn region  tgIncluded   display contained start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@NoSpell
-syn match   tgInclude   "include\s*" contains=tgIncluded
+syn match   tgInclude   "include\s*\"" contains=tgIncluded,@NoSpell
 syn keyword tgStruct class def
 syn keyword tgKeyword multiclass dag foreach defm field in let
 syn keyword tgType bit bits int list multiclass string code
@@ -57,6 +57,7 @@ hi def link tgCode          tgString
 hi def link tgStringEscape  Special
 hi def link tgLineComment   Comment
 hi def link tgBlockComment  Comment
+hi def link tgIncluded      String
 hi def link tgInclude       Include
 
 let b:current_syntax = "tablegen"
