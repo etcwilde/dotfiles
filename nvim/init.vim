@@ -134,20 +134,12 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 
 " Auto Completion
-if has('nvim')
-   Bundle 'ncm2/ncm2'
-   Bundle 'roxma/nvim-yarp'
-
-   autocmd BufEnter * call ncm2#enable_for_buffer()
-   set completeopt=noinsert,menuone,noselect
-
-   Bundle 'ncm2/ncm2-bufword'
-   Bundle 'ncm2/ncm2-tmux'
-   Bundle 'ncm2/ncm2-path'
-   Bundle 'ncm2/ncm2-ultisnips'
-   Bundle 'ncm2/ncm2-jedi'
-
+Bundle 'Shougo/deoplete.nvim'
+if !has('nvim')
+  Bundle 'roxma/nvim-yarp'
+  Bundle 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
 
 " Git Support
 Bundle 'mattn/webapi-vim'
@@ -162,15 +154,16 @@ endif
 
 "" C++
 Bundle 'rhysd/vim-clang-format'
-if has('nvim')
-  Bundle 'ncm2/ncm2-pyclang'
-endif
+Bundle 'Shougo/neoinclude.vim'
+Bundle 'Shougo/deoplete-clangx'
 
 "" Python
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'davidhalter/jedi-vim'
-if has('nvim')
-endif
+Bundle 'deoplete-plugins/deoplete-jedi'
+
+"" VimL
+Bundle 'Shougo/neco-vim'
 
 "" Rust
 Bundle 'rust-lang/rust.vim'
@@ -209,11 +202,6 @@ nnoremap <C-s>   :setlocal spell! spelllang=en<CR>
 let g:ale_linters = {
       \   'cpp': ['clangtidy', 'clang'],
       \}
-
-" Clang_complete Setup
-" --------------------------------------
-let g:ncm2_pyclang#library_path='/usr/lib/libclang.so'
-let g:ncm2_pyclang#clang_path='/usr/bin/clang'
 
 " Tabularize
 " --------------------------------------
