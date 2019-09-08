@@ -10,3 +10,5 @@ rofi.color-window: #3f3f3f, #688060, #688060
 rofi.color-normal: #3f3f3f, #688060, #3f3f3f, #f0dfaf, #3f3f3f
 rofi.color-active: #303030, #8cbc7c, #303030, #688060, #303030
 rofi.color-urgent: #3f3f3f, #dca3a3, #b06666, #dca3a3, #3f3f3f
+
+! vim:set et ft=xdefaults sw=4 ts=4 sts=4 tw=72 nospell: !

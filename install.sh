@@ -24,5 +24,7 @@ ln --backup -s "$PWD/nvim" "$CONFIG"
 
 if [[ $(uname -s) == 'Linux' ]]; then
   ln --backup -s "$PWD/termite" "$CONFIG"
+  ln --backup -s "$PWD/rofi" "$CONFIG"
+
   xrdb -merge "$PWD/Xresources"
 fi
