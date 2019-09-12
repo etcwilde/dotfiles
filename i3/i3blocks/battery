@@ -9,14 +9,13 @@ echo " $BATLVL"
 echo " $BATLVL"
 
 if [[ $STATUS == 'Discharging' ]]; then
-    [ ${BATLVL%?} -le 10 ] && echo "#dca3a3" # Critical
-    [ ${BATLVL%?} -le 20 ] && echo "#cc9393"
-    [ ${BATLVL%?} -le 75 ] && echo "#f0dfaf"
-    [ ${BATLVL%?} -le 80 ] && echo "#ffcfaf"
-
+    [ ${BATLVL%?} -le 20 ] && echo "#dca3a3" && exit 0 # Critical
+    [ ${BATLVL%?} -le 45 ] && echo "#cc9393" && exit 0
+    [ ${BATLVL%?} -le 75 ] && echo "#f0dfaf" && exit 0
+    [ ${BATLVL%?} -le 80 ] && echo "#ffcfaf" && exit 0
+    echo "#a0b997"
 elif [[ $STATUS == 'Charging' ]]; then
     echo '#cbecd0'
-
 elif [[ $STATUS == 'Unknown' ]]; then
     echo '#7f9f7f'
 fi
