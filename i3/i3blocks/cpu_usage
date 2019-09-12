@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+MPSTAT=$(mpstat 1 1)
+[ $? -ne 0 ] && exit 1
+
+CPU_USAGE=$(echo $MPSTAT | grep 'Average:' | awk '{ print 100 - $NF }')
+CPU_USAGE_INTEGER=$(printf "%.0f\n" "$CPU_USAGE")
+echo " $CPU_USAGE_INTEGER%"
+echo " $CPU_USAGE%"
+
+if [[ $CPU_USAGE_INTEGER -ge 90 ]]; then
+    echo "#cc9393"
+elif [[ $CPU_USAGE_INTEGER -ge 75 ]]; then
+    echo "#f0a474"
+elif [[ $CPU_USAGE_INTEGER -ge 50 ]]; then
+    echo "#f0dfaf"
+fi
