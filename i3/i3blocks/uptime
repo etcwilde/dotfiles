@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+UPTIME=$(uptime)
+DAYS=$(echo $UPTIME | awk '{ print $3 }')
+echo " $DAYS days"
+echo " $DAYS"
