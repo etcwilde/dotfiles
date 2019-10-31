@@ -29,7 +29,7 @@
 	todo = !sh -c 'grep --color=always -rn "TODO" `git ls-files`'
 	search = !sh -c 'grep --color=always -rn \"$1\" `git ls-files`' -
 	page = !zsh -c '~/.dotfiles/git/scripts/gitpage.sh'
-	blameall = !sh -c '~/.dotfiles/git/scripts/changes.sh \"$1\" \"$2\"'
+	blame-list = !sh -c '~/.dotfiles/git/scripts/gitblameall.sh \"$0\" $1'
 	ri = rebase -i --autosquash
 	fix = commit --fixup
 	merge-graph = !zsh -c `git log --oneline --graph $1^..$1 --`
