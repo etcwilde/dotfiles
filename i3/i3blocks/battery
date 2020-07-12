@@ -1,0 +1,23 @@
+#!/bin/env bash
+
+BATINFO=$(acpi -b | grep -E "Battery ${BLOCK_INSTANCE:0}")
+
+STATUS=$(echo $BATINFO | sed -ne 's/Battery [[:digit:]]*: \(\S*\), .*/\1/p')
+BATLVL=$(echo $BATINFO | grep -E -o '(1)?[0-9][0-9]?%')
+
+echo " $BATLVL"
+echo " $BATLVL"
+
+if [[ $STATUS == 'Discharging' ]]; then
+    [ ${BATLVL%?} -le 20 ] && echo "#dca3a3" && exit 0 # Critical
+    [ ${BATLVL%?} -le 45 ] && echo "#cc9393" && exit 0
+    [ ${BATLVL%?} -le 75 ] && echo "#f0dfaf" && exit 0
+    [ ${BATLVL%?} -le 80 ] && echo "#ffcfaf" && exit 0
+    echo "#a0b997"
+elif [[ $STATUS == 'Charging' ]]; then
+    echo '#cbecd0'
+elif [[ $STATUS == 'Unknown' ]]; then
+    echo '#7f9f7f'
+fi
+
+exit 0
