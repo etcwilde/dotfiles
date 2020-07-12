@@ -41,13 +41,9 @@ fpath=($ZSH/completions/ $fpath)
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-
 # Library Variables
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 export SCCACHE_CACHE_SIZE="30G"
-
-# Syntax highlighting if available
-[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Fuzzy tab completion
 # Vanilla completion
@@ -71,3 +67,6 @@ bindkey -v
 
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
+
+# Syntax highlighting if available
+[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
