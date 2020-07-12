@@ -1,7 +1,7 @@
 " --------------------------------------
 " [n]vim rc
 " Evan Wilde (c) 2018
-" vim:set et sw=2 ts=2 tw=72:
+" vim:set et sw=2 ts=2 tw=80:
 
 " Functions
 " --------------------------------------
@@ -52,10 +52,10 @@ set nostartofline " Don't move cusor on line jumps
 set number        " Enable Line numbers
 set ruler         " Show column and character in file
 set spell         " Spelling
-set tw=72         " Text Width
-set ts=4          " Tab Stop
-set sts=4         " Soft Tab Stop
-set sw=4          " Shift width
+set tw=80         " Text Width
+set ts=2          " Tab Stop
+set sts=2         " Soft Tab Stop
+set sw=2          " Shift width
 set wildmode=list:longest,list:full " how completion behaves
 set wildmenu      " Auto completion in commandline
 set expandtab     " Expands the tabs to spaces
