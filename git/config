@@ -39,3 +39,5 @@
 	log = always
 	status = always
 	graph = always
+[init]
+	defaultBranch = main
