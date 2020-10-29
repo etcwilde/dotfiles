@@ -47,6 +47,26 @@ snip.rv += "//===" + '-' * (tw - (8 + len(t[1]) + 7 + indent))
 $0
 endsnippet
 
+# LLVM project header
+
+snippet llvmheader "LLVM Project Header" b
+`!p indent = len(snip._initial_indent)`//===--- `!p
+fname = os.path.basename(path)
+snip.rv += fname
+snip.rv += ' ' + '-' * (tw - (8 + len(fname) + 7 + indent)) + "===//"`
+//
+// $1
+//
+`!p
+snip.rv += comment_bar(tw)
+`
+//
+// $2
+//
+`!p snip.rv += comment_bar(tw)`
+
+endsnippet
+
 # Header guard
 
 snippet once "Header guard" b
