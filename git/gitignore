@@ -4,7 +4,8 @@
 #
 # Vim
 #
-*.sw*
+*.sw?
+!*.swift
 
 #
 # Python
@@ -39,6 +40,8 @@ __pycache__/
 
 # Files
 .license.config
+compile_commands.json
+.DS_Store
 
 # Directories
 .templates/

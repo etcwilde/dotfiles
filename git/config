@@ -15,7 +15,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	editor = /usr/bin/nvim
+	editor = nvim
 
 [github]
 	user = etcwilde
@@ -40,5 +40,9 @@
 	log = always
 	status = always
 	graph = always
+
+[log]
+	mailmap = true
+
 [init]
 	defaultBranch = main
