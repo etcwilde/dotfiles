@@ -1,5 +1,5 @@
 " CMake settings
 " --------------------------------------
-set sw=4
-set ts=4
-set sts=4
+setlocal sw=2
+setlocal ts=2
+setlocal sts=2
