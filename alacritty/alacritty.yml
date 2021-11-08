@@ -1,0 +1,24 @@
+colors:
+  primary:
+    foreground: '0x688060'
+    background: '0x3a3a3a'
+  normal:
+    black:      '0x303030'
+    red:        '0xcc9393'
+    green:      '0x7c945f'
+    yellow:     '0xefdcbc'
+    blue:       '0x8cd0d4'
+    magenta:    '0xcc9393'
+    cyan:       '0x8cd0d4'
+    white:      '0xd3d7cf'
+  bright:
+    black:      '0x362f2e'
+    red:        '0xef2929'
+    green:      '0x7f9f7f'
+    yellow:     '0xe3ceab'
+    blue:       '0x729fcf'
+    magenta:    '0xad7fa8'
+    cyan:       '0x34e2e2'
+    white:      '0xeeeeec'
+
+live_config_reload: true
