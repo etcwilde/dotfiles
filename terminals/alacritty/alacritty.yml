@@ -1,15 +1,15 @@
 colors:
   primary:
     foreground: '0x688060'
-    background: '0x3a3a3a'
+    background: '0x4b4b4b'
   normal:
-    black:      '0x303030'
-    red:        '0xcc9393'
+    black:      '0x3f3f3f'
+    red:        '0xc38b87'
     green:      '0x7c945f'
     yellow:     '0xefdcbc'
-    blue:       '0x8cd0d4'
+    blue:       '0xacd0d4'
     magenta:    '0xcc9393'
-    cyan:       '0x8cd0d4'
+    cyan:       '0xacd0d4'
     white:      '0xd3d7cf'
   bright:
     black:      '0x362f2e'
@@ -20,5 +20,9 @@ colors:
     magenta:    '0xad7fa8'
     cyan:       '0x34e2e2'
     white:      '0xeeeeec'
+
+  cursor:
+    green:      '0x7c945f'
+    cursor:     '0xd9d9d9'
 
 live_config_reload: true
