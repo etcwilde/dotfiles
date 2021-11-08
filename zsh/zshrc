@@ -37,6 +37,7 @@ fpath=($ZSH/completions/ $fpath)
 [ -f $ZSH/history.zsh ] &&  . $ZSH/history.zsh
 [ -f $ZSH/prompt.zsh ] && . $ZSH/prompt.zsh
 [ -f $ZSH/private.zsh ] && . $ZSH/private.zsh
+[ -f $ZSH/fzf.zsh ] && . $ZSH/fzf.zsh
 
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
@@ -44,16 +45,6 @@ autoload -U +X bashcompinit && bashcompinit
 # Library Variables
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 export SCCACHE_CACHE_SIZE="30G"
-
-# Fuzzy tab completion
-# Vanilla completion
-# Smart-case completion
-# Word-flex
-# Full flex completion
-zstyle ':completion:*' matcher-list '' \
-  'm:{a-z\-}={A-Z\_}' \
-  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-  'r:|?=** m:{a-z\-}={A-Z\_}'
 
 # Options
 setopt autocd
