@@ -18,11 +18,11 @@ function ToggleNumbers()
   endif
 endfunction
 
-" StripTrainlingWhitespace()
+" StripTrailingWhitespace()
 " ----------------------
 "  Removes whitespaces that are not followed by non-whitespace
 "  characters in a line.
-function StripTrainlingWhitespace()
+function StripTrailingWhitespace()
         let l:savepos = winsaveview()
         %s/\s\+$//e
         call winrestview(l:savepos)
@@ -91,8 +91,7 @@ autocmd bufEnter,InsertLeave * syntax sync fromstart
 autocmd FileType cmake setlocal commentstring=#\ %s
 
 " Onsave
-autocmd BufWritePre * call StripTrainlingWhitespace() " Delete trailing ws
-
+autocmd BufWritePre * call StripTrailingWhitespace() " Delete trailing ws
 
 " [n]Vim Plugins
 " --------------------------------------
