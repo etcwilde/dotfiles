@@ -1,0 +1,7 @@
+new -n Git      # window 0
+neww -n Build   # window 1
+split-window -h -p 40
+send-keys 'watch sccache -s' C-m
+split-window -v -p 40
+neww -n Test    # window 2
+neww -n Source  # window 3
