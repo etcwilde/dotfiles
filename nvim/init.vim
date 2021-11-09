@@ -90,9 +90,6 @@ autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
 autocmd bufEnter,InsertLeave * syntax sync fromstart
 autocmd FileType cmake setlocal commentstring=#\ %s
 
-" Onsave
-autocmd BufWritePre * call StripTrailingWhitespace() " Delete trailing ws
-
 " [n]Vim Plugins
 " --------------------------------------
 
