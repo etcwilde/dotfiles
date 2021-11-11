@@ -80,6 +80,8 @@ autocmd bufread,bufnewfile *.sh setlocal ft=sh
 autocmd bufread,bufnewfile *.snippets setlocal ft=snippets
 autocmd bufread,bufnewfile *.td setlocal ft=tablegen
 autocmd bufread,bufnewfile *.mm setlocal ft=objcpp
+autocmd bufread,bufnewfile *.swift setlocal ft=swift
+autocmd bufread,bufnewfile *.sil setlocal ft=sil
 
 " Window Control
 autocmd VimResized * wincmd =
