@@ -18,3 +18,13 @@ alias la="ls -A"
 alias ll="ls -lh"
 alias lla='ls -lAh'
 alias less='less -r'
+
+if prog_exists 'fzf'; then
+  alias pidsearch='ps -a | fzf | awk '\''{ print $1 }'\'''
+  alias gbs='git branch-search'
+  alias gcs='git commit-search'
+else
+  alias pidsearch='echo "install fzf"'
+  alias gbs='echo "install fzf"'
+  alias gcs='echo "install fzf"'
+fi
