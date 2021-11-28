@@ -69,8 +69,8 @@ bar {
 ############################################################################
 ## Rofi configuration
 ############################################################################
-set $rofidefault "rofi - terminal termite -combi-modi window,drun -show combi -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
-set $rofisearch "rofi -show window  - terminal termite -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
+set $rofidefault "rofi - terminal alacritty -combi-modi window,drun -show combi -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
+set $rofisearch "rofi -show window  - terminal alacritty -line-margin 15 -width 60 -location 2 -padding 40 -color-enabled true"
 
 ############################################################################
 ## Key bindings
@@ -115,10 +115,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+d floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+d focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -208,7 +208,7 @@ mode "System" {
 bindsym $mod+Shift+Return mode "System"
 
 # Menu
-bindsym $mod+d exec --no-startup-id $rofidefault
+bindsym $mod+space exec --no-startup-id $rofidefault
 
 # Extras
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+12 i3blocks
