@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+IF=$BLOCK_INSTANCE
+IF="${IF:-$(ip route | awk '/^default/ ${print $5 ; exit }')}"
+
+env > /tmp/execution_env.txt
+
+[[ -z "$IF" ]]  && exit
+[[ ! -d /sys/class/net/${IF} ]] && exit
+
+AF=inet
+LABEL=$IF
+
+if [[ "$IF" = "" ]] || [[ "$(cat /sys/class/net/${IF}/operstate)" = 'down' ]]; then
+    echo " ${LABEL} down"
+    echo " ${LABEL} down"
+    echo \#dca3a3
+    exit
+fi
+
+IPADDR=$(ip addr show $IF | perl -n -e "/$AF ([^ \/]+).* scope global/ && print \$1 and exit")
+
+echo " $IPADDR"
