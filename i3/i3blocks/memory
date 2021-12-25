@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+TYPE=${BLOCK_INSTANCE:-mem}
+free | awk -v type=$TYPE '
+  /^Mem:/ {
+    mem_total=$2
+    mem_used=$3
+  }
+  /^Swap:/ {
+    swap_total=$2
+    swap_used=$3
+  }
+END {
+  gigafy=1024*1024
+  if (type == "swap") {
+    used=swap_used
+    total=swap_total
+  } else {
+    used=mem_used
+    total=mem_total
+  }
+  printf("%.1fG/%.1fG\n", used/gigafy, total/gigafy)
+}
+'
