@@ -16,18 +16,18 @@ font pango: Ubuntu 14
 floating_modifier $mod
 
 # Colors
-set $bg_color         #3f3f3f
-set $sel_color        #688060
-set $text_color       #dcdccc
-set $selectText_color #303030
-set $alt_color        #ffcfaf
+set $bg_color             #3f3f3f
+set $sel_color            #688060
+set $text_color           #dcdccc
+set $inactive_text_color  #303030
+set $alt_color            #ffcfaf
+set $urgent_color         #dca3a3
 
-# Window colors          border  backgr. text    indicator
-client.focused           #688060 #688060 #303030 #ffcfaf
-client.focused_inactive  #3f3f3f #3f3f3f #7f9f7f #3f3f3f
-client.unfocused         #3f3f3f #3f3f3f #dcdccc #3f3f3f
-client.urgent            #dca3a3 #dca3a3 #dcdccc #3f3f3f
-
+# Window colors         border        background text                 indicator
+client.focused          $bg_color     $bg_color  $text_color          $alt_color
+client.focused_inactive $bg_color     $bg_color  $inactive_text_color $alt_color
+client.unfocused        $bg_color     $bg_color  $inactive_text_color $alt_color
+client.urgent           $urgent_color $bg_color  $urgent_color        $alt_color
 
 # Start i3bar to display a workspace bar (plus the system information i3blocks
 # finds out, if available)
@@ -37,13 +37,14 @@ bar {
     binding_mode_indicator no
 
     colors {
-        background #3f3f3f
-        statusline #dcdccc
+        background $bg_color
+        statusline $text_color
 
-        focused_workspace  #93b3a3 #3f3f3f #93b3a3
-        active_workspace   #ffcfaf #3f3f3f #ffcfaf
-        inactive_workspace #636363 #3f3f3f #dcdccc
-        urgent_workspace   #dca3a3 #3f3f3f #dca3a3
+        # class            border         background text
+        focused_workspace  $sel_color     $bg_color  $text_color
+        active_workspace   $sel_color     $bg_color  $inactive_text_color
+        inactive_workspace $bg_color      $bg_color  $inactive_text_color
+        urgent_workspace   $urgent_color  $bg_color  $urgent_color
     }
 }
 
@@ -54,16 +55,15 @@ bar {
   status_command i3blocks -c ~/.i3/i3blocks_top.conf
 
   colors {
-    background #3f3f3f
-    statusline #dcdccc
+    background $bg_color
+    statusline $text_color
 
-    focused_workspace  #93b3a3 #3f3f3f #93b3a3
-    active_workspace   #ffcfaf #3f3f3f #ffcfaf
-    inactive_workspace #636363 #3f3f3f #dcdccc
-    urgent_workspace   #dca3a3 #3f3f3f #dca3a3
+    # class            border         background text
+    focused_workspace  $sel_color     $bg_color  $text_color
+    active_workspace   $sel_color     $bg_color  $inactive_text_color
+    inactive_workspace $bg_color      $bg_color  $inactive_text_color
+    urgent_workspace   $urgent_color  $bg_color  $urgent_color
   }
-
-
 }
 
 ############################################################################
