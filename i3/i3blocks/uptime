@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
 UPTIME=$(uptime)
-DAYS=$(echo $UPTIME | awk '{ print $3 }')
-echo " $DAYS days"
-echo " $DAYS"
+DATETIME=$(echo $UPTIME | grep -Po '(?<=up)[^,]*')
+if grep -q "[0-9]*:[0-9]*" <<< "$DATETIME"; then
+    HOUR=$(echo $DATETIME | cut -f1 -d ':')
+    if [[ $HOUR == '1' ]]; then
+        echo "$HOUR hr"
+    else
+        echo "$HOUR hrs"
+    fi
+    exit
+fi
+echo $DATETIME
