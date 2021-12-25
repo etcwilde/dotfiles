@@ -7,13 +7,13 @@ configuration {
 }
 
 * {
-    background:         #212121ff;
-    background-alt:     #00000000;
-    background-bar:     #151515ff;
-    foreground:         #edededff;
-    accent:             #ededed4d;
-    border:             #688060ff;
-    selected:           #151515ff;
+  background:           #3f3f3f;
+  background-alt:       #00000000;
+  background-bar:       #2f2f2f;
+  foreground:           #dcdccc;
+  accent:               #6c6c5d;
+  border:               #688060;
+  selected:             #2f2f2f;
 }
 
 window {
