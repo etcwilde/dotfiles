@@ -1,3 +1,9 @@
 configuration {
-  theme: "zenburn";
+  show-icons:       true;
+  font:             "Noto Sans 12";
+  display-drun:     "";
+  disable-history:  false;
+  sidebar-mode:     false;
 }
+
+@theme "zenburn"

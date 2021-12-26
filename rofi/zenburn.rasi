@@ -1,11 +1,3 @@
-configuration {
-  show-icons:       true;
-  font:             "Noto Sans 12";
-  display-drun:     "";
-  disable-history:  false;
-  sidebar-mode:     false;
-}
-
 * {
   background:           #3f3f3f;
   background-alt:       #00000000;
