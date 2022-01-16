@@ -140,9 +140,8 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 " Git Support
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'mhinz/vim-signify'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 if vundle_installed == 0
   :BundleInstall
