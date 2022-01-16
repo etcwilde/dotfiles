@@ -30,7 +30,7 @@
 	search = !sh -c 'grep --color=always -rn \"$1\" `git ls-files`' -
 	page = !zsh -c '~/.dotfiles/git/scripts/gitpage.sh'
 	blame-list = !sh -c '~/.dotfiles/git/scripts/gitblameall.sh \"$0\" $1'
-	branch-search = !sh -c 'git branch --list | fzf'
+	branch-search = !sh -c 'git branch --list | fzf -m'
 	commit-search = !git log --oneline | fzf | awk '{ print $1 }'
 	ri = rebase -i --autosquash
 	fix = commit --fixup
