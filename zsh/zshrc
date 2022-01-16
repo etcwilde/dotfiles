@@ -10,7 +10,7 @@ prog_exists() {
                 return 1
         fi
 }
-export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.toolchains/usr/bin:$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/.local/lib/go/"
 export TZ='America/Los_Angeles'
 
@@ -43,7 +43,7 @@ autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
 # Library Variables
-export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib:$HOME/.toolchains/usr/lib:$LD_LIBRARY_PATH"
 export SCCACHE_CACHE_SIZE="30G"
 
 # Options
