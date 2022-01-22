@@ -143,9 +143,6 @@ let g:deoplete#enable_at_startup = 1
 Bundle 'tpope/vim-fugitive'
 Bundle 'mhinz/vim-signify'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
-if vundle_installed == 0
-  :BundleInstall
-endif
 
 " Language Support
 
@@ -172,6 +169,10 @@ Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
 "" glsl
 Bundle 'tikhomirov/vim-glsl'
+
+if vundle_installed == 0
+  :BundleInstall
+endif
 
 " LSP setup
 function! s:on_lsp_buffer_enabled() abort
