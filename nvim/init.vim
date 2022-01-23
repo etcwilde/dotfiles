@@ -150,7 +150,6 @@ Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'prabirshrestha/vim-lsp'
 
 "" C++
-Bundle 'rhysd/vim-clang-format'
 Bundle 'Shougo/neoinclude.vim'
 Bundle 'Shougo/deoplete-clangx'
 
