@@ -1,3 +1,5 @@
+font:
+  size: 14
 colors:
   primary:
     foreground: '0x7e9175'
