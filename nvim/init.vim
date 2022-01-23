@@ -73,25 +73,30 @@ colorscheme zenburn
 " Autocommands
 " --------------------------------------
 
-" Buffer Types
-autocmd bufread,bufnewfile *.h,*.cpp,*.hpp,*.CC,*.c++ setlocal ft=cpp
-autocmd bufread,bufnewfile *.ll setlocal ft=llvm tw=0
-autocmd bufread,bufnewfile *.csv setlocal ft=csv syntax=csv
-autocmd bufread,bufnewfile *.sh setlocal ft=sh
-autocmd bufread,bufnewfile *.snippets setlocal ft=snippets
-autocmd bufread,bufnewfile *.td setlocal ft=tablegen
-autocmd bufread,bufnewfile *.mm setlocal ft=objcpp
-autocmd bufread,bufnewfile *.swift setlocal ft=swift
-autocmd bufread,bufnewfile *.sil setlocal ft=sil
+augroup etc
+  autocmd!
 
-" Window Control
-autocmd VimResized * wincmd =
+  " Buffer Types
+  autocmd bufread,bufnewfile *.h,*.cpp,*.hpp,*.CC,*.c++,*.def setlocal ft=cpp
+  autocmd bufread,bufnewfile *.ll setlocal ft=llvm tw=0
+  autocmd bufread,bufnewfile *.csv setlocal ft=csv syntax=csv
+  autocmd bufread,bufnewfile *.sh setlocal ft=sh
+  autocmd bufread,bufnewfile *.snippets setlocal ft=snippets
+  autocmd bufread,bufnewfile *.td setlocal ft=tablegen
+  autocmd bufread,bufnewfile *.mm setlocal ft=objcpp
+  autocmd bufread,bufnewfile *.swift setlocal ft=swift
+  autocmd bufread,bufnewfile *.sil setlocal ft=sil
 
-" Buffer Behaviour
-autocmd InsertEnter * silent! set nornu number
-autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
-autocmd bufEnter,InsertLeave * syntax sync fromstart
-autocmd FileType cmake setlocal commentstring=#\ %s
+  " Window Control
+  autocmd VimResized * wincmd =
+
+  " Buffer Behaviour
+  autocmd InsertEnter * silent! set nornu number
+  autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
+  autocmd bufEnter,InsertLeave * syntax sync fromstart
+  autocmd FileType cmake setlocal commentstring=#\ %s
+
+augroup end
 
 " [n]Vim Plugins
 " --------------------------------------
@@ -191,11 +196,15 @@ function! s:on_lsp_buffer_enabled() abort
 
   let g:lsp_format_sync_timeout = 1000
   autocmd! BufWritePre *.swift call execute('LspDocumentFormatSync')
+  augroup lsp_setup
+    au!
+    autocmd BufWritePre *.swift call execute('LspDocumentFormatSync')
+    autocmd BufWritepre *.c,*.cpp,*.h,*.objc,*.objcpp call execute('LspDocumentFormatSync')
+  augroup end
 endfunction
 
 augroup lsp_install
   autocmd!
-
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
