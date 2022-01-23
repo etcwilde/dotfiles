@@ -222,6 +222,19 @@ lua require("ewilde.status")
 " --------------------------------------
 vmap as :Tabularize / <CR>
 
+" Clang Format
+" --------------------------------------
+" Format a range of lines with clang format
+
+let g:clang_format_path = exepath('clang-format')
+if has('python') || has('python3')
+  let s:clang_fmt_path = s:editor_root . '/accessories/clang-format.py'
+  if  has('python3')
+    execute "xnoremap <silent> = :py3f " . s:clang_fmt_path . "<cr><cr>"
+  else
+    execute "xnoremap <silent> = :pyf " . s:clang_fmt_path . "<cr><cr>"
+  endif
+endif
 " Ale Setup
 " --------------------------------------
 let g:ale_linters = {
