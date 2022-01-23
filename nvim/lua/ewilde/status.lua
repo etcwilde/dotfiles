@@ -66,7 +66,7 @@ M.get_git_status = function(self)
 
   local head = fn['FugitiveHead'](0) or nil
   local gitString = ""
-  if not isTruncated and head ~= nil then
+  if not isTruncated and head ~= nil and head ~= '' then
     gitString = "| "..gitString..string.format('%s ', head)
   end
 
