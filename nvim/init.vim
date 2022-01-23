@@ -10,7 +10,7 @@
 " ----------------------
 " Toggles between strict line number and relative line numbers
 
-function ToggleNumbers()
+function! ToggleNumbers()
   if &number == 1
     set nonumber rnu
   else
@@ -60,6 +60,7 @@ set wildmode=list:longest,list:full " how completion behaves
 set wildmenu      " Auto completion in commandline
 set expandtab     " Expands the tabs to spaces
 set scrolloff=5
+set noshowmode
 set background=dark
 set encoding=utf-8
 set nojoinspaces  " Don't add two spaces between sentences
@@ -72,25 +73,30 @@ colorscheme zenburn
 " Autocommands
 " --------------------------------------
 
-" Buffer Types
-autocmd bufread,bufnewfile *.h,*.cpp,*.hpp,*.CC,*.c++ setlocal ft=cpp
-autocmd bufread,bufnewfile *.ll setlocal ft=llvm tw=0
-autocmd bufread,bufnewfile *.csv setlocal ft=csv syntax=csv
-autocmd bufread,bufnewfile *.sh setlocal ft=sh
-autocmd bufread,bufnewfile *.snippets setlocal ft=snippets
-autocmd bufread,bufnewfile *.td setlocal ft=tablegen
-autocmd bufread,bufnewfile *.mm setlocal ft=objcpp
-autocmd bufread,bufnewfile *.swift setlocal ft=swift
-autocmd bufread,bufnewfile *.sil setlocal ft=sil
+augroup etc
+  autocmd!
 
-" Window Control
-autocmd VimResized * wincmd =
+  " Buffer Types
+  autocmd bufread,bufnewfile *.h,*.cpp,*.hpp,*.CC,*.c++,*.def setlocal ft=cpp
+  autocmd bufread,bufnewfile *.ll setlocal ft=llvm tw=0
+  autocmd bufread,bufnewfile *.csv setlocal ft=csv syntax=csv
+  autocmd bufread,bufnewfile *.sh setlocal ft=sh
+  autocmd bufread,bufnewfile *.snippets setlocal ft=snippets
+  autocmd bufread,bufnewfile *.td setlocal ft=tablegen
+  autocmd bufread,bufnewfile *.mm setlocal ft=objcpp
+  autocmd bufread,bufnewfile *.swift setlocal ft=swift
+  autocmd bufread,bufnewfile *.sil setlocal ft=sil
 
-" Buffer Behaviour
-autocmd InsertEnter * silent! set nornu number
-autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
-autocmd bufEnter,InsertLeave * syntax sync fromstart
-autocmd FileType cmake setlocal commentstring=#\ %s
+  " Window Control
+  autocmd VimResized * wincmd =
+
+  " Buffer Behaviour
+  autocmd InsertEnter * silent! set nornu number
+  autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
+  autocmd bufEnter,InsertLeave * syntax sync fromstart
+  autocmd FileType cmake setlocal commentstring=#\ %s
+
+augroup end
 
 " [n]Vim Plugins
 " --------------------------------------
@@ -109,11 +115,11 @@ if !filereadable(vundle_readme)
     call mkdir(s:editor_root . '/bundle', "p")
   endif
   echo "Getting Vundle"
-  execute "!git clone https://github.com/VundleVim/Vundle.vim " . s:editor_root . "/bundle/Vundle.vim"
+  execute "!git clone https://github.com/etcwilde/Vundle.vim " . s:editor_root . "/bundle/Vundle.vim"
   echo "Got Vundle"
   let vundle_installed=0
 endif
-let &rtp = &rtp . ',' . s:editor_root . '/bundle/Vundle.vim/'
+let &rtp = &rtp . ',' . s:editor_root . '/bundle/Vundle.vim/' . ',' . s:editor_root . "/lua"
 call vundle#rc(s:editor_root.'/bundle')
 
 " Plugin List
@@ -131,35 +137,16 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 
-" Auto Completion
-Bundle 'Shougo/deoplete.nvim'
-if !has('nvim')
-  Bundle 'roxma/nvim-yarp'
-  Bundle 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-
 " Git Support
 Bundle 'tpope/vim-fugitive'
 Bundle 'mhinz/vim-signify'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
-if vundle_installed == 0
-  :BundleInstall
-endif
 
 " Language Support
-
 Bundle 'prabirshrestha/vim-lsp'
-
-"" C++
-Bundle 'rhysd/vim-clang-format'
-Bundle 'Shougo/neoinclude.vim'
-Bundle 'Shougo/deoplete-clangx'
 
 "" Python
 Bundle 'tmhedberg/SimpylFold'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'deoplete-plugins/deoplete-jedi'
 
 "" VimL
 Bundle 'Shougo/neco-vim'
@@ -172,6 +159,10 @@ Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
 "" glsl
 Bundle 'tikhomirov/vim-glsl'
+
+if vundle_installed == 0
+  :BundleInstall
+endif
 
 " LSP setup
 function! s:on_lsp_buffer_enabled() abort
@@ -189,46 +180,77 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> K <plug>(lsp-hover)
 
   let g:lsp_format_sync_timeout = 1000
-  autocmd! BufWritePre *.swift call execute('LspDocumentFormatSync')
+  augroup lsp_setup
+    au!
+    autocmd BufWritePre *.swift call execute('LspDocumentFormatSync')
+    autocmd BufWritepre *.c,*.cpp,*.h,*.objc,*.objcpp call execute('LspDocumentFormatSync')
+  augroup end
 endfunction
+
+" Swift-LSP
+if executable('sourcekit-lsp')
+  augroup lsp_sourcekit_lsp
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'sourcekit-lsp',
+          \ 'cmd': {server_info->['sourcekit-lsp']},
+          \ 'allowlist': ['swift', 'c', 'cpp', 'objc', 'objcpp', 'h'],
+          \ 'blocklist': ['def'],
+          \ })
+  augroup end
+endif
+
+" C++-LSP
+if executable('clangd')
+  augroup lsp_clang
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'clandg',
+          \ 'cmd': {server_info->['clangd']},
+          \ 'allowlist': ['h', 'c', 'cpp', 'objc', 'objcpp'],
+          \ 'blocklist': ['def'],
+          \ })
+  augroup end
+endif
 
 augroup lsp_install
   autocmd!
-
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
 " Keymaps
 " --------------------------------------
 
-nnoremap <silent> <C-n> :call ToggleNumbers()<CR>
+lua require("ewilde.keymaps")
 
-" Tabs
-nnoremap <leader>tj :tabfirst<CR>
-nnoremap <leader>th :tabprev<CR>
-nnoremap <leader>tl :tabnext<CR>
-nnoremap <leader>tk :tablast<CR>
-nnoremap <leader>tc :tabnew<CR>
-nnoremap <leader>tml :tabmove +<CR>
-nnoremap <leader>tmh :tabmove -<CR>
-nnoremap <C-d> :tabclose<CR>
+" Status Line
+" --------------------------------------
 
-" Windows
-nnoremap <silent> <C-w>+ :exec "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <C-w>- :exec "resize " . (winheight(0) * 2/3)<CR>
+lua require("ewilde.status")
 
-" Spelling
-nnoremap <C-s>   :setlocal spell! spelllang=en<CR>
+" Tabularize
+" --------------------------------------
+vmap as :Tabularize / <CR>
+
+" Clang Format
+" --------------------------------------
+" Format a range of lines with clang format
+
+let g:clang_format_path = exepath('clang-format')
+if has('python') || has('python3')
+  let s:clang_fmt_path = s:editor_root . '/accessories/clang-format.py'
+  if  has('python3')
+    execute "xnoremap <silent> = :py3f " . s:clang_fmt_path . "<cr><cr>"
+  else
+    execute "xnoremap <silent> = :pyf " . s:clang_fmt_path . "<cr><cr>"
+  endif
+endif
 
 " Ale Setup
 " --------------------------------------
 let g:ale_linters = {
       \   'cpp': ['clangtidy', 'clang'],
       \}
-
-" Tabularize
-" --------------------------------------
-vmap as :Tabularize / <CR>
 
 " Snippets
 " --------------------------------------
