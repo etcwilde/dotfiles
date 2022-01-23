@@ -202,6 +202,32 @@ function! s:on_lsp_buffer_enabled() abort
   augroup end
 endfunction
 
+" Swift-LSP
+if executable('sourcekit-lsp')
+  augroup lsp_sourcekit_lsp
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'sourcekit-lsp',
+          \ 'cmd': {server_info->['sourcekit-lsp']},
+          \ 'allowlist': ['swift', 'c', 'cpp', 'objc', 'objcpp', 'h'],
+          \ 'blocklist': ['def'],
+          \ })
+  augroup end
+endif
+
+" C++-LSP
+if executable('clangd')
+  augroup lsp_clang
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'clandg',
+          \ 'cmd': {server_info->['clangd']},
+          \ 'allowlist': ['h', 'c', 'cpp', 'objc', 'objcpp'],
+          \ 'blocklist': ['def'],
+          \ })
+  augroup end
+endif
+
 augroup lsp_install
   autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
