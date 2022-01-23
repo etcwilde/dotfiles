@@ -12,8 +12,8 @@ wallpapers/morning/
 wallpapers/afternoon/
 wallpapers/night/
 
-
 # Files
 # --------------
 zsh_histfile
 .netrwhist
+zsh/private.zsh
