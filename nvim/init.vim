@@ -60,6 +60,7 @@ set wildmode=list:longest,list:full " how completion behaves
 set wildmenu      " Auto completion in commandline
 set expandtab     " Expands the tabs to spaces
 set scrolloff=5
+set noshowmode
 set background=dark
 set encoding=utf-8
 set nojoinspaces  " Don't add two spaces between sentences
@@ -113,7 +114,7 @@ if !filereadable(vundle_readme)
   echo "Got Vundle"
   let vundle_installed=0
 endif
-let &rtp = &rtp . ',' . s:editor_root . '/bundle/Vundle.vim/'
+let &rtp = &rtp . ',' . s:editor_root . '/bundle/Vundle.vim/' . ',' . s:editor_root . "/lua"
 call vundle#rc(s:editor_root.'/bundle')
 
 " Plugin List
@@ -202,34 +203,22 @@ augroup END
 " Keymaps
 " --------------------------------------
 
-nnoremap <silent> <C-n> :call ToggleNumbers()<CR>
+lua require("ewilde.keymaps")
 
-" Tabs
-nnoremap <leader>tj :tabfirst<CR>
-nnoremap <leader>th :tabprev<CR>
-nnoremap <leader>tl :tabnext<CR>
-nnoremap <leader>tk :tablast<CR>
-nnoremap <leader>tc :tabnew<CR>
-nnoremap <leader>tml :tabmove +<CR>
-nnoremap <leader>tmh :tabmove -<CR>
-nnoremap <C-d> :tabclose<CR>
+" Status Line
+" --------------------------------------
 
-" Windows
-nnoremap <silent> <C-w>+ :exec "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <C-w>- :exec "resize " . (winheight(0) * 2/3)<CR>
+lua require("ewilde.status")
 
-" Spelling
-nnoremap <C-s>   :setlocal spell! spelllang=en<CR>
+" Tabularize
+" --------------------------------------
+vmap as :Tabularize / <CR>
 
 " Ale Setup
 " --------------------------------------
 let g:ale_linters = {
       \   'cpp': ['clangtidy', 'clang'],
       \}
-
-" Tabularize
-" --------------------------------------
-vmap as :Tabularize / <CR>
 
 " Snippets
 " --------------------------------------
