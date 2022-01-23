@@ -10,7 +10,7 @@
 " ----------------------
 " Toggles between strict line number and relative line numbers
 
-function ToggleNumbers()
+function! ToggleNumbers()
   if &number == 1
     set nonumber rnu
   else
@@ -115,7 +115,7 @@ if !filereadable(vundle_readme)
     call mkdir(s:editor_root . '/bundle', "p")
   endif
   echo "Getting Vundle"
-  execute "!git clone https://github.com/VundleVim/Vundle.vim " . s:editor_root . "/bundle/Vundle.vim"
+  execute "!git clone https://github.com/etcwilde/Vundle.vim " . s:editor_root . "/bundle/Vundle.vim"
   echo "Got Vundle"
   let vundle_installed=0
 endif
@@ -137,31 +137,16 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 
-" Auto Completion
-Bundle 'Shougo/deoplete.nvim'
-if !has('nvim')
-  Bundle 'roxma/nvim-yarp'
-  Bundle 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-
 " Git Support
 Bundle 'tpope/vim-fugitive'
 Bundle 'mhinz/vim-signify'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Support
-
 Bundle 'prabirshrestha/vim-lsp'
-
-"" C++
-Bundle 'Shougo/neoinclude.vim'
-Bundle 'Shougo/deoplete-clangx'
 
 "" Python
 Bundle 'tmhedberg/SimpylFold'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'deoplete-plugins/deoplete-jedi'
 
 "" VimL
 Bundle 'Shougo/neco-vim'
@@ -260,6 +245,7 @@ if has('python') || has('python3')
     execute "xnoremap <silent> = :pyf " . s:clang_fmt_path . "<cr><cr>"
   endif
 endif
+
 " Ale Setup
 " --------------------------------------
 let g:ale_linters = {
