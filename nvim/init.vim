@@ -160,6 +160,10 @@ Bundle 'LaTeX-Box-Team/LaTeX-Box'
 "" glsl
 Bundle 'tikhomirov/vim-glsl'
 
+"" fzf
+Bundle 'junegunn/fzf'
+Bundle 'junegunn/fzf.vim'
+
 if vundle_installed == 0
   :BundleInstall
 endif
@@ -275,3 +279,10 @@ endif
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Fzf Setup
+" --------------------------------------
+let g:fzf_layout = {'window': { 'width': 0.9, 'height': 0.6 }, 'down': '40%' }
+nnoremap <tab> :FZF<CR>
+nnoremap <C-R> :Rg<CR>
+nnoremap buf :Buffers<CR>
