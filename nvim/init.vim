@@ -148,9 +148,6 @@ Bundle 'prabirshrestha/vim-lsp'
 "" Python
 Bundle 'tmhedberg/SimpylFold'
 
-"" VimL
-Bundle 'Shougo/neco-vim'
-
 "" Rust
 Bundle 'rust-lang/rust.vim'
 
