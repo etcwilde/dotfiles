@@ -181,11 +181,6 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> K <plug>(lsp-hover)
 
   let g:lsp_format_sync_timeout = 1000
-  augroup lsp_setup
-    au!
-    autocmd BufWritePre *.swift call execute('LspDocumentFormatSync')
-    autocmd BufWritepre *.c,*.cpp,*.h,*.objc,*.objcpp call execute('LspDocumentFormatSync')
-  augroup end
 endfunction
 
 " Swift-LSP
