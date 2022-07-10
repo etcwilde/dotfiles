@@ -5,7 +5,7 @@
 # System Config
 #
 SYSTEM     :=$(shell uname -s)
-BASE_DIR   :=${PWD}
+BASE_DIR   :=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .phony: install install_Linux install_Darwin git i3 lldb nvim rofi tmux zsh
 
@@ -23,7 +23,7 @@ install_Darwin: git lldb nvim tmux zsh
 ## git
 #
 
-git: ${HOME}/.gitignore ${HOME}/.gitconfig
+git: | ${HOME}/.gitignore ${HOME}/.gitconfig
 	@echo "git configuration installed"
 
 ${HOME}/.gitignore:
@@ -36,7 +36,7 @@ ${HOME}/.gitconfig:
 ## i3
 #
 
-i3: ${HOME}/.i3
+i3: | ${HOME}/.i3
 	@echo "i3 configuration installed"
 
 ${HOME}/.i3:
@@ -46,7 +46,7 @@ ${HOME}/.i3:
 ## lldb
 #
 
-lldb: ${HOME}/.lldbinit
+lldb: | ${HOME}/.lldbinit
 	@echo "LLDB configuration installed"
 
 ${HOME}/.lldbinit:
@@ -56,7 +56,7 @@ ${HOME}/.lldbinit:
 ## neovim
 #
 
-nvim: ${HOME}/.config/nvim
+nvim: | ${HOME}/.config/nvim
 	@echo "NeoVim configuration installed"
 
 ${HOME}/.config/nvim:
@@ -66,7 +66,7 @@ ${HOME}/.config/nvim:
 ## Rofi
 #
 
-rofi: ${HOME}/.config/rofi
+rofi: | ${HOME}/.config/rofi
 	@echo "Rofi configuration installed"
 
 ${HOME}/.config/rofi:
@@ -76,7 +76,7 @@ ${HOME}/.config/rofi:
 ## Tmux
 #
 
-tmux: ${HOME}/.tmux.conf ${HOME}/.config/tmux
+tmux: | ${HOME}/.tmux.conf ${HOME}/.config/tmux
 	@echo "Tmux configuration installed"
 
 ${HOME}/.tmux.conf:
@@ -89,7 +89,7 @@ ${HOME}/.config/tmux:
 ## Zsh
 #
 
-zsh: ${HOME}/.zshrc ${HOME}/.config/zsh
+zsh: | ${HOME}/.zshrc ${HOME}/.config/zsh
 	@echo "Zsh configuration installed"
 
 ${HOME}/.zshrc:
