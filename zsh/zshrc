@@ -23,7 +23,6 @@ fi
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
 # Variables
-export ARCHFLAGS="-arch x86_64"
 ZSH=~/.config/zsh
 ANTIGEN=$ZSH/antigen/antigen.zsh
 ENABLE_CORRECTION="true"
