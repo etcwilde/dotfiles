@@ -46,3 +46,4 @@ compile_commands.json
 # Directories
 .templates/
 build*/
+!build_swift/
