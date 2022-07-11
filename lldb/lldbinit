@@ -1,4 +1,5 @@
 settings set prompt "[lldb] % "
+settings set target.import-std-module false
 
 command alias bd breakpoint disable
 command alias be breakpoint enable
