@@ -277,4 +277,4 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:fzf_layout = {'window': { 'width': 0.9, 'height': 0.6 }, 'down': '40%' }
 nnoremap <tab> :FZF<CR>
 nnoremap <C-R> :Rg<CR>
-nnoremap buf :Buffers<CR>
+nnoremap <leader>buf :Buffers<CR>
