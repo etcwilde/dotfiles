@@ -129,7 +129,7 @@ call vundle#rc(s:editor_root.'/bundle')
 Bundle 'etcwilde/Vundle.vim'
 
 " Environment
-Bundle 'W0rp/ale'
+Bundle 'dense-analysis/ale'
 Bundle 'sirver/ultisnips'
 Bundle 'godlygeek/tabular'
 Bundle 'jlanzarotta/bufexplorer'
