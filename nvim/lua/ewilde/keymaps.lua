@@ -37,6 +37,7 @@ mapkey("n", "<C-s>", ":setlocal spell! spelllang=en<CR>", opts)
 
 -- Insert Mode --
 mapkey("i", "jk", "<ESC>", opts)
+mapkey("i", "<C-n>", "<Plug>(asyncomplete_force_refresh)", opts)
 
 -- Visual mode --
 mapkey("v", "<", "<gv", opts)

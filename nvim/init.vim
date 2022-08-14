@@ -138,6 +138,10 @@ Bundle 'tpope/vim-surround'
 
 if has('python3')
   Bundle 'sirver/ultisnips'
+  Bundle 'prabirshrestha/asyncomplete.vim'
+  Bundle 'prabirshrestha/asyncomplete-ultisnips.vim'
+  Bundle 'andreypopp/asyncomplete-ale.vim'
+  Bundle 'prabirshrestha/asyncomplete-lsp.vim'
 endif
 
 " Git Support
@@ -212,10 +216,22 @@ if executable('clangd')
   augroup end
 endif
 
+if has('python3')
+    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'allowlist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+endif
+
 augroup lsp_install
   autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" Autocomplete
+" --------------------------------------
+let g:asyncomplete_auto_popup = 0
 
 " Keymaps
 " --------------------------------------
