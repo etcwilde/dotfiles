@@ -89,17 +89,17 @@ endsnippet
 # Preprocessor directives
 
 snippet '^#\s*' "All pre-processor directives" r
-#$1`!p snip.rv=complete(t[1], ['include', 'define', 'if', 'else', 'endif' 'pragma'])`
+#$1`!p snip.rv=complete(t[1], ['include', 'define', 'undef', 'ifdef',
+                               'ifndef', 'if', 'else', 'endif',
+                               'pragma', 'warning', 'error'])`
 endsnippet
 
 snippet inc "#include" b
-#include <$1>
-$0
+#include <$1>$0
 endsnippet
 
 snippet '\#include' "#include" b
-#include <$1>
-$0
+#include <$1>$0
 endsnippet
 
 # Control Flow
@@ -113,25 +113,25 @@ endsnippet
 snippet if "if () {}" b
 if ($1) {
 	$2
-} $0
+}$0
 endsnippet
 
 snippet "(\}[ \t]*)?else" "" r
 `!p snip.rv = match.group(1) `else {
-	$0
-}
+	$1
+}$0
 endsnippet
 
 snippet "(\}[ \t]*)?elif" "else if()" r
 `!p snip.rv = match.group(1) `else if(${1}) {
 	$2
-} $0
+}$0
 endsnippet
 
 # Functions
 
 snippet main "Main function" b
 int main(int argc, char * argv[]) {
-	$0
-}
+	$1
+}$0
 endsnippet
