@@ -151,6 +151,7 @@ Bundle 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Support
 Bundle 'prabirshrestha/vim-lsp'
+Bundle 'mattn/vim-lsp-settings'
 
 "" Python
 Bundle 'tmhedberg/SimpylFold'
