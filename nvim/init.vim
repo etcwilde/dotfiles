@@ -208,7 +208,7 @@ if executable('clangd')
   augroup lsp_clang
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
-          \ 'name': 'clandg',
+          \ 'name': 'clangd',
           \ 'cmd': {server_info->['clangd']},
           \ 'allowlist': ['h', 'c', 'cpp', 'objc', 'objcpp'],
           \ 'blocklist': ['def'],
