@@ -1,6 +1,6 @@
 # vim:set noet sw=4 ts=4 sts=4 tw=72:
 snippet "mode(line)?" "Insert modeline" r
-vim`!v ':set ' . (&expandtab ?  'et' : 'noet') . printf(' sw=%i ts=%i sts=%i ', &sw, &ts, &sts) . (&tw ? 'tw=' . &tw : '') . (&ff ? ' ff=' . &ff : '') . ':'`
+vim`!v ':set ' . (&expandtab ?  'et' : 'noet') .  printf(' sw=%i ts=%i sts=%i ft=%s ', &sw, &ts, &sts, &ft) . (&tw ? 'tw=' . &tw : '') . (&ff ? ' ff=' . &ff : '') . ':'`
 endsnippet
 
 snippet date "Insert todays date"
