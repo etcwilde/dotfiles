@@ -130,12 +130,15 @@ Bundle 'etcwilde/Vundle.vim'
 
 " Environment
 Bundle 'dense-analysis/ale'
-Bundle 'sirver/ultisnips'
 Bundle 'godlygeek/tabular'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
+
+if has('python3')
+  Bundle 'sirver/ultisnips'
+endif
 
 " Git Support
 Bundle 'tpope/vim-fugitive'
