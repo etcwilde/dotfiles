@@ -146,6 +146,38 @@ snippet var "var variable declaratoin"
 var ${1} = ${2}
 endsnippet
 
+# Patterns
+
+snippet ptrto "withUnsafePointerTo" w
+withUnsafePointerTo(to: $1) {
+	$2
+}$0
+endsnippet
+
+snippet tg "withTaskGroup" w
+await withTaskGroup(of: $1, returning: $2) {
+	$3
+}$0
+endsnippet
+
+snippet ttg "withThrowingTaskGroup" w
+try await withThrowingTaskGroup(of: $1, returning: $2) {
+	$3
+}$0
+endsnippet
+
+snippet cont "withCheckedContinuation" w
+await withCheckedContinuation { cont in
+	$1
+}$0
+endsnippet
+
+snippet contt "withCheckedThrowingContinuation" w
+try await withCheckedThrowingContinuation { cont in
+	$1
+}$0
+endsnippet
+
 # extras
 
 snippet main "Explict Main entrypoint" b
