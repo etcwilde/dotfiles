@@ -129,13 +129,20 @@ call vundle#rc(s:editor_root.'/bundle')
 Bundle 'etcwilde/Vundle.vim'
 
 " Environment
-Bundle 'W0rp/ale'
-Bundle 'sirver/ultisnips'
+Bundle 'dense-analysis/ale'
 Bundle 'godlygeek/tabular'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
+
+if has('python3')
+  Bundle 'sirver/ultisnips'
+  Bundle 'prabirshrestha/asyncomplete.vim'
+  Bundle 'prabirshrestha/asyncomplete-ultisnips.vim'
+  Bundle 'andreypopp/asyncomplete-ale.vim'
+  Bundle 'prabirshrestha/asyncomplete-lsp.vim'
+endif
 
 " Git Support
 Bundle 'tpope/vim-fugitive'
@@ -144,6 +151,7 @@ Bundle 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Support
 Bundle 'prabirshrestha/vim-lsp'
+Bundle 'mattn/vim-lsp-settings'
 
 "" Python
 Bundle 'tmhedberg/SimpylFold'
@@ -201,7 +209,7 @@ if executable('clangd')
   augroup lsp_clang
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
-          \ 'name': 'clandg',
+          \ 'name': 'clangd',
           \ 'cmd': {server_info->['clangd']},
           \ 'allowlist': ['h', 'c', 'cpp', 'objc', 'objcpp'],
           \ 'blocklist': ['def'],
@@ -209,10 +217,22 @@ if executable('clangd')
   augroup end
 endif
 
+if has('python3')
+    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'allowlist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+endif
+
 augroup lsp_install
   autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" Autocomplete
+" --------------------------------------
+let g:asyncomplete_auto_popup = 0
 
 " Keymaps
 " --------------------------------------
