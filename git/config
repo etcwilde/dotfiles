@@ -48,3 +48,11 @@
 
 [init]
 	defaultBranch = main
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signatures
