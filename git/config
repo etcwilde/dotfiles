@@ -56,3 +56,5 @@
 	gpgSign = true
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signatures
+[submodule]
+	recurse = true
