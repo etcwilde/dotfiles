@@ -1,6 +1,40 @@
 # vim:set noet sw=4 ts=4 sts=4 tw=80:
 # Swift snippets
 
+# Comments
+global !p
+def comment_bar(tw):
+	return "//===" + '-' * (tw - 10) + "===//"
+
+# Common variables
+tw = int(snip.opt("&tw", 72))
+ts = int(snip.opt("&ts", 4))
+sw = int(snip.opt("&sw", 4))
+sts = int(snip.opt("&sts", 4))
+endglobal
+
+snippet cbar "Create a comment bar" b
+`!p
+if not snip.c:
+	snip.rv += comment_bar(tw)
+`
+endsnippet
+
+snippet clbar "Bar with left-aligned comment" b
+//===--- ${1} `!p
+indent = len(snip._initial_indent)
+snip.rv += '-' * (tw - (8 + len(t[1]) + 7 + indent)) + "===//\n"`
+$0
+endsnippet
+
+snippet crbar "Bar with right-aligned comment" b
+`!p
+indent = len(snip._initial_indent)
+snip.rv += "//===" + '-' * (tw - (8 + len(t[1]) + 7 + indent))
+` ${1} ---===//
+$0
+endsnippet
+
 # Control Flow
 snippet if "if statement" b
 if $1 {
