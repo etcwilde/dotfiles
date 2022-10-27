@@ -37,6 +37,8 @@
 	merge-graph = !zsh -c `git log --oneline --graph $1^..$1 --`
 	pr-fetch-stash = !sh -c 'git fetch $0 refs/pull-requests/$1/from:$2'
 	pr-fetch-github = !sh -c 'git fetch $0 pull/$1/head:$2'
+	deactivate = !sh -c 'git remote set-url --push $0 INVALID'
+	activate = !sh -c 'git remote set-url --push $0 $(git remote get-url $0)'
 
 [color]
 	log = always
