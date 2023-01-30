@@ -17,3 +17,4 @@ wallpapers/night/
 zsh_histfile
 .netrwhist
 zsh/private.zsh
+zsh/*zcompdump
