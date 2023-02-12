@@ -49,7 +49,7 @@ ${HOME}/.i3:
 ifeq (${SYSTEM},Darwin)
 JQ_PATH := https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64
 JQ_SHA512_SUM :=  "df407cd34378f49ff8866d61a58ce1c367341062325c4c3bd07b0e1ad5d65758a2ede94574b4279e1a0a208a04bac487b7d898450fb614c2b94469d7621e583a  /tmp/jq"
-else ifeq (${SYSTEM},'Linux')
+else ifeq (${SYSTEM},Linux)
 JQ_PATH := https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
 JQ_SHA512_SUM := "c9e585368bcb89d4c5213a31866e9301f03fe27165afcb4a3cdf0ec1be43b0fb7439d71dd9607ccc002622915b40389ee79c67d4c3c54ff95257cb23643b0330  /tmp/jq"
 else
@@ -59,7 +59,7 @@ endif
 ${HOME}/.local/bin:
 	mkdir -p ${HOME}/.local/bin
 
-${HOME}/.local/bin/jq: ${HOME}/.local/bin
+${HOME}/.local/bin/jq: | ${HOME}/.local/bin
 	curl -L ${JQ_PATH} > /tmp/jq
 	echo ${JQ_SHA512_SUM} | shasum -a 512 -c-
 	chmod +x /tmp/jq
