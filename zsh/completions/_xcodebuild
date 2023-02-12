@@ -1,0 +1,110 @@
+#compdef xcodebuild
+
+export XCODEBUILD_COMPLETIONS_LOADED=1
+
+zstyle ':completion:*:*:xcodebuild:*' sort false
+
+function __xcodebuild_list_targets() {
+  local -a flags=(-list -json)
+
+  if [[ -v $project_index ]]; then
+    flags+="-project"
+    flags+="$words[$project_index+1]"
+  fi
+
+  for target in $(xcodebuild ${flags[@]} 2>/dev/null | jq -r '.project.targets[]'); compadd "${target}"
+}
+
+function __xcodebuild_list_schemes() {
+  local -a flags=(-list -json)
+
+  if [[ -v $project_index ]]; then
+    flags+="-project"
+    flags+="$words[$project_index+1]"
+  fi
+
+  for scheme in $(xcodebuild ${flags[@]} 2>/dev/null | jq -r '.project.schemes[]'); compadd "${scheme}"
+}
+
+function __xcodebuild_list_configurations() {
+  local -a flags=(-list -json)
+
+  if [[ -v $project_index ]]; then
+    flags+="-project"
+    flags+="$words[$project_index+1]"
+  fi
+
+  for configuration in $(xcodebuild ${flags[@]} 2>/dev/null | jq -r '.project.configurations[]'); compadd "${configuration}"
+}
+
+function __xcodebuild_list_sdks() {
+  for sdk in $(xcodebuild -showsdks -json | jq -r '.[].canonicalName'); compadd "${sdk}"
+}
+
+{
+  local curcontext="$curcontext" state state_descr line
+  local -a opts=( -o nosort )
+
+  local -a misc_options=( \
+    '-usage[print brief usage]' \
+    '-help[print complete usage]' \
+    '-verbose[provide additional status output]' \
+    '-version[diplay the Xcode version]' \
+    '-license[show Xcode and SDK license agreements]' \
+    '-checkFirstLaunchStatus[Check if any First Launch tasks need to be performed]' \
+    '-runFirstLaunch[install packages and agree to the license]' \
+    '-downloadAllPlatforms[download all platforms]' \
+    '-json[output as JSON (note: -json implies quiet)]' \
+    '-list[lists the targets and configurations in a project, or schemes in a workspace]' \
+    '-find-executable[display the full path to an executable in the provided SDK and toolchain]' \
+    '-find-library[display the full path to the library in the provided SDK and toolchain]' \
+  )
+
+  local -a project_options=( \
+    '(-workspace)-project[project to build]:project:_path_files' \
+    '(-project)-workspace[build the workspace]:project workspace:_path_files' \
+    '(-alltargets -scheme)-target[build the target]:project target:__xcodebuild_list_targets' \
+    '(-target -scheme)-alltargets[build all targets]' \
+    '(-target -alltargets)-scheme[build the scheme]:project scheme:__xcodebuild_list_schemes' \
+    '-configuration[use the configuration for building]:project configuration:__xcodebuild_list_configurations' \
+    '-sdk[use SDK as the name or path of the base SDK when building the project]:sdk name:__xcodebuild_list_sdks' \
+    '-showBuildSettings[display a list of build settings and values]' \
+    '-showBuildSettingsForIndex[display build settings for the index service]' \
+  )
+
+  local -a build_options=( \
+    '-parallelizeTargets[build independent targets in parallel]' \
+    '-jobs[specify the maximum number of concurrent build operations]' \
+    '-xcconfig[apply the build settings defined in the file at PATH as overrides]: :_path_files'\
+    '-arch[build each target for the architecture; this will override architectures defined in the project]' \
+    '-enableAddressSanitizer[turn ASan on or off]: :(YES NO)' \
+    '-enableThreadSanitizer[turn TSan on or off]: :(YES NO)' \
+    '-enableUndefinedBehaviorSanitizer[turn UBSan on or off]: :(YES NO)' \
+    '-derivedDataPath[specify the direcory where build products and other derived data will go]: :_directories' \
+    '-resultBundlePath[specify the directory where the result bundle will go]: :_directories' \
+    '-resultStreamPath[specify where the result stream is written (the file must already exist)]: :_files' \
+    '-archivePath[specify the directory where any created archives are placed, or the archive should be exported]: :_directories' \
+    '-exportArchive[specify that an archive should be exported]' \
+    '-exportNotarizedApp[export an archive that has been notarized by Apple]' \
+  )
+
+  local -a testing_options=( \
+    '-enableCodeCoverage[turn code coverage on or off when testing]: :(YES NO)' \
+    '-maximum-concurrent-test-device-destinations[maximum number of device destinations to test concurrently]' \
+    '-maximum-concurrent-test-simulator-destinations[maximum number of simulator destinations to test concurrently]' \
+    '-parallel-testing-enabled[overrides the per-target-setting in the scheme]: :(YES NO)' \
+    '-parallel-testing-worker-count[exact number of test runners that will be spawned during parallel testing]' \
+    '-parallel-testing-workers[maximum number of test runners that will be spawned during parallel testing]' \
+  )
+
+  local project_index=${words[(I)-project]}
+
+  _arguments -O opts -S -C \
+    "${misc_options[@]}" \
+    "${project_options[@]}" \
+    "${build_options[@]}" \
+    "${testing_options[@]}" \
+    '(-)*::arg:->args' && return 0
+
+  return 1
+}

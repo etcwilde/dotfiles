@@ -28,7 +28,7 @@ ANTIGEN=$ZSH/antigen/antigen.zsh
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-# Include custom completion functions
+# Include custom functions
 fpath=($ZSH/completions/ $fpath)
 
 # External configurations
@@ -45,6 +45,7 @@ export SCCACHE_CACHE_SIZE="30G"
 
 # Options
 setopt autocd
+setopt nobeep
 setopt correct
 setopt histignoredups
 setopt histignorespace
