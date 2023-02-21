@@ -60,3 +60,6 @@
 	allowedSignersFile = ~/.ssh/allowed_signatures
 [submodule]
 	recurse = true
+	fetchJobs = 0
+[fetch]
+	parallel = 0
