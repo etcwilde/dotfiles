@@ -13,7 +13,7 @@ install: install_${SYSTEM}
 
 install_Linux: git jq i3 lldb nvim rofi tmux zsh
 
-install_Darwin: git jq lldb nvim tmux zsh
+install_Darwin: git jq lldb nvim tmux zsh zsh_Darwin
 
 #
 # Components
@@ -122,3 +122,6 @@ ${HOME}/.zshrc:
 
 ${HOME}/.config/zsh:
 	ln -s ${BASE_DIR}/zsh ${HOME}/.config/zsh
+
+zsh_Darwin:
+	bash ${BASE_DIR}/platform/macos/defaults.sh
