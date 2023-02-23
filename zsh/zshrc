@@ -35,8 +35,8 @@ fpath=($ZSH/completions/ $fpath)
 [ -f $ZSH/aliases.zsh ] && . $ZSH/aliases.zsh
 [ -f $ZSH/history.zsh ] &&  . $ZSH/history.zsh
 [ -f $ZSH/prompt.zsh ] && . $ZSH/prompt.zsh
-[ -f $ZSH/completions.zsh ] && . $ZSH/completions.zsh
 [ -f $ZSH/private.zsh ] && . $ZSH/private.zsh
+[ -f $ZSH/completions.zsh ] && . $ZSH/completions.zsh
 
 # Library Variables
 export LD_LIBRARY_PATH="$HOME/.local/lib:$HOME/.toolchains/usr/lib:$LD_LIBRARY_PATH"
