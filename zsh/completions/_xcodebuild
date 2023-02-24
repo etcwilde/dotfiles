@@ -12,7 +12,9 @@ function __xcodebuild_list_targets() {
     flags+="$words[$project_index+1]"
   fi
 
-  for target in $(xcodebuild ${flags[@]} 2>/dev/null | jq -r '.project.targets[]'); compadd "${target}"
+  local -a targets=($(xcodebuild "${flags[@]}" 2>/dev/null | jq -r '.project.targets[]'))
+  _values -s ' ' 'project targets' \
+    "${targets[@]}"
 }
 
 function __xcodebuild_list_schemes() {
@@ -23,7 +25,9 @@ function __xcodebuild_list_schemes() {
     flags+="$words[$project_index+1]"
   fi
 
-  for scheme in $(xcodebuild ${flags[@]} 2>/dev/null | jq -r '.project.schemes[]'); compadd "${scheme}"
+  local -a targets=($(xcodebuild "${flags[@]}" 2>/dev/null | jq -r '.project.schemes[]'))
+  _values -s ' ' 'project schemes' \
+    "${targets[@]}"
 }
 
 function __xcodebuild_list_configurations() {
@@ -34,11 +38,16 @@ function __xcodebuild_list_configurations() {
     flags+="$words[$project_index+1]"
   fi
 
-  for configuration in $(xcodebuild ${flags[@]} 2>/dev/null | jq -r '.project.configurations[]'); compadd "${configuration}"
+  local -a configurations=($(xcodebuild ${flags[@]} 2>/dev/null | jq -r '.project.configurations[]'))
+  _values -s ' ' 'project configurations' \
+    "${configurations[@]}"
+
 }
 
 function __xcodebuild_list_sdks() {
-  for sdk in $(xcodebuild -showsdks -json | jq -r '.[].canonicalName'); compadd "${sdk}"
+  local -a sdks=($(xcodebuild -showsdks -json | jq -r '.[].canonicalName'))
+  _values -s ' ' 'SDKs' \
+    "${sdks[@]}"
 }
 
 {
@@ -103,8 +112,7 @@ function __xcodebuild_list_sdks() {
     "${misc_options[@]}" \
     "${project_options[@]}" \
     "${build_options[@]}" \
-    "${testing_options[@]}" \
-    '(-)*::arg:->args' && return 0
+    "${testing_options[@]}" && return 0
 
   return 1
 }
