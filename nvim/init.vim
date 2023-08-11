@@ -86,6 +86,7 @@ augroup etc
   autocmd bufread,bufnewfile *.mm setlocal ft=objcpp
   autocmd bufread,bufnewfile *.swift setlocal ft=swift
   autocmd bufread,bufnewfile *.sil setlocal ft=sil
+  autocmd bufread,bufnewfile *modulemap setlocal ft=modulemap
 
   " Window Control
   autocmd VimResized * wincmd =
