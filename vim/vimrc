@@ -1,0 +1,156 @@
+" --------------------------------------
+"  vim config
+"  Evan Wilde
+"  vim:set et sw=2 ts=2 sts=2 ft=vim tw=80:
+
+" ToggleNumbers()
+" ----------------------
+" Toggles between strict line number and relative line numbers
+
+function! ToggleNumbers()
+  if &number == 1
+    set nonumber rnu
+  else
+    set number nornu
+  endif
+endfunction
+
+" StripTrailingWhitespace()
+" ----------------------
+"  Removes whitespaces that are not followed by non-whitespace
+"  characters in a line.
+function StripTrailingWhitespace()
+        let l:savepos = winsaveview()
+        %s/\s\+$//e
+        call winrestview(l:savepos)
+endfunction
+
+" Options and Variables
+" --------------------------------------
+set exrc          " Execute local vimrc
+set secure        " Restrict some commands
+set autoread      " Automatically re-read file
+set backspace=start,indent,eol " Backspace works on everything
+set confirm       " Save files on exit
+set cursorline    " Show current cursor line
+set foldmethod=syntax "Use syntax definitions for folding
+set hidden        " Don't have to save when changing buffers
+set hlsearch      " Highlights search
+set infercase     " Adjust case of match for keyword completion
+set ignorecase    " search is case-insensitive
+set laststatus=2  " Always show status bar
+set lazyredraw    " Only redraws what is necessary, when necessary :redraw to force
+set list listchars=tab:»·,trail:·,nbsp:· " Show tabs and trailing whitespace
+set modeline      " Enable top-of-file modelines NOTE: security concerns with these
+set mouse=a       " Enable Mouse Clicks
+set mousefocus    " Focus follows mouse
+set mousehide     " Hides pointer while typing
+set nostartofline " Don't move cusor on line jumps
+set number        " Enable Line numbers
+set ruler         " Show column and character in file
+set spell         " Spelling
+set tw=80         " Text Width
+set ts=2          " Tab Stop
+set sts=2         " Soft Tab Stop
+set sw=2          " Shift width
+set wildmode=list:longest,list:full " how completion behaves
+set wildmenu      " Auto completion in commandline
+set expandtab     " Expands the tabs to spaces
+set scrolloff=5
+set noshowmode
+set background=dark
+set encoding=utf-8
+set nojoinspaces  " Don't add two spaces between sentences
+set colorcolumn=+1 " Fix colour column to the textwidth
+
+let g:currentmode={
+  \ '__'     : '- ',
+  \ 'c'      : 'C ',
+  \ 'i'      : 'I ',
+  \ 'ic'     : 'I ',
+  \ 'ix'     : 'I ',
+  \ 'n'      : 'N ',
+  \ 'multi'  : 'M ',
+  \ 'ni'     : 'N ',
+  \ 'no'     : 'N ',
+  \ 'R'      : 'R ',
+  \ 'Rv'     : 'R ',
+  \ 's'      : 'S ',
+  \ 'S'      : 'S ',
+  \ '^S'     : 'S ',
+  \ 't'      : 'T ',
+  \ 'v'      : 'V ',
+  \ 'V'      : 'V ',
+  \ '^V'     : 'V ',
+  \}
+set statusline=%<%f%#StatusLine#\ %h%w%m%r[%{&ft}]%=%{g:currentmode[mode()]}(%l,%c%V\ %P)
+
+syntax on
+filetype plugin indent on
+colorscheme zenburn
+
+" Autocommands
+" --------------------------------------
+
+augroup BufferTypes
+  autocmd!
+  " Buffer Types
+  autocmd bufread,bufnewfile *.h,*.cpp,*.hpp,*.CC,*.c++,*.def setlocal ft=cpp
+  autocmd bufread,bufnewfile *.ll setlocal ft=llvm tw=0
+  autocmd bufread,bufnewfile *.csv setlocal ft=csv syntax=csv
+  autocmd bufread,bufnewfile *.sh setlocal ft=sh
+  autocmd bufread,bufnewfile *.snippets setlocal ft=snippets
+  autocmd bufread,bufnewfile *.td setlocal ft=tablegen
+  autocmd bufread,bufnewfile *.mm setlocal ft=objcpp
+  autocmd bufread,bufnewfile *.swift setlocal ft=swift
+  autocmd bufread,bufnewfile *.sil setlocal ft=sil
+
+augroup WindowControl
+  autocmd!
+  " Window Control
+  autocmd VimResized * wincmd =
+
+augroup BufferControl
+  autocmd!
+
+  " Buffer Behaviour
+  autocmd InsertEnter * silent! set nornu number
+  autocmd InsertLeave,BufNewFile,VimEnter * silent! set rnu nonumber
+  autocmd bufEnter,InsertLeave * syntax sync fromstart
+  autocmd FileType cmake setlocal commentstring=#\ %s
+
+augroup END
+
+" Keymaps
+" --------------------------------------
+
+" Normal mode
+nnoremap <silent> <C-n> :call ToggleNumbers()<CR>
+
+nnoremap <silent> <leader>tj :tabfirst<CR>
+nnoremap <silent> <leader>th :tabprev<CR>
+nnoremap <silent> <leader>tl :tabnext<CR>
+nnoremap <silent> <leader>tk :tablast<CR>
+nnoremap <silent> <leader>tc :tabnew<CR>
+nnoremap <silent> <leader>tml :tabmove +<CR>
+nnoremap <silent> <leader>tmh :tabmove -<CR>
+nnoremap <silent> <C-d> :tabclose<CR>
+
+nnoremap <silent> <C-Up> :resize -2<CR>
+nnoremap <silent> <C-Down> :resize +2<CR>
+nnoremap <silent> <C-Left> :vertical resize -2<CR>
+nnoremap <silent> <C-Right> :vertical resize +2<CR>
+
+nnoremap <silent> <C-s> :setlocal spell! spelllang=en<CR>
+
+" Insert mode
+inoremap <silent> jk <ESC>
+inoremap <silent> <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" Visual mode
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
+
+" Visual Block mode
+xnoremap <silent> <C-j> :move '>+1<CR>gv-gv
+xnoremap <silent> <C-k> :move '<-2<CR>gv-gv

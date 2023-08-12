@@ -88,6 +88,16 @@ ${HOME}/.config/nvim:
 	ln -s ${BASE_DIR}/nvim ${HOME}/.config/nvim
 
 #
+## vim
+#
+
+vim: ${BASE_DIR}/vim/vimrc | ${HOME}/.vim
+	ln -s ${BASE_DIR}/vim/vimrc ${HOME}/.vimrc
+
+${HOME}/.vim:
+	ln -s ${BASE_DIR}/vim ${HOME}/.vim
+
+#
 ## Rofi
 #
 
