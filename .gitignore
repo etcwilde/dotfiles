@@ -5,6 +5,7 @@ antigen/
 tmux/plugins/
 nvim/spell/
 nvim/bundle/
+nvim/lazy-lock.json
 
 # Wall paper directories
 wallpapers/all-images/
