@@ -63,8 +63,8 @@ wk.register({
 
 -- Visual Block Mode
 wk.register({
-  ["<C-j>"] = {"<cmd>move '>+1<CR>gv-gv", "Slide Text Up"},
-  ["<C-k>"] = {"<cmd>move '<-2<CR>gv-gv", "Slide Text Down"},
+  ["<C-j>"] = {":move '>+1<CR>gv-gv", "Slide Text Up"},
+  ["<C-k>"] = {":move '<-2<CR>gv-gv", "Slide Text Down"},
 }, {
   mode = "x",
   noremap = true,
