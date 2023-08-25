@@ -5,6 +5,7 @@
 # System Config
 #
 SYSTEM     :=$(shell uname -s)
+ARCH       :=$(shell uname -m)
 BASE_DIR   :=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .phony: install install_Linux install_Darwin git i3 lldb nvim rofi tmux zsh jq
@@ -66,6 +67,39 @@ ${HOME}/.local/bin/jq: | ${HOME}/.local/bin
 	mv /tmp/jq ${HOME}/.local/bin/jq
 
 jq: | ${HOME}/.local/bin/jq
+
+#
+## fzf
+#
+
+FZF_VERSION := 0.42.0
+FZF_BASE_PATH := https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/
+
+ifeq (${ARCH},x86_64)
+  FZF_ARCH := amd64
+else ifeq (${ARCH},arm64)
+  FZF_ARCH := ${ARCH}
+else
+  $(warning "Unknown architecture '${ARCH}' for fzf")
+endif
+
+ifeq (${SYSTEM},Darwin)
+  FZF_SYSTEM := darwin
+  FZF_FILE := fzf-${FZF_VERSION}-${FZF_SYSTEM}_${FZF_ARCH}.zip
+else ifeq (${SYSTEM},Linux)
+  FZF_SYSTEM := linux
+  FZF_FILE := fzf-${FZF_VERSION}-${FZF_SYSTEM}_${FZF_ARCH}.tar.gz
+else
+  $(warning no known platform '${SYSTEM}' for fzf)
+endif
+
+fzf: | ${HOME}/.local/bin
+	curl -L ${FZF_BASE_PATH}${FZF_FILE} > /tmp/${FZF_FILE}
+ifeq (${SYSTEM},Darwin)
+	unzip /tmp/${FZF_FILE} -d ${HOME}/.local/bin
+else ifeq (${SYSTEM},Linux)
+	tar xf /tmp/${FZF_FILE} -C ${HOME}/.local/bin
+endif
 
 #
 ## lldb
