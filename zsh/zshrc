@@ -39,7 +39,7 @@ fpath=($ZSH/completions/ $fpath)
 [ -f $ZSH/completions.zsh ] && . $ZSH/completions.zsh
 
 # Library Variables
-export LD_LIBRARY_PATH="$HOME/.local/lib:$HOME/.toolchains/usr/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 export DYLD_LIBRARY_PATH="$LD_LIBRARY_PATH"
 export SCCACHE_CACHE_SIZE="30G"
 
