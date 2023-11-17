@@ -13,6 +13,8 @@ opt.hlsearch = true
 opt.infercase = true
 opt.laststatus = 2
 opt.lazyredraw = true
+opt.wildmenu = true
+opt.wildmode = "list:longest"
 
 opt.list = true
 opt.listchars = {
