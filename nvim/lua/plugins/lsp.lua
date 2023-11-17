@@ -21,6 +21,7 @@ return {
            'compile_commands.json'
          ),
        },
+       lspconfig.rust_analyzer.setup {}
      }
 
      for server, setup in pairs(servers) do
