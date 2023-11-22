@@ -30,6 +30,7 @@ opt.mouse = "a"
 opt.mousefocus = true
 opt.mousehide = true
 opt.sol = false
+opt.relativenumber = true
 opt.number = true
 opt.ruler = true
 opt.spell = true

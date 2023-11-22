@@ -55,20 +55,10 @@ autocmd('VimResized', {
 })
 
 -- Buffer Behaviours
+
 augroup('BufferBehaviour', { clear = true })
-autocmd('InsertEnter', {
-  group = 'BufferBehaviour',
-  command = "silent! set nornu number"
-})
-
-autocmd({'InsertLeave', 'BufNewFile', 'VimEnter'}, {
-  group = 'BufferBehaviour',
-  command = 'silent! set rnu nonumber'
-})
-
 autocmd({'BufWritePost'}, {
   group = 'BufferBehaviour',
   pattern = {'*.snippets'},
   command = "<cmd>CmpUltisnipsReloadSnippets",
-
 })
