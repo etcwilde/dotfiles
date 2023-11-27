@@ -125,7 +125,7 @@ ${HOME}/.lldbinit:
 nvim: | ${HOME}/.config/nvim
 	@echo "NeoVim configuration installed"
 
-${HOME}/.config/nvim:
+${HOME}/.config/nvim: ${HOME}/.config
 	ln -s ${BASE_DIR}/nvim ${HOME}/.config/nvim
 
 #
@@ -145,7 +145,7 @@ ${HOME}/.vim:
 rofi: | ${HOME}/.config/rofi
 	@echo "Rofi configuration installed"
 
-${HOME}/.config/rofi:
+${HOME}/.config/rofi: ${HOME}/.config
 	ln -s ${BASE_DIR}/rofi ${HOME}/.config/rofi
 
 #
@@ -158,7 +158,7 @@ tmux: | ${HOME}/.tmux.conf ${HOME}/.config/tmux
 ${HOME}/.tmux.conf:
 	ln -s ${BASE_DIR}/tmux/tmux.conf ${HOME}/.tmux.conf
 
-${HOME}/.config/tmux:
+${HOME}/.config/tmux: ${HOME}/.config
 	ln -s ${BASE_DIR}/tmux ${HOME}/.config/tmux
 
 #
@@ -171,7 +171,7 @@ zsh: | ${HOME}/.zshrc ${HOME}/.config/zsh
 ${HOME}/.zshrc:
 	ln -s ${BASE_DIR}/zsh/zshrc ${HOME}/.zshrc
 
-${HOME}/.config/zsh:
+${HOME}/.config/zsh: ${HOME}/.config
 	ln -s ${BASE_DIR}/zsh ${HOME}/.config/zsh
 
 zsh_Darwin:
