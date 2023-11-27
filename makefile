@@ -24,14 +24,18 @@ install_Darwin: git jq lldb nvim tmux zsh zsh_Darwin
 ## git
 #
 
-git: | ${HOME}/.gitignore ${HOME}/.gitconfig
+git: | ${HOME}/.config/git/config ${HOME}/.config/git/ignore
 	@echo "git configuration installed"
 
-${HOME}/.gitignore:
-	ln -s ${BASE_DIR}/git/gitignore ${HOME}/.gitignore
+${HOME}/.config/git/config: ${HOME}/.config/git
+	ln -s ${BASE_DIR}/git/config ${HOME}/.config/git/config
 
-${HOME}/.gitconfig:
-	ln -s ${BASE_DIR}/git/config ${HOME}/.gitconfig
+
+${HOME}/.config/git/ignore: ${HOME}/.config/git
+	ln -s ${BASE_DIR}/git/gitignore ${HOME}/.config/git/ignore
+
+${HOME}/.config/git:
+	mkdir -p ${HOME}/.config/git
 
 #
 ## i3
@@ -59,6 +63,9 @@ endif
 
 ${HOME}/.local/bin:
 	mkdir -p ${HOME}/.local/bin
+
+${HOME}/.config:
+	mkdir -p ${HOME}/.config
 
 ${HOME}/.local/bin/jq: | ${HOME}/.local/bin
 	curl -L ${JQ_PATH} > /tmp/jq

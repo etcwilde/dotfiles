@@ -2,24 +2,18 @@
 [user]
 	name = Evan Wilde
 	email = etceterawilde@gmail.com
-
 [pull]
 	rebase = true
-
 [merge]
 	branchdesc = true
 	conflictstyle = diff3
-
 [merge "log"]
 	name = true
-
 [core]
 	excludesfile = ~/.gitignore
 	editor = nvim
-
 [github]
 	user = etcwilde
-
 [alias]
 	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
 	graph = log --graph --oneline --decorate=short
@@ -39,27 +33,18 @@
 	pr-fetch-github = !sh -c 'git fetch $0 pull/$1/head:$2'
 	deactivate = !sh -c 'git remote set-url --push $0 INVALID'
 	activate = !sh -c 'git remote set-url --push $0 $(git remote get-url $0)'
-
 [color]
 	log = always
 	status = always
 	graph = always
-
 [log]
 	mailmap = true
-
 [init]
 	defaultBranch = main
-[gpg]
-	format = ssh
-[commit]
-	gpgsign = true
-[tag]
-	gpgSign = true
-[gpg "ssh"]
-	allowedSignersFile = ~/.ssh/allowed_signatures
 [submodule]
 	recurse = true
 	fetchJobs = 0
 [fetch]
 	parallel = 0
+[include]
+	path = "private"
