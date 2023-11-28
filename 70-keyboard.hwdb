@@ -19,8 +19,9 @@
 # $ sudo udevadm monitor --environment --udev
 #
 # Update Keyboard:
+# $ sudo cp <file> /etc/udev/hwdb.d
 # $ sudo systemd-hwdb update
-# $ sudo udevadm update
+# $ sudo udevadm trigger
 #
 
 # Realforce Keyboard Remapping
@@ -37,3 +38,8 @@ evdev:atkbd:dmi:bvnLENOVO:bvr*:bd*:svnLENOVO:pn*:pvrThinkPadT450s:*
 evdev:input:b0003v04F2*
  KEYBOARD_KEY_70039=esc
  KEYBOARD_KEY_70029=capslock
+
+# Apple Magic keyboard
+evdev:input:b0003v05ACp0267*
+  KEYBOARD_KEY_70039=esc
+  KEYBOARD_KEY_70029=capslock
