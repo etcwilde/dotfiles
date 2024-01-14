@@ -2,4 +2,4 @@
 # Evan Wilde <etcwilde@uvic.ca>
 # Sep 09, 2017
 
-PROMPT="%K{black}%B%F{green}%n%B%F{blue}@%B%F{cyan}%m %B%F{yellow}%~%k%B%F{green} %# %f%b "
+PROMPT='%K{black}%B%F{green}%n%B%F{blue}@%B%F{cyan}%m %B%F{yellow}%~%k%B%(?.%F{green}.%F{red}) %# %f%b '
