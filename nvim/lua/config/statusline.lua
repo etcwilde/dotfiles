@@ -58,7 +58,6 @@ M.get_current_mode = function(self)
   return string.format(' %s ', self.modes[current_mode][1]):upper()
 end
 
-
 -- FileType
 
 M.get_filetype = function(self)
@@ -69,11 +68,23 @@ M.get_filetype = function(self)
   return ft
 end
 
+-- Git status line
+
+M.get_gitstatus = function(self)
+  require('gitsigns')
+  local signs = vim.b.gitsigns_status
+  if signs == nil then
+    return 'none'
+  end
+  return string.format('%s', signs)
+end
+
 -- Formatting
+
 M.set_active = function(self)
   local mode = self:get_current_mode()
   local ft = self:get_filetype()
-  local git = ""
+  local git = self:get_gitstatus()
   local filestr = "%<%f %h%w%m%r["..ft.."] "
   return table.concat({ filestr, git, "%=", mode, "(%l,%c%V %P)" })
 end
