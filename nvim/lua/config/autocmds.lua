@@ -46,6 +46,12 @@ autocmd({'FileType'}, {
   command = "setlocal commentstring=#\\ %s"
 })
 
+autocmd({'Bufread', 'Bufnewfile'}, {
+  group = 'SetFileTypes',
+  pattern = {'*.swiftinterface'},
+  command = 'setlocal ft=swift tw=0',
+})
+
 -- Resize Window
 
 augroup('ResizeWindow', { clear = true })

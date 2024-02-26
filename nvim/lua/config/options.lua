@@ -14,7 +14,7 @@ opt.infercase = true
 opt.laststatus = 2
 opt.lazyredraw = true
 opt.wildmenu = true
-opt.wildmode = "list:longest"
+opt.wildmode = "list:longest,list:full"
 
 opt.list = true
 opt.listchars = {
