@@ -1,3 +1,9 @@
+local function sklsp_register_cap()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+  return capabilities
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -20,6 +26,7 @@ return {
            'Package.swift',
            'compile_commands.json'
          ),
+         capabilities = sklsp_register_cap()
        },
        lspconfig.rust_analyzer.setup {}
      }
