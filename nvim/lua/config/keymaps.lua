@@ -35,6 +35,8 @@ wk.register({
 
   ["<tab>"] = {"<cmd>FZF<cr>", "Fuzzy File Search"},
   ["<C-R>"] = {"<cmd>Rg<cr>", "Fuzzy Text Search"},
+  ["<c-a>"] = {"<Home>", "Jump to the first character of the line"},
+  ["<c-e>"] = {"<End>", "Jump to the last character of the line"},
 }, {
   mode = "n",
   noremap = true,
