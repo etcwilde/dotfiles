@@ -11,12 +11,16 @@ def complete(t, opts):
 	return '(' + '|'.join(opts) + ')'
 endglobal
 
-snippet subdir "Add subdirectory" b
-add_subdirectory("${1}")$0
-endsnippet
+#
+# Messages
+#
 
 snippet status "Status message" b
 message(STATUS "${1}")$0
+endsnippet
+
+snippet error "Send error" b
+message(SEND_ERROR "${1}")$0
 endsnippet
 
 snippet fatal "Fatal error message" b
@@ -105,11 +109,31 @@ endsnippet
 # Extras
 #
 snippet min "cmake minimum required" b
-cmake_minimum_required($1)$0
+cmake_minimum_required(VERSION $1)$0
+endsnippet
+
+snippet proj "project declaration"
+project($1)$0
+endsnippet
+
+snippet subdir "Add subdirectory" b
+add_subdirectory("${1}")$0
+endsnippet
+
+snippet exec "add executable"
+add_executable($1)$0
+endsnippet
+
+snippet lib "add library"
+add_library($1)$0
 endsnippet
 
 snippet set "set()" b
-set(${1:VARIABLE} ${2:VALUE} ${3:CACHE} ${4:TYPE} ${5:DOCSTRING} ${6:FORCE} ${7:PARENT_SCOPE})$0
+set(${1:VARIABLE} ${2:VALUE})$0
+endsnippet
+
+snippet setc "set cache variable" b
+set(${1:VARIABLE} ${2:VALUE} CACHE ${4:TYPE} ${5:DOCSTRING})$0
 endsnippet
 
 snippet option "option()" b
