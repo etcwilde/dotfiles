@@ -79,7 +79,7 @@ jq: | ${HOME}/.local/bin/jq
 ## fzf
 #
 
-FZF_VERSION := 0.42.0
+FZF_VERSION := 0.53.0
 FZF_BASE_PATH := https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/
 
 ifeq (${ARCH},x86_64)
