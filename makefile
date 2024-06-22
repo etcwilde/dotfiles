@@ -24,15 +24,15 @@ install_Darwin: git jq lldb nvim tmux zsh zsh_Darwin
 ## git
 #
 
-git: | ${HOME}/.config/git/config ${HOME}/.config/git/ignore
+git: ${HOME}/.config/git/config ${HOME}/.config/git/ignore
 	@echo "git configuration installed"
 
 ${HOME}/.config/git/config: ${HOME}/.config/git
-	ln -s ${BASE_DIR}/git/config ${HOME}/.config/git/config
+	cp ${BASE_DIR}/git/config ${HOME}/.config/git/config
 
 
 ${HOME}/.config/git/ignore: ${HOME}/.config/git
-	ln -s ${BASE_DIR}/git/gitignore ${HOME}/.config/git/ignore
+	cp ${BASE_DIR}/git/ignore ${HOME}/.config/git/ignore
 
 ${HOME}/.config/git:
 	mkdir -p ${HOME}/.config/git

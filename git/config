@@ -10,7 +10,7 @@
 [merge "log"]
 	name = true
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.config/git/ignore
 	editor = nvim
 [github]
 	user = etcwilde
