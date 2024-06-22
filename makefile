@@ -176,3 +176,12 @@ ${HOME}/.config/zsh: ${HOME}/.config
 
 zsh_Darwin:
 	bash ${BASE_DIR}/platform/macos/defaults.sh
+
+#
+## Alacritty
+#
+alacritty: ${HOME}/.config/alacritty/alacritty.toml
+
+${HOME}/.config/alacritty/alacritty.toml: ${BASE_DIR}/terminals/alacritty/alacritty.toml
+	mkdir -p ${HOME}/.config/alacritty
+	cp ${BASE_DIR}/terminals/alacritty/alacritty.toml ${HOME}/.config/alacritty/alacritty.toml
