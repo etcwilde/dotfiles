@@ -32,9 +32,6 @@ wk.register({
   ["<C-Up>"] = {"<cmd>resize -2<cr>", "Push Window Up"},
   ["<C-Down>"] = {"<cmd>resize +2<cr>", "Push Window Down"},
   ["<C-s>"] = {"<cmd>setlocal spell! spelllang=en<cr>", "Toggle SpellCheck"},
-
-  ["<tab>"] = {"<cmd>FZF<cr>", "Fuzzy File Search"},
-  ["<C-R>"] = {"<cmd>Rg<cr>", "Fuzzy Text Search"},
   ["<c-a>"] = {"<Home>", "Jump to the first character of the line"},
   ["<c-e>"] = {"<End>", "Jump to the last character of the line"},
 }, {
