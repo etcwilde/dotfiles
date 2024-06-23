@@ -10,31 +10,18 @@ return {
     lazy = false,
     config = function()
       local lspconfig = require('lspconfig')
-      local ui = require('config.ui')
-      local borders = { border = ui.borders }
-      local lsp = vim.lsp
-      local handlers = {
-        ["textDocument/hover"] = lsp.with(lsp.handlers.hover, borders),
-        ["txtdocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, borders),
-      }
 
-    local servers = {
-      clangd = {},
-      sourcekit = {
-        root_dir = lspconfig.util.root_pattern(
-          '.git',
-          'Package.swift',
-          'compile_commands.json'
-        ),
-        capabilities = sklsp_register_cap()
-      },
+      lspconfig.clangd.setup {}
       lspconfig.rust_analyzer.setup {}
-    }
-
-    for server, setup in pairs(servers) do
-      setup.handlers = handlers
-      lspconfig[server].setup(setup)
-    end
+      lspconfig.sourcekit.setup({
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = true,
+            },
+          },
+        },
+      })
 
     vim.api.nvim_create_autocmd('LspAttach', {
       desc = 'LSP Actions',
@@ -42,15 +29,15 @@ return {
         -- Once we've attached, configure the keybindings
         local wk = require('which-key')
         wk.register({
-          K = {"<cmd>lua vim.lsp.buf.hover()<cr>", "LSP hover info"},
-          gd = {"<cmd>lua vim.lsp.buf.definition()<cr>", "LSP go to definition"},
-          gD = {"<cmd>lua vim.lsp.buf.declaration()<cr>", "LSP go to declaration"},
-          gi = {"<cmd>lua vim.lsp.buf.implementation()<cr>", "LSP go to implementation"},
-          gr = {"<cmd>lua vim.lsp.buf.references()<cr>", "LSP list references"},
-          gs = {"<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP signature help"},
-          gn = {"<cmd>lua vim.lsp.buf.rename()<cr>", "LSP rename"},
-          ["[g"] = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Go to previous diagnostic"},
-          ["g]"] = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Go to next diagnostic"},
+          K = { vim.lsp.buf.hover, "LSP hover info"},
+          gd = { vim.lsp.buf.definition, "LSP go to definition"},
+          gD = { vim.lsp.buf.declaration, "LSP go to declaration"},
+          gi = { vim.lsp.buf.implementation, "LSP go to implementation"},
+          gr = { vim.lsp.buf.references, "LSP list references"},
+          gs = { vim.lsp.buf.signature_help, "LSP signature help"},
+          gn = { vim.lsp.buf.rename, "LSP rename"},
+          ["[g"] = { vim.diagnostic.goto_prev, "Go to previous diagnostic"},
+          ["g]"] = { vim.diagnostic.goto_next, "Go to next diagnostic"},
         }, {
           mode = 'n',
           silent = true,
