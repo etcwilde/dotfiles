@@ -88,6 +88,7 @@ syntax keyword swiftDefinitionModifier
       \ internal
       \ lazy
       \ nonmutating
+      \ mutating
       \ open
       \ override
       \ prefix
