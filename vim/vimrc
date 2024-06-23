@@ -87,7 +87,7 @@ set statusline=%<%f%#StatusLine#\ %h%w%m%r[%{&ft}]%=%{g:currentmode[mode()]}(%l,
 
 syntax on
 filetype plugin indent on
-colorscheme zenburn
+colorscheme tokyo256
 
 " Autocommands
 " --------------------------------------

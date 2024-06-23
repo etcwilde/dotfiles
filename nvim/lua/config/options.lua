@@ -48,4 +48,5 @@ opt.cmdheight = 2
 
 vim.o.scrolloff = 5
 
-vim.cmd.colorscheme('zenburn')
+vim.cmd.background = "dark"
+vim.cmd.colorscheme('tokyo256')
