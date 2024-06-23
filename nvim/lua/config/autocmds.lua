@@ -52,6 +52,12 @@ autocmd({'Bufread', 'Bufnewfile'}, {
   command = 'setlocal ft=swift tw=0',
 })
 
+autocmd({'Bufread', 'Bufnewfile'}, {
+  group = 'SetFileTypes',
+  pattern = {'consoleText', '*.log'},
+  command = 'setlocal ft=BuildLog tw=0',
+})
+
 -- Resize Window
 
 augroup('ResizeWindow', { clear = true })
