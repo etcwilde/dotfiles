@@ -12,13 +12,13 @@ autocmd({'Bufread', 'Bufnewfile'}, {
 
 autocmd({'Bufread', 'Bufnewfile'}, {
   group = 'SetFileTypes',
-  pattern = {'*.ll'},
+  pattern = '*.ll',
   command = 'setlocal ft=llvm tw=0',
 })
 
 autocmd({'Bufread', 'Bufnewfile'}, {
   group = 'SetFileTypes',
-  pattern = {'*.td'},
+  pattern = '*.td',
   command = 'setlocal ft=tablegen',
 })
 
@@ -30,13 +30,13 @@ autocmd({'Bufread', 'Bufnewfile'}, {
 
 autocmd({'Bufread', 'Bufnewfile'}, {
   group = 'SetFileTypes',
-  pattern = {'*.sil'},
+  pattern = '*.sil',
   command = 'setlocal ft=sil',
 })
 
 autocmd({'Bufread', 'Bufnewfile'}, {
   group = 'SetFileTypes',
-  pattern = {'*.modulemap'},
+  pattern = '*.modulemap',
   command = 'setlocal ft=modulemap',
 })
 
@@ -54,8 +54,20 @@ autocmd({'Bufread', 'Bufnewfile'}, {
 
 autocmd({'Bufread', 'Bufnewfile'}, {
   group = 'SetFileTypes',
+  pattern = { 'lit.cfg', 'lit.site.cfg' },
+  command = 'setlocal ft=python',
+})
+
+autocmd({'Bufread', 'Bufnewfile'}, {
+  group = 'SetFileTypes',
   pattern = {'consoleText', '*.log'},
   command = 'setlocal ft=BuildLog tw=0',
+})
+
+autocmd({'Bufread', 'Bufnewfile'}, {
+  group = 'SetFileTypes',
+  pattern = '*.snippets',
+  command = 'setlocal ft=snippets',
 })
 
 -- Resize Window
@@ -71,6 +83,6 @@ autocmd('VimResized', {
 augroup('BufferBehaviour', { clear = true })
 autocmd({'BufWritePost'}, {
   group = 'BufferBehaviour',
-  pattern = {'*.snippets'},
-  command = "<cmd>CmpUltisnipsReloadSnippets",
+  pattern = '*.snippets',
+  command = ":call UltiSnips#RefreshSnippets()",
 })

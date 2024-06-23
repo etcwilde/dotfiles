@@ -1,9 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     opts = { mode = "cursor" },
-    enabled = true,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",

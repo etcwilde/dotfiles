@@ -9,7 +9,8 @@
 
 return {
   {"sirver/ultisnips",
-    lazy=false,
+    event="InsertEnter",
+    ft="snippets",
     init = function()
       vim.g.UltiSnipsSnippetsDir = vim.env.HOME .. "/.config/nvim/ulti-snippets"
       vim.g.UltiSnipsSnippetDirectories = { vim.env.HOME .. "/.config/nvim/ulti-snippets", }
@@ -18,5 +19,4 @@ return {
       vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
     end,
   },
-  {"prabirshrestha/asyncomplete-ultisnips.vim", lazy=false},
 }
