@@ -6,5 +6,11 @@ return {
     vim.o.timeoutlen = 300
   end,
   opts = {
+    spelling = {
+      enabled = true,
+      suggestions = 20,
+    },
+    registers = true,
+    marks = true,
   }
 }

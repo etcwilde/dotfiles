@@ -5,7 +5,6 @@ M.icons = {
     added = "+",
     modified = "~",
     removed = "-",
-    renamed = "->",
     untracked = " ",
     ignored = "i",
     unstaged = " ",

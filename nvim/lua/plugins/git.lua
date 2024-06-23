@@ -3,10 +3,10 @@ return {
   { "lewis6991/gitsigns.nvim", lazy = false,
     opts = {
       signs = {
-        add     = { text = '+' },
-        delete  = { text = '-' },
-        change  = { text = '~' },
-        changedelete = { text = '~' },
+        add     = { text = require('config.ui').icons.git.added },
+        delete  = { text = require('config.ui').icons.git.removed },
+        change  = { text = require('config.ui').icons.git.modified },
+        changedelete = { text = require('config.ui').icons.git.modified },
         topdelete    = { text = '‾' },
       },
       signcolumn = true,

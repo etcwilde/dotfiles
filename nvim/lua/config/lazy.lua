@@ -11,34 +11,26 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
-  defaults = {
-    lazy = true
-  },
-  spec = {
-    import = "plugins"
-  },
-  git = {
-    timeout = 24
-  },
+require("lazy").setup("plugins", {
   ui = {
     border = require('config.ui').borders,
     icons = {
-      cmd = '  ',
-      config = '  ',
-      event = '  ',
-      ft = '  ',
-      import = '  ',
-      init = '  ',
-      keys = '  ',
-      plugin = '  ',
-      runtime = '  ',
-      source = '  ',
-      start = '  ',
-      task = '  ',
-    }
+      cmd = "",
+      config = "",
+      event = "",
+      ft = "",
+      init = "",
+      keys = "",
+      plugin = "",
+      runtime = "",
+      require = "",
+      source = "",
+      start = "",
+      task = "",
+      lazy = "",
+    },
   },
   diff = {
     cmd = 'git'
   },
-}, {})
+})
