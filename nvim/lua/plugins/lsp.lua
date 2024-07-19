@@ -1,13 +1,8 @@
-local function sklsp_register_cap()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-  return capabilities
-end
-
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "LspUinstall", "LspStart", "LspStop", "LspRestart" },
     config = function()
       local lspconfig = require('lspconfig')
 
