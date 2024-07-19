@@ -7,6 +7,7 @@ return {
     wk.register({
       ["<tab>"] = {"<cmd>FZF<cr>", "Fuzzy File Search"},
       ["<C-R>"] = {"<cmd>Rg<cr>", "Fuzzy Text Search"},
+      ["<leader>buf"] = { "<cmd>Buffers<cr>", "Buffer Search" },
     }, {
       mode = "n",
       noremap = true,

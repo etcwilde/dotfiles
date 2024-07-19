@@ -27,7 +27,6 @@ wk.register({
         h = { "<cmd>tabmove -<cr>", "Move Tab Backward"},
       }
     },
-    ["buf"] = { "<cmd>Buffers<cr>", "Buffer Search"},
   },
   ["<C-Up>"] = {"<cmd>resize -2<cr>", "Push Window Up"},
   ["<C-Down>"] = {"<cmd>resize +2<cr>", "Push Window Down"},
