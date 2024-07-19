@@ -4,5 +4,6 @@ return {
   main = "ibl",
   opts = {
     enabled = true,
+    indent = { highlight = "WinSeparator" },
   }
 }
