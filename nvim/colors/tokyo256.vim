@@ -16,7 +16,7 @@ let colors_name = "Tokyo256"
 
 if s:t_Co > 16
   " UI Elements
-  hi ColorColumn ctermbg=8
+  hi ColorColumn ctermfg=8
   hi Conceal ctermbg=Black
   hi Cursor cterm=reverse
   hi lCursor cterm=reverse
@@ -66,6 +66,7 @@ if s:t_Co > 16
 
   " Standard Syntax Groups
   hi Normal ctermfg=White ctermbg=None cterm=None
+  hi NonText ctermfg=8
 
   hi Comment ctermfg=DarkGray cterm=italic
 
