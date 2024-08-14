@@ -22,7 +22,6 @@ syntax match swiftShebang "\v#!.*$"
 syntax match swiftComment "\v\/\/.*$" contains=swiftTodos,@Spell oneline
 syntax region swiftComment start="/\*" end="\*/" contains=swiftTodos,@Spell fold
 
-
 " Comment keywords
 syntax keyword swiftTodos contained TODO FIXME NOTE
 
@@ -48,6 +47,9 @@ syntax match  swiftNumber "\<0[Oo][0-7_]\+\>"
 syntax match  swiftNumber "\<0[Bb][01_]\+\>"
 
 syntax match swiftFloat "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
+
+syntax keyword swiftNil
+      \ nil
 
 " Keywords
 syntax keyword swiftKeyword
@@ -109,6 +111,8 @@ syntax keyword swiftTypeDefinition skipwhite skipempty nextgroup=swiftTypeName
       \ precedencegroup
       \ protocol
       \ struct
+      \ associatedtype
+      \ typealias
 
 syntax keyword swiftFunctionDefinition skipwhite skipempty
       \ func
@@ -126,12 +130,10 @@ syntax match swiftTypeName contained skipwhite skipempty
 syntax match swiftVarName contained skipwhite skipempty
       \ /\<[A-Za-z_][A-Za-z_0-9]*\>/
 
-
 syntax match swiftImportModule contained nextgroup=swiftImportComponent
       \ /\<[A-Za-z_][A-Za-z_0-9]*\>/
 syntax match swiftImportComponent contained nextgroup=swiftImportComponent
       \ /\.\<[A-Za-z_][A-Za-z_0-9]*\>/
-
 
 " Set highlights
 highlight default link swiftTodos Todo
@@ -146,10 +148,12 @@ highlight default link swiftBoolean Boolean
 highlight default link swiftNumber Number
 highlight default link swiftFloat Float
 highlight default link swiftKeyword Operator
+highlight default link swiftNil Constant
 
 highlight default link swiftTypeName Function
 highlight default link swiftDefinitionModifier Operator
 highlight default link swiftTypeDefinition Define
+highlight default link swiftTypeAlias Define
 highlight default link swiftFunctionDefinition Define
 highlight default link swiftEffect Operator
 highlight default link swiftVarDefinition Define
