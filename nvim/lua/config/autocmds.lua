@@ -70,6 +70,12 @@ autocmd({'Bufread', 'Bufnewfile'}, {
   command = 'setlocal ft=snippets',
 })
 
+autocmd({'Bufread', 'Bufnewfile'}, {
+  group = 'SetFileTypes',
+  pattern = '*.pbxproj',
+  command = 'setlocal ft=pbxproj nospell',
+})
+
 -- Resize Window
 
 augroup('ResizeWindow', { clear = true })
