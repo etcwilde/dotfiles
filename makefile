@@ -79,8 +79,13 @@ jq: | ${HOME}/.local/bin/jq
 ## fzf
 #
 
-FZF_VERSION := 0.53.0
-FZF_BASE_PATH := https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/
+FZF_VERSION := 0.57.0
+FZF_BASE_PATH := https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/
+
+FZF_SHA256_darwin_amd64 := "cecafb8aec9be56b4559489a4d97a1bb202095c604b00512638003dfadbbf527  /tmp/fzf-0.57.0-darwin_amd64.tar.gz"
+FZF_SHA256_darwin_arm64 := "b4e1c5322652bc2672c32dc37993f8d501df7aecb3fa9e545a3d80eca8ae9a2f  /tmp/fzf-0.57.0-darwin_arm64.tar.gz"
+FZF_SHA256_linux_amd64 := "a3c087a5f40e8bb4d9bfb26faffa094643df111a469646bef53154a54af9ff92  /tmp/fzf-0.57.0-linux_amd64.tar.gz"
+FZF_SHA256_linux_arm64 := "e0b3fd1bb769997907d373b0511401801cd643ce939d26ad42e9fe2836bed625  /tmp/fzf-0.57.0-linux_arm64.tar.gz"
 
 ifeq (${ARCH},x86_64)
   FZF_ARCH := amd64
@@ -92,21 +97,17 @@ endif
 
 ifeq (${SYSTEM},Darwin)
   FZF_SYSTEM := darwin
-  FZF_FILE := fzf-${FZF_VERSION}-${FZF_SYSTEM}_${FZF_ARCH}.zip
 else ifeq (${SYSTEM},Linux)
   FZF_SYSTEM := linux
-  FZF_FILE := fzf-${FZF_VERSION}-${FZF_SYSTEM}_${FZF_ARCH}.tar.gz
 else
   $(warning no known platform '${SYSTEM}' for fzf)
 endif
+FZF_FILE := fzf-${FZF_VERSION}-${FZF_SYSTEM}_${FZF_ARCH}.tar.gz
 
 fzf: | ${HOME}/.local/bin
 	curl -L ${FZF_BASE_PATH}${FZF_FILE} > /tmp/${FZF_FILE}
-ifeq (${SYSTEM},Darwin)
-	unzip /tmp/${FZF_FILE} -d ${HOME}/.local/bin
-else ifeq (${SYSTEM},Linux)
+	echo ${FZF_SHA256_${FZF_SYSTEM}_${FZF_ARCH}} | shasum -a 256 -c-
 	tar xf /tmp/${FZF_FILE} -C ${HOME}/.local/bin
-endif
 
 #
 ## lldb
