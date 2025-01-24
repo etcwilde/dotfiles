@@ -51,15 +51,30 @@ ${HOME}/.i3:
 ## jq
 #
 
-ifeq (${SYSTEM},Darwin)
-JQ_PATH := https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64
-JQ_SHA512_SUM :=  "df407cd34378f49ff8866d61a58ce1c367341062325c4c3bd07b0e1ad5d65758a2ede94574b4279e1a0a208a04bac487b7d898450fb614c2b94469d7621e583a  /tmp/jq"
-else ifeq (${SYSTEM},Linux)
-JQ_PATH := https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-JQ_SHA512_SUM := "c9e585368bcb89d4c5213a31866e9301f03fe27165afcb4a3cdf0ec1be43b0fb7439d71dd9607ccc002622915b40389ee79c67d4c3c54ff95257cb23643b0330  /tmp/jq"
+JQ_VERSION := 1.7.1
+JQ_BASE_PATH := https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/
+JQ_SHA256_linux_amd64 := "5942c9b0934e510ee61eb3e30273f1b3fe2590df93933a93d7c58b81d19c8ff5  /tmp/jq"
+JQ_SHA256_linux_arm64 := "4dd2d8a0661df0b22f1bb9a1f9830f06b6f3b8f7d91211a1ef5d7c4f06a8b4a5  /tmp/jq"
+JQ_SHA256_macos_amd64 := "4155822bbf5ea90f5c79cf254665975eb4274d426d0709770c21774de5407443  /tmp/jq"
+JQ_SHA256_macos_arm64 := "0bbe619e663e0de2c550be2fe0d240d076799d6f8a652b70fa04aea8a8362e8a  /tmp/jq"
+
+ifeq (${ARCH},x86_64)
+	JQ_ARCH := amd64
+else ifeq (${ARCH},arm64)
+	JQ_ARCH := arm64
 else
-	$(warning "no known platform '${SYSTEM}' for jq")
+	$(warning "Unknown architecture '${ARCH}' for jq")
 endif
+
+ifeq (${SYSTEM},Darwin)
+	JQ_SYSTEM := macos
+else ifeq (${SYSTEM},Linux)
+	JQ_SYSTEM := linux
+else
+	$(warning "Unknown system '${SYSTEM}' for jq")
+endif
+
+JQ_FILE := jq-${JQ_SYSTEM}-${JQ_ARCH}
 
 ${HOME}/.local/bin:
 	mkdir -p ${HOME}/.local/bin
@@ -68,8 +83,8 @@ ${HOME}/.config:
 	mkdir -p ${HOME}/.config
 
 ${HOME}/.local/bin/jq: | ${HOME}/.local/bin
-	curl -L ${JQ_PATH} > /tmp/jq
-	echo ${JQ_SHA512_SUM} | shasum -a 512 -c-
+	curl -L ${JQ_BASE_PATH}${JQ_FILE} > /tmp/jq
+	echo ${JQ_SHA256_${JQ_SYSTEM}_${JQ_ARCH}} | shasum -a 256 -c-
 	chmod +x /tmp/jq
 	mv /tmp/jq ${HOME}/.local/bin/jq
 
