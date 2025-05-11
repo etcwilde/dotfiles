@@ -62,7 +62,11 @@ endsnippet
 #
 
 snippet target "Target Options" b
-target_$1`!p snip.rv=complete(t[1], ['link_libraries', 'include_directories', 'compile_options'])`$0
+target_$1`!p snip.rv=complete(t[1],
+	['link_libraries',
+	'include_directories',
+	'compile_options',
+	'compile_definitions'])`$0
 endsnippet
 
 snippet target_link_libraries "Link link_libraries to a target" b
