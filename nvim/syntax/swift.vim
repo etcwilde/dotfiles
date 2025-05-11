@@ -93,6 +93,7 @@ syntax keyword swiftDefinitionModifier
       \ mutating
       \ open
       \ override
+      \ package
       \ prefix
       \ private
       \ public

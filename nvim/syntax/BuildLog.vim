@@ -56,7 +56,7 @@ syn keyword logBool   TRUE True true FALSE False false
 syn keyword logNull   NULL Null null
 
 syn keyword logFatal      fatal
-syn keyword logError      error
+syn keyword logError      error FAILURE ABORTED
 
 
 " Highlighting links

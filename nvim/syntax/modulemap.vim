@@ -59,3 +59,5 @@ unlet s:ft
 
 let s:cpo_save = &cpo
 set cpo&vim
+
+let b:current_syntax = "modulemap"
