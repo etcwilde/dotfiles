@@ -92,3 +92,8 @@ autocmd({'BufWritePost'}, {
   pattern = '*.snippets',
   command = ":call UltiSnips#RefreshSnippets()",
 })
+
+autocmd({'TermOpen'}, {
+  group = 'BufferBehaviour',
+  command = 'set nospell',
+})
