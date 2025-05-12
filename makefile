@@ -210,17 +210,42 @@ clean_tmux:
 ## Zsh
 #
 
-zsh: | ${HOME}/.zshrc ${HOME}/.config/zsh
-	@echo "Zsh configuration installed"
+ZSH_CONF_FILES := $(subst ${BASE_DIR}/zsh,${HOME}/.config/zsh,$(wildcard ${BASE_DIR}/zsh/*.zsh) $(wildcard ${BASE_DIR}/zsh/completions/*))
 
-${HOME}/.zshrc:
-	ln -s ${BASE_DIR}/zsh/zshrc ${HOME}/.zshrc
+$(ZSH_CONF_FILES): | ${HOME}/.config/zsh/completions
 
-${HOME}/.config/zsh: ${HOME}/.config
-	ln -s ${BASE_DIR}/zsh ${HOME}/.config/zsh
+${HOME}/.config/zsh/%: ${BASE_DIR}/zsh/%
+	cp $< $@
 
-zsh_Darwin:
+${HOME}/.config/zsh/completions:
+	mkdir -p ${HOME}/.config/zsh/completions
+
+zsh: ${HOME}/.zshrc $(ZSH_CONF_FILES)
+
+${HOME}/.zshrc: ${BASE_DIR}/zsh/zshrc
+	cp ${BASE_DIR}/zsh/zshrc ${HOME}/.zshrc
+
+zsh_Darwin: ${BASE_DIR}/.stamps/zsh_Darwin-stamp
+
+${BASE_DIR}/.stamps/zsh_Darwin-stamp: ${BASE_DIR}/.stamps
 	bash ${BASE_DIR}/platform/macos/defaults.sh
+	touch ${BASE_DIR}/.stamps/zsh_Darwin-stamp
+
+clean_zsh:
+	rm -f ${HOME}/.zshrc
+	rm -f $(ZSH_CONF_FILES)
+	rm -fr ${HOME}/.config/zsh/completions
+
+### Zsh plugins
+
+zsh_plugins: ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting
+
+${HOME}/.config/zsh/plugins:
+	mkdir -p ${HOME}/.config/zsh/plugins
+
+${HOME}/.config/zsh/plugins/zsh-syntax-highlighting:
+	curl -L https://github.com/zsh-users/zsh-syntax-highlighting/archive/refs/tags/0.8.0.tar.gz -o ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting.tar.gz
+	tar -xf ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting.tar.gz -C ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting --strip-components=1
 
 #
 ## Alacritty
@@ -231,7 +256,17 @@ ${HOME}/.config/alacritty/alacritty.toml: ${BASE_DIR}/terminals/alacritty/alacri
 	mkdir -p ${HOME}/.config/alacritty
 	cp ${BASE_DIR}/terminals/alacritty/alacritty.toml ${HOME}/.config/alacritty/alacritty.toml
 
-clean: clean_${SYSTEM}
+#
+# Directories
+#
+
+${BASE_DIR}/.stamps:
+	mkdir -p ${BASE_DIR}/.stamps
+
+clean_stamps:
+	rm -r ${BASE_DIR}/.stamps
+
+clean: clean_${SYSTEM} clean_stamps
 
 clean_Darwin: clean_git clean_lldb clean_nvim clean_tmux clean_zsh
 
