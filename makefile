@@ -191,14 +191,17 @@ clean_rofi:
 ## Tmux
 #
 
-tmux: | ${HOME}/.tmux.conf ${HOME}/.config/tmux
-	@echo "Tmux configuration installed"
+tmux: ${HOME}/.tmux.conf ${HOME}/.config/tmux/session/dev-session
 
-${HOME}/.tmux.conf:
-	ln -s ${BASE_DIR}/tmux/tmux.conf ${HOME}/.tmux.conf
+${HOME}/.tmux.conf: ${BASE_DIR}/tmux/tmux.conf
+	cp ${BASE_DIR}/tmux/tmux.conf ${HOME}/.tmux.conf
 
-${HOME}/.config/tmux: ${HOME}/.config
-	ln -s ${BASE_DIR}/tmux ${HOME}/.config/tmux
+${HOME}/.config/tmux: ${HOME}/.config/tmux/session/dev-session
+
+${HOME}/.config/tmux/session/dev-session: ${BASE_DIR}/tmux/session/dev-session
+	mkdir -p ${HOME}/.config/tmux/session
+	cp ${BASE_DIR}/tmux/session/dev-session ${HOME}/.config/tmux/session/dev-session
+
 clean_tmux:
 	rm ${HOME}/.tmux.conf
 	rm -f ${HOME}/.config/tmux/session/dev-session
