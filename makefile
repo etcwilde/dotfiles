@@ -8,7 +8,7 @@ SYSTEM     :=$(shell uname -s)
 ARCH       :=$(shell uname -m)
 BASE_DIR   :=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-.phony: install install_Linux install_Darwin git i3 lldb nvim rofi tmux zsh jq
+.phony: install install_Linux install_Darwin git i3 lldb nvim rofi tmux zsh jq clean clean_Darwin clean_Linux
 
 install: install_${SYSTEM}
 
@@ -25,7 +25,6 @@ install_Darwin: git jq lldb nvim tmux zsh zsh_Darwin
 #
 
 git: ${HOME}/.config/git/config ${HOME}/.config/git/ignore
-	@echo "git configuration installed"
 
 ${HOME}/.config/git/config: ${HOME}/.config/git
 	cp ${BASE_DIR}/git/config ${HOME}/.config/git/config
@@ -37,6 +36,9 @@ ${HOME}/.config/git/ignore: ${HOME}/.config/git
 ${HOME}/.config/git:
 	mkdir -p ${HOME}/.config/git
 
+clean_git:
+	rm -f ${HOME}/.config/git/config ${HOME}.config/git/ignore
+
 #
 ## i3
 #
@@ -46,6 +48,9 @@ i3: | ${HOME}/.i3
 
 ${HOME}/.i3:
 	ln -s ${BASE_DIR}/i3 ${HOME}/.i3
+
+clean_i3:
+	rm ${HOME}/.i3
 
 #
 ## jq
@@ -90,6 +95,9 @@ ${HOME}/.local/bin/jq: | ${HOME}/.local/bin
 
 jq: | ${HOME}/.local/bin/jq
 
+clean_jq:
+	rm ${HOME}/.local/bin/jq
+
 #
 ## fzf
 #
@@ -124,6 +132,9 @@ fzf: | ${HOME}/.local/bin
 	echo ${FZF_SHA256_${FZF_SYSTEM}_${FZF_ARCH}} | shasum -a 256 -c-
 	tar xf /tmp/${FZF_FILE} -C ${HOME}/.local/bin
 
+clean_fzf:
+	rm ${HOME}/.local/bin/fzf
+
 #
 ## lldb
 #
@@ -132,7 +143,10 @@ lldb: | ${HOME}/.lldbinit
 	@echo "LLDB configuration installed"
 
 ${HOME}/.lldbinit:
-	ln -s ${BASE_DIR}/lldb/lldbinit ${HOME}/.lldbinit
+	cp ${BASE_DIR}/lldb/lldbinit ${HOME}/.lldbinit
+
+clean_lldb:
+	rm ${HOME}/.lldbinit
 
 #
 ## neovim
@@ -142,7 +156,10 @@ nvim: | ${HOME}/.config/nvim
 	@echo "NeoVim configuration installed"
 
 ${HOME}/.config/nvim: ${HOME}/.config
-	ln -s ${BASE_DIR}/nvim ${HOME}/.config/nvim
+	cp -r ${BASE_DIR}/nvim ${HOME}/.config/nvim
+
+clean_nvim:
+	rm -r ${HOME}/.config/nvim
 
 #
 ## vim
@@ -154,6 +171,9 @@ vim: ${BASE_DIR}/vim/vimrc | ${HOME}/.vim
 ${HOME}/.vim:
 	ln -s ${BASE_DIR}/vim ${HOME}/.vim
 
+clean_vim:
+	rm ${HOME}/.vim
+
 #
 ## Rofi
 #
@@ -163,6 +183,9 @@ rofi: | ${HOME}/.config/rofi
 
 ${HOME}/.config/rofi: ${HOME}/.config
 	ln -s ${BASE_DIR}/rofi ${HOME}/.config/rofi
+
+clean_rofi:
+	rm ${HOME}/.config/rofi
 
 #
 ## Tmux
@@ -176,6 +199,9 @@ ${HOME}/.tmux.conf:
 
 ${HOME}/.config/tmux: ${HOME}/.config
 	ln -s ${BASE_DIR}/tmux ${HOME}/.config/tmux
+clean_tmux:
+	rm ${HOME}/.tmux.conf
+	rm -f ${HOME}/.config/tmux/session/dev-session
 
 #
 ## Zsh
@@ -201,3 +227,9 @@ alacritty: ${HOME}/.config/alacritty/alacritty.toml
 ${HOME}/.config/alacritty/alacritty.toml: ${BASE_DIR}/terminals/alacritty/alacritty.toml
 	mkdir -p ${HOME}/.config/alacritty
 	cp ${BASE_DIR}/terminals/alacritty/alacritty.toml ${HOME}/.config/alacritty/alacritty.toml
+
+clean: clean_${SYSTEM}
+
+clean_Darwin: clean_git clean_lldb clean_nvim clean_tmux clean_zsh
+
+clean_Linux: clean_git clean_i3 clean_lldb clean_nvim clean_rofi clean_tmux clean_zsh
