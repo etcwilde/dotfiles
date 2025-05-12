@@ -37,6 +37,7 @@ fpath=($ZSH/completions/ $fpath)
 [ -f $ZSH/prompt.zsh ] && . $ZSH/prompt.zsh
 [ -f $ZSH/private.zsh ] && . $ZSH/private.zsh
 [ -f $ZSH/completions.zsh ] && . $ZSH/completions.zsh
+[ -f $ZSH/fzf.zsh ] && . $ZSH/fzf.zsh
 
 # Library Variables
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
