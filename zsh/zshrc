@@ -10,9 +10,13 @@ prog_exists() {
                 return 1
         fi
 }
+
 export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.toolchains/usr/bin:$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/.local/lib/go/"
 export TZ='America/Los_Angeles'
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+export DYLD_LIBRARY_PATH="$HOME/.local/lib:$DYLD_LIBRARY_PATH"
+export SCCACHE_CACHE_SIZE="30G"
 
 if prog_exists 'nvim'; then
         export EDITOR='nvim'
@@ -22,11 +26,7 @@ fi
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
-# Variables
 ZSH=~/.config/zsh
-ANTIGEN=$ZSH/antigen/antigen.zsh
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
 
 # Include custom functions
 fpath=($ZSH/completions/ $fpath)
@@ -38,11 +38,6 @@ fpath=($ZSH/completions/ $fpath)
 [ -f $ZSH/private.zsh ] && . $ZSH/private.zsh
 [ -f $ZSH/completions.zsh ] && . $ZSH/completions.zsh
 [ -f $ZSH/fzf.zsh ] && . $ZSH/fzf.zsh
-
-# Library Variables
-export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
-export DYLD_LIBRARY_PATH="$LD_LIBRARY_PATH"
-export SCCACHE_CACHE_SIZE="30G"
 
 # Options
 setopt autocd
