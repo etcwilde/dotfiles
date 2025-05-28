@@ -12,6 +12,8 @@ elif [[ $(uname) = 'Linux' ]]; then
   alias open="xdg-open"
   # Watch with color
   alias watch="watch --color"
+elif [[ $(uname) = 'FreeBSD' ]]; then
+  alias ls="ls --color"
 fi
 
 alias la="ls -A"
