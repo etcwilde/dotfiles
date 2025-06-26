@@ -16,6 +16,8 @@ install_Linux: git jq i3 lldb nvim rofi tmux zsh
 
 install_Darwin: git jq lldb nvim tmux zsh zsh_Darwin
 
+install_FreeBSD: git lldb nvim tmux zsh
+
 #
 # Components
 #
@@ -64,19 +66,19 @@ JQ_SHA256_macos_amd64 := "4155822bbf5ea90f5c79cf254665975eb4274d426d0709770c2177
 JQ_SHA256_macos_arm64 := "0bbe619e663e0de2c550be2fe0d240d076799d6f8a652b70fa04aea8a8362e8a  /tmp/jq"
 
 ifeq (${ARCH},x86_64)
-	JQ_ARCH := amd64
+JQ_ARCH := amd64
 else ifeq (${ARCH},arm64)
-	JQ_ARCH := arm64
+JQ_ARCH := arm64
 else
-	$(warning "Unknown architecture '${ARCH}' for jq")
+$(warning "Unknown architecture '${ARCH}' for jq")
 endif
 
 ifeq (${SYSTEM},Darwin)
-	JQ_SYSTEM := macos
+JQ_SYSTEM := macos
 else ifeq (${SYSTEM},Linux)
-	JQ_SYSTEM := linux
+JQ_SYSTEM := linux
 else
-	$(warning "Unknown system '${SYSTEM}' for jq")
+$(warning "Unknown system '${SYSTEM}' for jq")
 endif
 
 JQ_FILE := jq-${JQ_SYSTEM}-${JQ_ARCH}
@@ -111,19 +113,19 @@ FZF_SHA256_linux_amd64 := "a3c087a5f40e8bb4d9bfb26faffa094643df111a469646bef5315
 FZF_SHA256_linux_arm64 := "e0b3fd1bb769997907d373b0511401801cd643ce939d26ad42e9fe2836bed625  /tmp/fzf-0.57.0-linux_arm64.tar.gz"
 
 ifeq (${ARCH},x86_64)
-  FZF_ARCH := amd64
+FZF_ARCH := amd64
 else ifeq (${ARCH},arm64)
-  FZF_ARCH := ${ARCH}
+FZF_ARCH := ${ARCH}
 else
-  $(warning "Unknown architecture '${ARCH}' for fzf")
+$(warning "Unknown architecture '${ARCH}' for fzf")
 endif
 
 ifeq (${SYSTEM},Darwin)
-  FZF_SYSTEM := darwin
+FZF_SYSTEM := darwin
 else ifeq (${SYSTEM},Linux)
-  FZF_SYSTEM := linux
+FZF_SYSTEM := linux
 else
-  $(warning no known platform '${SYSTEM}' for fzf)
+$(warning no known platform '${SYSTEM}' for fzf)
 endif
 FZF_FILE := fzf-${FZF_VERSION}-${FZF_SYSTEM}_${FZF_ARCH}.tar.gz
 
@@ -271,3 +273,5 @@ clean: clean_${SYSTEM} clean_stamps
 clean_Darwin: clean_git clean_lldb clean_nvim clean_tmux clean_zsh
 
 clean_Linux: clean_git clean_i3 clean_lldb clean_nvim clean_rofi clean_tmux clean_zsh
+
+clean_FreeBSD: clean_git clean_lldb clean_nvim clean_tmux clean_zsh
