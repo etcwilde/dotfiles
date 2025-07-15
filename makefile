@@ -154,11 +154,73 @@ clean_lldb:
 ## neovim
 #
 
-nvim: | ${HOME}/.config/nvim
-	@echo "NeoVim configuration installed"
+NVIM_ROOT := ${BASE_DIR}/nvim
+NVIM_CONFIG := ${HOME}/.config/nvim
 
-${HOME}/.config/nvim: ${HOME}/.config
-	cp -r ${BASE_DIR}/nvim ${HOME}/.config/nvim
+# Colorschemes
+
+NVIM_COLORSCHEMES := $(subst ${NVIM_ROOT},${NVIM_CONFIG},$(wildcard ${NVIM_ROOT}/colors/*.vim))
+
+$(NVIM_COLORSCHEMES): ${NVIM_CONFIG}/colors
+
+${NVIM_CONFIG}/colors:
+	mkdir -p ${NVIM_CONFIG}/colors
+
+# ftplugins
+
+NVIM_FTPLUGINS := $(subst ${NVIM_ROOT},${NVIM_CONFIG},$(wildcard ${NVIM_ROOT}/ftplugin/*.vim))
+
+$(NVIM_FTPLUGINS): ${NVIM_CONFIG}/ftplugin
+
+${NVIM_CONFIG}/ftplugin:
+	mkdir -p ${NVIM_CONFIG}/ftplugin
+
+# Syntax dir
+
+NVIM_SYNTAX := $(subst ${NVIM_ROOT},${HOME}/.config/nvim,$(wildcard ${NVIM_ROOT}/syntax/*.vim))
+
+$(NVIM_SYNTAX): ${HOME}/.config/nvim/syntax
+
+${HOME}/.config/nvim/syntax:
+	mkdir -p ${HOME}/.config/nvim/syntax
+
+# Symlink spelling files
+
+NVIM_SPELL := $(subst ${NVIM_ROOT},${HOME}/.config/nvim,$(wildcard ${NVIM_ROOT}/spell/*.add) $(wildcard ${NVIM_ROOT}/spell/*.add.spl))
+
+$(NVIM_SPELL): ${HOME}/.config/nvim/spell
+
+${HOME}/.config/nvim/spell:
+	mkdir -p ${HOME}/.config/nvim/spell
+
+${HOME}/.config/nvim/spell/%: | ${NVIM_ROOT}/spell/%
+	ln -s $< $@
+
+# Copy Snippets
+
+NVIM_SNIPPETS := $(subst ${NVIM_ROOT},${HOME}/.config/nvim,$(wildcard ${NVIM_ROOT}/ulti-snippets/*.snippets))
+
+$(NVIM_SNIPPETS): ${HOME}/.config/nvim/ulti-snippets
+
+${HOME}/.config/nvim/ulti-snippets:
+	mkdir -p ${HOME}/.config/nvim/ulti-snippets
+
+# Copy lua files
+
+NVIM_LUA := $(subst ${NVIM_ROOT},${NVIM_CONFIG}, $(wildcard ${NVIM_ROOT}/lua/*/*.lua))
+
+$(NVIM_LUA): ${NVIM_CONFIG}/lua/config ${NVIM_CONFIG}/lua/plugins
+
+${NVIM_CONFIG}/lua/config:
+	mkdir -p ${NVIM_CONFIG}/lua/config
+
+${NVIM_CONFIG}/lua/plugins:
+	mkdir -p ${NVIM_CONFIG}/lua/plugins
+
+nvim: ${NVIM_CONFIG}/init.lua $(NVIM_COLORSCHEMES) $(NVIM_FTPLUGINS) $(NVIM_SPELL) $(NVIM_SYNTAX) $(NVIM_SNIPPETS) $(NVIM_LUA)
+
+${NVIM_CONFIG}/%: ${BASE_DIR}/nvim/%
+	cp $< $@
 
 clean_nvim:
 	rm -r ${HOME}/.config/nvim
