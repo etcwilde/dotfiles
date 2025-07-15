@@ -31,6 +31,10 @@ snippet warn "Warning message" b
 message(WARNING "${1}")$0
 endsnippet
 
+snippet log "Log message" b
+message(CONFIGURE_LOG "${1}")$0
+endsnippet
+
 #
 # Comments
 #
@@ -87,10 +91,22 @@ if($1)
 endif()
 endsnippet
 
-snippet "^[\t ]*for(each)?" "Cmake for-loop" r
-foreach(${1:loop_var} ${2:args})
+snippet for "for loop" b
+foreach(${1:variable} ${2:items})
 	$0
 endforeach()
+endsnippet
+
+snippet forin "for loop" b
+foreach(${1:variable} IN LISTS ${2:lists})
+	$0
+endforeach()
+endsnippet
+
+snippet block "block" b
+block($1)
+	$0
+endblock()
 endsnippet
 
 #
