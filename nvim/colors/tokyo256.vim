@@ -14,6 +14,8 @@ let s:t_Co = exists('&t_Co') && !empty(&t_Co) && &t_Co > 1 ? &t_Co : 2
 
 let colors_name = "Tokyo256"
 
+set notermguicolors
+
 if s:t_Co > 16
   " UI Elements
   hi ColorColumn ctermfg=8
@@ -92,7 +94,6 @@ if s:t_Co > 16
   hi Underlined cterm=Underline
   hi Bold cterm=Bold
   hi Italic cterm=italic
-
 
   " Language specific syntax overrides
   "
