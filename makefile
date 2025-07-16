@@ -207,9 +207,9 @@ ${HOME}/.config/nvim/ulti-snippets:
 
 # Copy lua files
 
-NVIM_LUA := $(subst ${NVIM_ROOT},${NVIM_CONFIG}, $(wildcard ${NVIM_ROOT}/lua/*/*.lua))
+NVIM_LUA := $(subst ${NVIM_ROOT},${NVIM_CONFIG}, $(wildcard ${NVIM_ROOT}/lua/*/*.lua) ${NVIM_ROOT}/init.lua)
 
-$(NVIM_LUA): ${NVIM_CONFIG}/lua/config ${NVIM_CONFIG}/lua/plugins
+$(NVIM_LUA): | ${NVIM_CONFIG} ${NVIM_CONFIG}/lua/config ${NVIM_CONFIG}/lua/plugins
 
 ${NVIM_CONFIG}/lua/config:
 	mkdir -p ${NVIM_CONFIG}/lua/config
@@ -217,9 +217,12 @@ ${NVIM_CONFIG}/lua/config:
 ${NVIM_CONFIG}/lua/plugins:
 	mkdir -p ${NVIM_CONFIG}/lua/plugins
 
-nvim: ${NVIM_CONFIG}/init.lua $(NVIM_COLORSCHEMES) $(NVIM_FTPLUGINS) $(NVIM_SPELL) $(NVIM_SYNTAX) $(NVIM_SNIPPETS) $(NVIM_LUA)
+${NVIM_CONFIG}:
+	mkdir -p ${NVIM_CONFIG}
 
-${NVIM_CONFIG}/%: ${BASE_DIR}/nvim/%
+nvim: $(NVIM_COLORSCHEMES) $(NVIM_FTPLUGINS) $(NVIM_SPELL) $(NVIM_SYNTAX) $(NVIM_SNIPPETS) $(NVIM_LUA)
+
+${NVIM_CONFIG}/%: ${NVIM_ROOT}/%
 	cp $< $@
 
 clean_nvim:
