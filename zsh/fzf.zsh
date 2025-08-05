@@ -8,3 +8,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=info:blue,header:blue,pointer:red \
   --color=border:black \
   --height=50%"
+
+if prog_exists rg; then
+  export FZF_DEFAULT_COMMAND="rg --files --hidden"
+fi
