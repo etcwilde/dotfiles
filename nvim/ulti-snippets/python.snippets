@@ -1,5 +1,18 @@
 # vim:set noet sw=4 ts=4 sts=4 tw=72:
 
+snippet main "Main entrypoint" b
+if __name__ == "__main__":
+	${0:pass}
+endsnippet
+
+snippet maina "Async main entrypoint" b
+async def main():
+	pass
+
+if __name__ == "__main__":
+	asyncio.run(main())
+endsnippet
+
 # classes
 snippet class "new class definition" b
 class ${1}:
@@ -18,6 +31,11 @@ endsnippet
 
 snippet def "New function definition" b
 def ${1:func}(${2}):
+	${0:pass}
+endsnippet
+
+snippet defa "New async function" b
+async def ${1:func}(${2}):
 	${0:pass}
 endsnippet
 
