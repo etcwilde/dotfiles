@@ -207,15 +207,18 @@ ${HOME}/.config/nvim/ulti-snippets:
 
 # Copy lua files
 
-NVIM_LUA := $(subst ${NVIM_ROOT},${NVIM_CONFIG}, $(wildcard ${NVIM_ROOT}/lua/*/*.lua) ${NVIM_ROOT}/init.lua)
+NVIM_LUA := $(subst ${NVIM_ROOT},${NVIM_CONFIG}, $(wildcard ${NVIM_ROOT}/lua/*/*.lua) $(wildcard ${NVIM_ROOT}/lsp/*.lua) ${NVIM_ROOT}/init.lua)
 
-$(NVIM_LUA): | ${NVIM_CONFIG} ${NVIM_CONFIG}/lua/config ${NVIM_CONFIG}/lua/plugins
+$(NVIM_LUA): | ${NVIM_CONFIG} ${NVIM_CONFIG}/lsp ${NVIM_CONFIG}/lua/config ${NVIM_CONFIG}/lua/plugins
 
 ${NVIM_CONFIG}/lua/config:
 	mkdir -p ${NVIM_CONFIG}/lua/config
 
 ${NVIM_CONFIG}/lua/plugins:
 	mkdir -p ${NVIM_CONFIG}/lua/plugins
+
+${NVIM_CONFIG}/lsp:
+	mkdir -p ${NVIM_CONFIG}/lsp
 
 ${NVIM_CONFIG}:
 	mkdir -p ${NVIM_CONFIG}
