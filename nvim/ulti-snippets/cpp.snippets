@@ -28,6 +28,18 @@ endsnippet
 # Control flow
 #
 
+snippet for "range for loop" b
+for($1 : $2) {
+	$0
+}
+endsnippet
+
+snippet fori "for index loop" b
+for(auto it = std::begin($1), end = std::end($1); ${2:it != end}; ${3:++it}) {
+	$0
+}
+endsnippet
+
 snippet switch "Create a switch" b
 switch($1) {
 	$0
@@ -36,7 +48,7 @@ endsnippet
 
 snippet case "case" b
 case ${1:1}:
-	break;
+	$0break;
 endsnippet
 
 #
