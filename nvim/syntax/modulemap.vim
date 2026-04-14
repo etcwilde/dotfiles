@@ -15,7 +15,8 @@ set cpo&vim
 let s:ft = matchstr(&ft, '^\([^.]\)\+')
 
 " Comments
-syn region modulemapCommentL start="//" skip="\\$" end="$" keepend contains=@Spell
+syn region modulemapCommentLine start="//" skip="\\$" end="$" keepend contains=@Spell
+syn region modulemapCommentBlock start="/\*" end="\*/" contains=@Spell fold
 
 " Strings
 syn region modulemapString start=+\%(L\|U\|u8\)\="+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell extend
@@ -47,7 +48,8 @@ syn match modulemapName '\i\+' contained
 syn region modulemapBlock start="{" end="}" transparent fold
 
 " Colors
-hi def link modulemapCommentL Comment
+hi def link modulemapCommentLine Comment
+hi def link modulemapCommentBlock Comment
 hi def link modulemapHeaderString String
 hi def link modulemapKeyword Statement
 hi def link modulemapKeywordHeader modulemapKeyword
