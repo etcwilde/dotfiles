@@ -104,13 +104,13 @@ clean_jq:
 ## fzf
 #
 
-FZF_VERSION := 0.57.0
+FZF_VERSION := 0.73.1
 FZF_BASE_PATH := https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/
 
-FZF_SHA256_darwin_amd64 := "cecafb8aec9be56b4559489a4d97a1bb202095c604b00512638003dfadbbf527  /tmp/fzf-0.57.0-darwin_amd64.tar.gz"
-FZF_SHA256_darwin_arm64 := "b4e1c5322652bc2672c32dc37993f8d501df7aecb3fa9e545a3d80eca8ae9a2f  /tmp/fzf-0.57.0-darwin_arm64.tar.gz"
-FZF_SHA256_linux_amd64 := "a3c087a5f40e8bb4d9bfb26faffa094643df111a469646bef53154a54af9ff92  /tmp/fzf-0.57.0-linux_amd64.tar.gz"
-FZF_SHA256_linux_arm64 := "e0b3fd1bb769997907d373b0511401801cd643ce939d26ad42e9fe2836bed625  /tmp/fzf-0.57.0-linux_arm64.tar.gz"
+FZF_SHA256_darwin_amd64 := "75bbf15248d1cf0a13eafc75b8a55f5075c437e2ba6d76899afc53f4f3e1b38c  /tmp/fzf-${FZF_VERSION}-darwin_amd64.tar.gz"
+FZF_SHA256_darwin_arm64 := "d27fd68c04fb9b42f7c73a3f7d38069a74d308e40174f64a072c747213e97286  /tmp/fzf-${FZF_VERSION}-darwin_arm64.tar.gz"
+FZF_SHA256_linux_amd64 := "f3252c2c366bc1700d3c85781ec8c9695998927ac127870eb049ceea2d540f8a  /tmp/fzf-${FZF_VERSION}-linux_amd64.tar.gz"
+FZF_SHA256_linux_arm64 := "a408b0b6c08d486307b8f1554f967b8b50ee1b3ea8b4035e3161bab31fdfc28d  /tmp/fzf-${FZF_VERSION}-linux_arm64.tar.gz"
 
 ifeq (${ARCH},x86_64)
 FZF_ARCH := amd64
